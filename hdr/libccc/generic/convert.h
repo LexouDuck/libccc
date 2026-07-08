@@ -32,6 +32,7 @@ HEADER_CPP
 #include "libccc/generic/array.h"
 #include "libccc/generic/list.h"
 #include "libccc/generic/set.h"
+#include "libccc/generic/dict.h"
 
 //! NOTE: this header declares cross-type generic functions, which requires the
 //! foreign type macros (`s_array`, `s_list`, `s_set`) to be in "declaration"
@@ -42,9 +43,13 @@ HEADER_CPP
 #undef	s_array
 #undef	s_list
 #undef	s_set
+#undef	s_dict
+#undef	s_keyval
 #define	s_array(X)	CONCAT(s_array_,	X##_NAME)
 #define	s_list(X)	CONCAT(s_list_,	X##_NAME)
 #define	s_set(X)	CONCAT(s_set_,	X##_NAME)
+#define	s_dict(X)	CONCAT(s_dict_,	X##_NAME)
+#define	s_keyval(X)	CONCAT(s_keyval_,	X##_NAME)
 //!@}
 
 /*============================================================================*\
@@ -196,14 +201,82 @@ s_list(T)*					Set_ToList(T)(s_set(T) const* set);
 
 
 
+/*============================================================================*\
+||                               Dict Conversions                             ||
+\*============================================================================*/
+
+//!@doc Creates a new array of key/value pairs, converted from the given `dict`
+/*!
+**	Creates a newly allocated buffer of `s_keyval` structs, by copying each
+**	key/value pair of the given `dict` (the key strings are newly-duplicated).
+**
+**	NOTE: the returned buffer holds `Dict_Length(dict) + 1` key/value pairs:
+**	the last one is a terminator pair whose `.key` is `NULL` (so the buffer is
+**	self-describing, like a NULL-terminated string array).
+**
+**	NOTE: the caller is responsible for freeing the result: each key/value
+**	pair should be freed with `KeyVal_Free()`, and then the buffer itself.
+**
+**	@returns
+**	The newly allocated (NULL-key-terminated) buffer of key/value pairs,
+**	or `NULL` if an error occurred.
+*/
+//!@{
+_MALLOC()
+_GENERIC()
+s_keyval(T)*				Dict_ToArray(T)(s_dict(T) const* dict);
+#define c_dicttoarr(T)		Dict_ToArray(T)
+//!@}
+
+//!@doc Creates a new string array containing the keys of the given `dict`
+/*!
+**	Creates a newly allocated (NULL-terminated) array of strings, by copying
+**	each key of the given `dict` (the key strings are newly-duplicated).
+**
+**	NOTE: the caller is responsible for freeing the result: each key string
+**	should be freed, and then the buffer itself.
+**
+**	@returns
+**	The newly allocated (NULL-terminated) string array of the dict's keys,
+**	or `NULL` if an error occurred.
+*/
+//!@{
+_MALLOC()
+_GENERIC()
+t_char**					Dict_ToArray_Keys(T)(s_dict(T) const* dict);
+#define c_dicttokeys(T)		Dict_ToArray_Keys(T)
+//!@}
+
+//!@doc Creates a new array containing the values of the given `dict`
+/*!
+**	Creates a new array, by copying each value of the given `dict`
+**	(in the dict's storage order, which is insertion order).
+**
+**	@returns
+**	The newly allocated array of the dict's values,
+**	or `NULL` if an error occurred.
+*/
+//!@{
+_MALLOC()
+_GENERIC()
+s_array(T)*					Dict_ToArray_Values(T)(s_dict(T) const* dict);
+#define c_dicttovals(T)		Dict_ToArray_Values(T)
+//!@}
+
+
+
 //! NOTE: restore the foreign type macros to their normal user-facing form
 //!@{
 #undef	s_array
 #undef	s_list
 #undef	s_set
+#undef	s_dict
+#undef	s_keyval
 #define	s_array(T)	CONCAT(s_array_,	T)
 #define	s_list(T)	CONCAT(s_list_,	T)
 #define	s_set(T)	CONCAT(s_set_,	T)
+#define	s_dict(T)	CONCAT(s_dict_,	T)
+#define	s_keyval(T)	CONCAT(s_keyval_,	T)
 //!@}
 
 /*! @endgroup */

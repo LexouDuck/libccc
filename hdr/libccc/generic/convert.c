@@ -33,6 +33,9 @@
 #undef List_ToSet
 #undef Set_ToArray
 #undef Set_ToList
+#undef Dict_ToArray
+#undef Dict_ToArray_Keys
+#undef Dict_ToArray_Values
 //!@}
 
 //! Set the generic macros to allow for declarations, written as `mygeneric(T)`
@@ -43,6 +46,9 @@
 #define List_ToSet(X)	CONCAT(List_ToSet_,	X##_NAME)
 #define Set_ToArray(X)	CONCAT(Set_ToArray_,	X##_NAME)
 #define Set_ToList(X)	CONCAT(Set_ToList_,	X##_NAME)
+#define Dict_ToArray(X)	CONCAT(Dict_ToArray_,	X##_NAME)
+#define Dict_ToArray_Keys(X)	CONCAT(Dict_ToArray_Keys_,	X##_NAME)
+#define Dict_ToArray_Values(X)	CONCAT(Dict_ToArray_Values_,	X##_NAME)
 //!@}
 
 
@@ -80,6 +86,7 @@
 //! Include all source files, to generate code for all generic functions
 //!@{
 #include "libccc/../.././src/generic/convert/array.c"
+#include "libccc/../.././src/generic/convert/dict.c"
 #include "libccc/../.././src/generic/convert/list.c"
 #include "libccc/../.././src/generic/convert/set.c"
 //!@}
@@ -109,6 +116,9 @@
 #undef List_ToSet
 #undef Set_ToArray
 #undef Set_ToList
+#undef Dict_ToArray
+#undef Dict_ToArray_Keys
+#undef Dict_ToArray_Values
 //!@}
 
 //! Finally, redefine all generic macros, for user code
@@ -119,6 +129,9 @@
 #define List_ToSet(T)	CONCAT(List_ToSet_,	T)
 #define Set_ToArray(T)	CONCAT(Set_ToArray_,	T)
 #define Set_ToList(T)	CONCAT(Set_ToList_,	T)
+#define Dict_ToArray(T)	CONCAT(Dict_ToArray_,	T)
+#define Dict_ToArray_Keys(T)	CONCAT(Dict_ToArray_Keys_,	T)
+#define Dict_ToArray_Values(T)	CONCAT(Dict_ToArray_Values_,	T)
 //!@}
 
 
