@@ -44,6 +44,7 @@ ENUM("generic/list",           testsuite_generic_list,           TESTSUITE_GENER
 ENUM("generic/set",            testsuite_generic_set,            TESTSUITE_GENERIC_SET,            )
 ENUM("generic/dict",           testsuite_generic_dict,           TESTSUITE_GENERIC_DICT,           )
 ENUM("generic/tree",           testsuite_generic_tree,           TESTSUITE_GENERIC_TREE,           )
+ENUM("generic/convert",        testsuite_generic_convert,        TESTSUITE_GENERIC_CONVERT,        )
 //UM("generic/object",         testsuite_generic_object,         TESTSUITE_GENERIC_OBJECT,         )
 ENUM("sys/io",                 testsuite_sys_io,                 TESTSUITE_SYS_IO,                 )
 ENUM("sys/time",               testsuite_sys_time,               TESTSUITE_SYS_TIME,               )
