@@ -411,6 +411,13 @@
 ./src/text/char/unicode/utf16.c
 ./src/text/char/unicode/utf8.c
 ./src/text/char/unicode/utfbom.c
+./src/text/regex/delete.c
+./src/text/regex/engine.c
+./src/text/regex/info.c
+./src/text/regex/match.c
+./src/text/regex/new.c
+./src/text/regex/replace.c
+./src/text/regex/split.c
 ./src/text/string/ascii/add.c
 ./src/text/string/ascii/clear.c
 ./src/text/string/ascii/compare.c
