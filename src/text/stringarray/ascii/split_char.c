@@ -1,13 +1,14 @@
 
-#include "libccc/string.h"
-#include "libccc/stringarray.h"
+#include "libccc/memory.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
 static
-t_uint	String_Split_Char_GetCount(t_char const* str, t_char c)
+t_uint	StringASCII_Split_Char_GetCount(t_char const* str, t_char c)
 {
 	t_uint	result;
 	t_bool	separator;
@@ -38,7 +39,7 @@ t_uint	String_Split_Char_GetCount(t_char const* str, t_char c)
 
 
 
-t_char**		String_Split_Char(t_char const* str, t_char c)
+t_char**		StringASCII_Split_Char(t_char const* str, t_char c)
 {
 	t_char**	result;
 	t_size	offset;
@@ -48,8 +49,8 @@ t_char**		String_Split_Char(t_char const* str, t_char c)
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to split given is NULL")
 		return (NULL);
-	count = String_Split_Char_GetCount(str, c);
-	result = StringArray_New(count);
+	count = StringASCII_Split_Char_GetCount(str, c);
+	result = StringArrayASCII_New(count);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	offset = 0;
@@ -68,7 +69,7 @@ t_char**		String_Split_Char(t_char const* str, t_char c)
 			++length;
 		}
 		if (length > 0)
-			result[i++] = String_Sub(str, offset, length);
+			result[i++] = StringASCII_Sub(str, offset, length);
 	}
 	result[count] = NULL;
 	return (result);

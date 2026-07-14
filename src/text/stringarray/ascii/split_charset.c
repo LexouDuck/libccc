@@ -1,15 +1,15 @@
 
 #include "libccc/char.h"
 #include "libccc/memory.h"
-#include "libccc/string.h"
-#include "libccc/stringarray.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
 static
-t_size	String_Split_WordCount(t_char const* str, t_char const* sep_chars)
+t_size	StringASCII_Split_WordCount(t_char const* str, t_char const* sep_chars)
 {
 	t_size	i;
 	t_size	count;
@@ -34,7 +34,7 @@ t_size	String_Split_WordCount(t_char const* str, t_char const* sep_chars)
 }
 
 static
-t_size	String_Split_SingleWordLetterCount(t_char const* str, int ws, t_char const* seps)
+t_size	StringASCII_Split_SingleWordLetterCount(t_char const* str, int ws, t_char const* seps)
 {
 	t_size	i;
 
@@ -48,7 +48,7 @@ t_size	String_Split_SingleWordLetterCount(t_char const* str, int ws, t_char cons
 
 
 
-t_char**	String_Split_Charset(t_char const* str, t_char const* sep_chars)
+t_char**	StringASCII_Split_Charset(t_char const* str, t_char const* sep_chars)
 {
 	t_char**	result;
 	t_size		length;
@@ -60,20 +60,20 @@ t_char**	String_Split_Charset(t_char const* str, t_char const* sep_chars)
 		return (NULL);
 	if CCCERROR((sep_chars == NULL), ERROR_NULLPOINTER, "separator charset given is NULL")
 		return (NULL);
-	result = StringArray_New(String_Split_WordCount(str, sep_chars));
+	result = StringArrayASCII_New(StringASCII_Split_WordCount(str, sep_chars));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (i < String_Split_WordCount(str, sep_chars))
+	while (i < StringASCII_Split_WordCount(str, sep_chars))
 	{
 		while (Char_IsInCharset(str[j], sep_chars))
 		{
 			++j;
 		}
 		wstart = j--;
-		length = String_Split_SingleWordLetterCount(str, wstart, sep_chars);
-		result[i] = String_New(length);
+		length = StringASCII_Split_SingleWordLetterCount(str, wstart, sep_chars);
+		result[i] = StringASCII_New(length);
 		if CCCERROR((result[i] == NULL), ERROR_ALLOCFAILURE, NULL)
 			return (NULL);
 		while (++j < wstart + length)

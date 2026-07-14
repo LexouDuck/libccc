@@ -1,11 +1,13 @@
 
-#include "libccc/stringarray.h"
+#include "libccc/memory.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-t_sint	StringArray_Compare(t_char const* const* strarr1, t_char const* const* strarr2,
+t_sint	StringArrayASCII_Compare(t_char const* const* strarr1, t_char const* const* strarr2,
 	t_sint (*compare)(t_char const* ptr1, t_char const* ptr2))
 {
 	t_sint	result;
@@ -18,8 +20,8 @@ t_sint	StringArray_Compare(t_char const* const* strarr1, t_char const* const* st
 		return (0);
 	if CCCERROR((strarr1 == NULL), ERROR_NULLPOINTER, NULL) return ((strarr1 - strarr2));
 	if CCCERROR((strarr2 == NULL), ERROR_NULLPOINTER, NULL) return ((strarr1 - strarr2));
-	length1 = StringArray_Length(strarr1);
-	length2 = StringArray_Length(strarr2);
+	length1 = StringArrayASCII_Length(strarr1);
+	length2 = StringArrayASCII_Length(strarr2);
 	if (length1 == length2 && strarr1 == strarr2)
 		return (0);
 	for (t_uint i = 0; (i < length1) && (i < length2); ++i)
@@ -33,7 +35,7 @@ t_sint	StringArray_Compare(t_char const* const* strarr1, t_char const* const* st
 
 
 
-t_sint	StringArray_Compare_N(t_char const* const* strarr1, t_char const* const* strarr2,
+t_sint	StringArrayASCII_Compare_N(t_char const* const* strarr1, t_char const* const* strarr2,
 	t_sint (*compare)(t_char const* ptr1, t_char const* ptr2), t_uint n)
 {
 	t_sint	result;
@@ -46,8 +48,8 @@ t_sint	StringArray_Compare_N(t_char const* const* strarr1, t_char const* const* 
 		return (0);
 	if CCCERROR((strarr1 == NULL), ERROR_NULLPOINTER, NULL) return ((strarr1 - strarr2));
 	if CCCERROR((strarr2 == NULL), ERROR_NULLPOINTER, NULL) return ((strarr1 - strarr2));
-	length1 = StringArray_Length(strarr1);
-	length2 = StringArray_Length(strarr2);
+	length1 = StringArrayASCII_Length(strarr1);
+	length2 = StringArrayASCII_Length(strarr2);
 	if (length1 == length2 && strarr1 == strarr2)
 		return (0);
 	for (t_uint i = 0; (i < n) && (i < length1) && (i < length2); ++i)

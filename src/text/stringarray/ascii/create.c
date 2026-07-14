@@ -10,20 +10,20 @@
 #endif
 
 #include "libccc/memory.h"
-#include "libccc/string.h"
-#include "libccc/stringarray.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-t_char**	StringArray_Create(t_uint n, ...)
+t_char**	StringArrayASCII_Create(t_uint n, ...)
 {
 	va_list		args;
 	t_char*		item;
 	t_char**	result;
 
-	result = (t_char**)StringArray_New(n);
+	result = (t_char**)StringArrayASCII_New(n);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (result);
 	if (n == 0)

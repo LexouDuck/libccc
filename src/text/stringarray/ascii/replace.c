@@ -1,30 +1,31 @@
 
-#include "libccc/string.h"
-#include "libccc/stringarray.h"
+#include "libccc/memory.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-t_char**	StringArray_Replace(t_char const* const* strarr, t_char const* str_old, t_char const* str_new)
+t_char**	StringArrayASCII_Replace(t_char const* const* strarr, t_char const* str_old, t_char const* str_new)
 {
 	t_char**	result;
 	t_uint		length;
 
 	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
 		return (NULL);
-	length = StringArray_Length(strarr);
-	result = StringArray_Duplicate(strarr);
+	length = StringArrayASCII_Length(strarr);
+	result = StringArrayASCII_Duplicate(strarr);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	if (result == NULL)
 		return (result);
 	for (t_uint i = 0; i < length; ++i)
 	{
-		if (String_Equals(result[i], str_old))
+		if (StringASCII_Equals(result[i], str_old))
 		{
-			String_Free(result[i]);
-			result[i] = String_Duplicate(str_new);
+			StringASCII_Free(result[i]);
+			result[i] = StringASCII_Duplicate(str_new);
 		}
 	}
 	return (result);
@@ -32,15 +33,15 @@ t_char**	StringArray_Replace(t_char const* const* strarr, t_char const* str_old,
 
 
 
-t_char**	StringArray_ReplaceFirst(t_char const* const* strarr, t_char const* str_old, t_char const* str_new, t_uint n)
+t_char**	StringArrayASCII_ReplaceFirst(t_char const* const* strarr, t_char const* str_old, t_char const* str_new, t_uint n)
 {
 	t_char**	result;
 	t_uint		length;
 
 	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
 		return (NULL);
-	length = StringArray_Length(strarr);
-	result = StringArray_Duplicate(strarr);
+	length = StringArrayASCII_Length(strarr);
+	result = StringArrayASCII_Duplicate(strarr);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	if (result == NULL)
@@ -49,10 +50,10 @@ t_char**	StringArray_ReplaceFirst(t_char const* const* strarr, t_char const* str
 	{
 		if (n == 0)
 			return (result);
-		if (String_Equals(result[i], str_old))
+		if (StringASCII_Equals(result[i], str_old))
 		{
-			String_Free(result[i]);
-			result[i] = String_Duplicate(str_new);
+			StringASCII_Free(result[i]);
+			result[i] = StringASCII_Duplicate(str_new);
 			n -= 1;
 		}
 	}
@@ -61,15 +62,15 @@ t_char**	StringArray_ReplaceFirst(t_char const* const* strarr, t_char const* str
 
 
 
-t_char**	StringArray_ReplaceLast(t_char const* const* strarr, t_char const* str_old, t_char const* str_new, t_uint n)
+t_char**	StringArrayASCII_ReplaceLast(t_char const* const* strarr, t_char const* str_old, t_char const* str_new, t_uint n)
 {
 	t_char**	result;
 	t_uint		length;
 
 	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
 		return (NULL);
-	length = StringArray_Length(strarr);
-	result = StringArray_Duplicate(strarr);
+	length = StringArrayASCII_Length(strarr);
+	result = StringArrayASCII_Duplicate(strarr);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	if (result == NULL)
@@ -79,10 +80,10 @@ t_char**	StringArray_ReplaceLast(t_char const* const* strarr, t_char const* str_
 	{
 		if (n == 0)
 			return (result);
-		if (String_Equals(result[i], str_old))
+		if (StringASCII_Equals(result[i], str_old))
 		{
-			String_Free(result[i]);
-			result[i] = String_Duplicate(str_new);
+			StringASCII_Free(result[i]);
+			result[i] = StringASCII_Duplicate(str_new);
 			n -= 1;
 		}
 	}

@@ -1,13 +1,14 @@
 
 #include "libccc/memory.h"
-#include "libccc/stringarray.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 #include "libccc/pointerarray.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-void	StringArray_Remove(t_char** strarr, t_char const* str)
+void	StringArrayASCII_Remove(t_char** strarr, t_char const* str)
 {
 	t_sint	index;
 
@@ -19,12 +20,12 @@ void	StringArray_Remove(t_char** strarr, t_char const* str)
 	index = PointerArray_IndexOf((void const* const*)strarr, str);
 	if (index == ERROR)
 		return;
-	StringArray_RemoveAt(strarr, index);
+	StringArrayASCII_RemoveAt(strarr, index);
 }
 
 
 
-void	StringArray_Remove_F(t_char** strarr, t_char const* str, void (*del)(t_char*))
+void	StringArrayASCII_Remove_F(t_char** strarr, t_char const* str, void (*del)(t_char*))
 {
 	t_sint	index;
 
@@ -38,12 +39,12 @@ void	StringArray_Remove_F(t_char** strarr, t_char const* str, void (*del)(t_char
 	index = PointerArray_IndexOf((void const* const*)strarr, str);
 	if (index == ERROR)
 		return;
-	StringArray_RemoveAt_F(strarr, index, del);
+	StringArrayASCII_RemoveAt_F(strarr, index, del);
 }
 
 
 
-void	StringArray_RemoveAll(t_char** strarr, t_char const* str)
+void	StringArrayASCII_RemoveAll(t_char** strarr, t_char const* str)
 {
 	t_uint	i;
 	t_uint	amount;
@@ -54,7 +55,7 @@ void	StringArray_RemoveAll(t_char** strarr, t_char const* str)
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER,
 		"string given is NULL, which is used for the string array terminator")
 		return;
-	length = StringArray_Length((t_char const**)strarr);
+	length = StringArrayASCII_Length((t_char const**)strarr);
 	if (length == 0)
 		return;
 	amount = 0;
@@ -85,7 +86,7 @@ void	StringArray_RemoveAll(t_char** strarr, t_char const* str)
 
 
 
-void	StringArray_RemoveAll_F(t_char** strarr, t_char const* str, void (*del)(t_char*))
+void	StringArrayASCII_RemoveAll_F(t_char** strarr, t_char const* str, void (*del)(t_char*))
 {
 	t_uint	i;
 	t_uint	amount;
@@ -98,7 +99,7 @@ void	StringArray_RemoveAll_F(t_char** strarr, t_char const* str, void (*del)(t_c
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER,
 		"string given is NULL, which is used for the string array terminator")
 		return;
-	length = StringArray_Length((t_char const**)strarr);
+	length = StringArrayASCII_Length((t_char const**)strarr);
 	if (strarr[0] == NULL)
 		return;
 	amount = 0;

@@ -1,13 +1,13 @@
 
 #include "libccc/memory.h"
-#include "libccc/string.h"
-#include "libccc/stringarray.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-t_char**	StringArray_Join(t_char const* const* * strarrs, t_char const* const* sep)
+t_char**	StringArrayASCII_Join(t_char const* const* * strarrs, t_char const* const* sep)
 {
 	t_char**	result;
 	t_uint	total;
@@ -20,30 +20,30 @@ t_char**	StringArray_Join(t_char const* const* * strarrs, t_char const* const* s
 	if CCCERROR((sep == NULL), ERROR_NULLPOINTER, "string array separator given is NULL")
 		return (NULL);
 	if (strarrs[0] == NULL)
-		return (StringArray_New(0));
+		return (StringArrayASCII_New(0));
 	total = 0;
-	length_sep = StringArray_Length(sep);
+	length_sep = StringArrayASCII_Length(sep);
 	length_strarrs = 0;
 	while (strarrs[length_strarrs])
 	{
-		total += StringArray_Length(strarrs[length_strarrs]);
+		total += StringArrayASCII_Length(strarrs[length_strarrs]);
 		++length_strarrs;
 		if (strarrs[length_strarrs])
 			total += length_sep;
 	}
-	result = StringArray_New(total);
+	result = StringArrayASCII_New(total);
 	index = 0;
 	for (t_uint i = 0; i < length_strarrs; ++i)
 	{
 		for (t_uint j = 0; strarrs[i][j]; ++j)
 		{
-			result[index++] = String_Duplicate(strarrs[i][j]);
+			result[index++] = StringASCII_Duplicate(strarrs[i][j]);
 		}
 		if (index == total)
 			break;
 		for (t_uint j = 0; j < length_sep; ++j)
 		{
-			result[index++] = String_Duplicate(sep[j]);
+			result[index++] = StringASCII_Duplicate(sep[j]);
 		}
 	}
 	return (result);

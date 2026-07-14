@@ -1,13 +1,13 @@
 
 #include "libccc/memory.h"
-#include "libccc/string.h"
-#include "libccc/stringarray.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-void	StringArray_Iterate(t_char** strarr,
+void	StringArrayASCII_Iterate(t_char** strarr,
 	t_char* (*f)(t_char* str))
 {
 	t_uint	i;
@@ -22,7 +22,7 @@ void	StringArray_Iterate(t_char** strarr,
 	{
 		tmp = f(strarr[i]);
 		if (tmp != strarr[i])
-			String_Delete(strarr + i);
+			StringASCII_Delete(strarr + i);
 		strarr[i] = tmp;
 		++i;
 	}
@@ -30,7 +30,7 @@ void	StringArray_Iterate(t_char** strarr,
 
 
 
-void	StringArray_Iterate_I(t_char** strarr,
+void	StringArrayASCII_Iterate_I(t_char** strarr,
 	t_char* (*f)(t_char* str, t_uint index))
 {
 	t_uint	i;
@@ -45,7 +45,7 @@ void	StringArray_Iterate_I(t_char** strarr,
 	{
 		tmp = f(strarr[i], i);
 		if (tmp != strarr[i])
-			String_Delete(strarr + i);
+			StringASCII_Delete(strarr + i);
 		strarr[i] = tmp;
 		++i;
 	}

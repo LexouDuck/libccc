@@ -1,11 +1,13 @@
 
-#include "libccc/stringarray.h"
+#include "libccc/memory.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-t_uint		StringArray_Length(t_char const* const* strarr)
+t_uint		StringArrayASCII_Length(t_char const* const* strarr)
 {
 	t_uint	i;
 
@@ -21,7 +23,7 @@ t_uint		StringArray_Length(t_char const* const* strarr)
 
 
 
-t_size		StringArray_TotalLength(t_char const* const* strarr, t_uint n)
+t_size		StringArrayASCII_TotalLength(t_char const* const* strarr, t_uint n)
 {
 	t_size	result;
 	t_uint	i;
@@ -32,7 +34,7 @@ t_size		StringArray_TotalLength(t_char const* const* strarr, t_uint n)
 	i = 0;
 	while (strarr[i] && i < n)
 	{
-		result += String_Length(strarr[i]);
+		result += StringASCII_Length(strarr[i]);
 		++i;
 	}
 	return (result);

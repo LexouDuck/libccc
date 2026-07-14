@@ -1,20 +1,20 @@
 
 #include "libccc/memory.h"
-#include "libccc/string.h"
-#include "libccc/stringarray.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-void	StringArray_RemoveAt(t_char** strarr, t_uint index)
+void	StringArrayASCII_RemoveAt(t_char** strarr, t_uint index)
 {
 	t_char**	result;
 	t_uint	length;
 
 	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
 		return;
-	length = StringArray_Length((t_char const**)strarr);
+	length = StringArrayASCII_Length((t_char const**)strarr);
 	if CCCERROR((length <= index), ERROR_INDEX2LARGE, 
 		"index given (" SF_UINT ") is beyond end of string array (length: " SF_UINT ")",
 		index, length)
@@ -26,7 +26,7 @@ void	StringArray_RemoveAt(t_char** strarr, t_uint index)
 		strarr = NULL;
 		return;
 	}
-//	result = (t_char const**)String_Allocate(sizeof(t_char const*) * length);
+//	result = (t_char const**)StringASCII_Allocate(sizeof(t_char const*) * length);
 //	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 //		return;
 	result = strarr;
@@ -34,12 +34,12 @@ void	StringArray_RemoveAt(t_char** strarr, t_uint index)
 	{
 		result[i] = strarr[i + 1];
 	}
-//	String_Free(strarr);
+//	StringASCII_Free(strarr);
 //	strarr = result;
 }
 
 
-void	StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*del)(t_char*))
+void	StringArrayASCII_RemoveAt_F(t_char** strarr, t_uint index, void (*del)(t_char*))
 {
 	t_char**	result;
 	t_uint	length;
@@ -48,7 +48,7 @@ void	StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*del)(t_char*))
 		return;
 	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
 		return;
-	length = StringArray_Length((t_char const**)strarr);
+	length = StringArrayASCII_Length((t_char const**)strarr);
 	if CCCERROR((length <= index), ERROR_INDEX2LARGE, 
 		"index given (" SF_UINT ") is beyond end of string array (length: " SF_UINT ")",
 		index, length)
@@ -60,7 +60,7 @@ void	StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*del)(t_char*))
 		strarr = NULL;
 		return;
 	}
-//	result = (t_char const**)String_Allocate(length * sizeof(t_char const*));
+//	result = (t_char const**)StringASCII_Allocate(length * sizeof(t_char const*));
 //	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 //		return;
 	result = strarr;
@@ -73,6 +73,6 @@ void	StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*del)(t_char*))
 		}
 		else result[i] = strarr[i + 1];
 	}
-//	String_Free(strarr);
+//	StringASCII_Free(strarr);
 //	strarr = result;
 }

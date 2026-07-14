@@ -1,12 +1,13 @@
 
-#include "libccc/string.h"
-#include "libccc/stringarray.h"
+#include "libccc/memory.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-t_char**	String_Divide(t_char const* str, t_size n)
+t_char**	StringASCII_Divide(t_char const* str, t_size n)
 {
 	t_char**	result;
 	t_uint		lines;
@@ -15,20 +16,20 @@ t_char**	String_Divide(t_char const* str, t_size n)
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
 		return (NULL);
-	length = String_Length(str);
+	length = StringASCII_Length(str);
 	lines = length / n + (length % n == 0 ? 0 : 1);
 	if (lines == 0)
 		return (NULL);
-	result = StringArray_New(lines);
+	result = StringArrayASCII_New(lines);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	i = 0;
 	while (i < length)
 	{
 		if (i + n < length)
-			result[i / n] = String_Sub(str, i, n);
+			result[i / n] = StringASCII_Sub(str, i, n);
 		else
-			result[i / n] = String_Duplicate(str + i);
+			result[i / n] = StringASCII_Duplicate(str + i);
 		i += n;
 	}
 	result[lines] = NULL;

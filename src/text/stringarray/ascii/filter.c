@@ -1,13 +1,13 @@
 
 #include "libccc/memory.h"
-#include "libccc/string.h"
-#include "libccc/stringarray.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-t_char**	StringArray_Filter(t_char const* const* strarr, t_bool (*filter)(t_char const* str))
+t_char**	StringArrayASCII_Filter(t_char const* const* strarr, t_bool (*filter)(t_char const* str))
 {
 	t_char**	result;
 	t_bool*	tmp;
@@ -19,9 +19,9 @@ t_char**	StringArray_Filter(t_char const* const* strarr, t_bool (*filter)(t_char
 		return (NULL);
 	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
 		return (NULL);
-	length = StringArray_Length(strarr);
+	length = StringArrayASCII_Length(strarr);
 	if (length == 0)
-		return (StringArray_New(0));
+		return (StringArrayASCII_New(0));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * length);
 	if CCCERROR((tmp == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
@@ -32,7 +32,7 @@ t_char**	StringArray_Filter(t_char const* const* strarr, t_bool (*filter)(t_char
 		if (tmp[i])
 			++result_length;
 	}
-	result = StringArray_New(result_length);
+	result = StringArrayASCII_New(result_length);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 	{
 		Memory_Free(tmp);
@@ -48,7 +48,7 @@ t_char**	StringArray_Filter(t_char const* const* strarr, t_bool (*filter)(t_char
 	{
 		if (tmp[i])
 		{
-			result[index++] = String_Duplicate(strarr[i]);
+			result[index++] = StringASCII_Duplicate(strarr[i]);
 		}
 		if (index >= result_length)
 			break;
@@ -58,7 +58,7 @@ t_char**	StringArray_Filter(t_char const* const* strarr, t_bool (*filter)(t_char
 }
 
 
-t_char**	StringArray_Filter_I(t_char const* const* strarr, t_bool (*filter)(t_char const* str, t_uint index))
+t_char**	StringArrayASCII_Filter_I(t_char const* const* strarr, t_bool (*filter)(t_char const* str, t_uint index))
 {
 	t_char**	result;
 	t_bool*	tmp;
@@ -70,9 +70,9 @@ t_char**	StringArray_Filter_I(t_char const* const* strarr, t_bool (*filter)(t_ch
 		return (NULL);
 	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
 		return (NULL);
-	length = StringArray_Length(strarr);
+	length = StringArrayASCII_Length(strarr);
 	if (length == 0)
-		return (StringArray_New(0));
+		return (StringArrayASCII_New(0));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * length);
 	if CCCERROR((tmp == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
@@ -83,7 +83,7 @@ t_char**	StringArray_Filter_I(t_char const* const* strarr, t_bool (*filter)(t_ch
 		if (tmp[i])
 			++result_length;
 	}
-	result = StringArray_New(result_length);
+	result = StringArrayASCII_New(result_length);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 	{
 		Memory_Free(tmp);
@@ -99,7 +99,7 @@ t_char**	StringArray_Filter_I(t_char const* const* strarr, t_bool (*filter)(t_ch
 	{
 		if (tmp[i])
 		{
-			result[index++] = String_Duplicate(strarr[i]);
+			result[index++] = StringASCII_Duplicate(strarr[i]);
 		}
 		if (index >= result_length)
 			break;

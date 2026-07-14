@@ -1,14 +1,14 @@
 
 #include "libccc/memory.h"
-#include "libccc/string.h"
-#include "libccc/stringarray.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
 _INLINE()
-t_char**	StringArray_New(t_uint length)
+t_char**	StringArrayASCII_New(t_uint length)
 {
 	t_char**	result;
 
@@ -20,22 +20,22 @@ t_char**	StringArray_New(t_uint length)
 
 
 
-t_char**	StringArray_New_C(t_uint y, t_size x, const t_char c)
+t_char**	StringArrayASCII_New_C(t_uint y, t_size x, const t_char c)
 {
 	t_char**	result;
 	t_uint	i;
 
-	result = StringArray_New(y);
+	result = StringArrayASCII_New(y);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	i = 0;
 	while (i < y)
 	{
-		result[i] = String_New(x);
+		result[i] = StringASCII_New(x);
 		if CCCERROR((result[i] == NULL), ERROR_ALLOCFAILURE, NULL)
 		{
 			result[i] = NULL;
-			StringArray_Delete(&result);
+			StringArrayASCII_Delete(&result);
 			return (NULL);
 		}
 		Memory_Set(result[i], c, x);

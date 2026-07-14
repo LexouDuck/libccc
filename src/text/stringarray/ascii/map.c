@@ -1,13 +1,13 @@
 
 #include "libccc/memory.h"
-#include "libccc/string.h"
-#include "libccc/stringarray.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/stringarray/ascii.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-t_char**		StringArray_Map(t_char const* const* strarr,
+t_char**		StringArrayASCII_Map(t_char const* const* strarr,
 	t_char* (*map)(t_char const* str))
 {
 	t_char**	result;
@@ -16,7 +16,7 @@ t_char**		StringArray_Map(t_char const* const* strarr,
 		return (NULL);
 	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
 		return (NULL);
-	result = StringArray_New(StringArray_Length(strarr));
+	result = StringArrayASCII_New(StringArrayASCII_Length(strarr));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	for (t_uint i = 0; strarr[i]; ++i)
@@ -28,7 +28,7 @@ t_char**		StringArray_Map(t_char const* const* strarr,
 
 
 
-t_char**		StringArray_Map_I(t_char const* const* strarr,
+t_char**		StringArrayASCII_Map_I(t_char const* const* strarr,
 	t_char* (*map)(t_char const* str, t_uint index))
 {
 	t_char**	result;
@@ -37,7 +37,7 @@ t_char**		StringArray_Map_I(t_char const* const* strarr,
 		return (NULL);
 	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
 		return (NULL);
-	result = StringArray_New(StringArray_Length(strarr));
+	result = StringArrayASCII_New(StringArrayASCII_Length(strarr));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	for (t_uint i = 0; strarr[i]; ++i)
