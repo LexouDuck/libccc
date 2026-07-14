@@ -30,6 +30,12 @@
 ./src/encode/toml/minify.c
 ./src/encode/toml/parse.c
 ./src/encode/toml/print.c
+./src/encode/xml/minify.c
+./src/encode/xml/parse.c
+./src/encode/xml/print.c
+./src/encode/yaml/minify.c
+./src/encode/yaml/parse.c
+./src/encode/yaml/print.c
 ./src/enum/enum_from_str.c
 ./src/enum/enum_to_str.c
 ./src/fixed/fixed.c

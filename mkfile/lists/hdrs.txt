@@ -11,6 +11,8 @@
 ./hdr/libccc/encode/common.h
 ./hdr/libccc/encode/json.h
 ./hdr/libccc/encode/toml.h
+./hdr/libccc/encode/xml.h
+./hdr/libccc/encode/yaml.h
 ./hdr/libccc/enum.h
 ./hdr/libccc/fixed.h
 ./hdr/libccc/float.h
