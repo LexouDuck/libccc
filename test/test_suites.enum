@@ -6,8 +6,6 @@ ENUM("float",                  testsuite_float,                  TESTSUITE_FLOAT
 ENUM("memory",                 testsuite_memory,                 TESTSUITE_MEMORY,                 )
 ENUM("pointer",                testsuite_pointer,                TESTSUITE_POINTER,                )
 ENUM("pointerarray",           testsuite_pointerarray,           TESTSUITE_POINTERARRAY,           )
-ENUM("string",                 testsuite_string,                 TESTSUITE_STRING,                 )
-ENUM("stringarray",            testsuite_stringarray,            TESTSUITE_STRINGARRAY,            )
 /* !("enum",                   testsuite_enum,                   TESTSUITE_ENUM,                   )*/
 ENUM("text/char/ascii",        testsuite_text_char_ascii,        TESTSUITE_TEXT_CHAR_ASCII,        )
 ENUM("text/char/unicode",      testsuite_text_char_unicode,      TESTSUITE_TEXT_CHAR_UNICODE,      )
