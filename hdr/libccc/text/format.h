@@ -112,7 +112,7 @@ HEADER_CPP
 //!@{
 #define SF_t_bool_   SF_BOOL_
 #define SF_BOOL  "%" SF_BOOL_
-#define SF_BOOL_ "d" // TODO `%B` boolean format specifier
+#define SF_BOOL_ "B" // libccc extension: boolean format specifier ("TRUE"/"FALSE")
 //!@}
 
 //!@doc String format specifier macros for libccc/enum.h
@@ -571,6 +571,19 @@ HEADER_CPP
 **	| `%`   | A `%%` specifier will write a single '%' char |`"%"`           |
 **	| `n`   | Nothing printed: the corresponding argument must be a pointer to a signed int.<br/> The number of characters written so far is stored in the pointed location.	| `""` |
 **
+**	Additionally, the following libccc-specific extension conversions are supported:
+**
+**	| char  | Output                                                                       | Output Example |
+**	|:-----:|------------------------------------------------------------------------------|----------------|
+**	| `b`   | Unsigned binary integer (the `#` flag adds a `"0b"` prefix)                  |`"110001"`      |
+**	| `B`   | Boolean, from a #t_bool argument                                             |`"TRUE"`        |
+**	| `C`   | Character, with non-printable characters shown as escape-sequences           |`"\n"`          |
+**	| `S`   | String of characters, with non-printables shown as escape-sequences          |`"12\t34\\"`    |
+**	| `q`   | Fixed-point number (#t_fixed argument), decimal notation                     |`"392.65"`      |
+**	| `k`   | Fixed-point number (#t_fixed argument), hexadecimal notation, lowercase      |`"0x1f.a8"`     |
+**	| `K`   | Fixed-point number (#t_fixed argument), hexadecimal notation, uppercase      |`"0X1F.A8"`     |
+**	| `m`   | Memory region, shown as hexadecimal byte values: the precision field gives the amount of bytes to display, ie: `%.5m` prints 5 bytes (the `#` flag adds a `"0x"` prefix)	|`"AF03D2C4E1"`|
+**
 **	`flags`: (optional)
 **	
 **	- `-`: The output is left-justified within the field (by default, it is right-justified)
@@ -618,7 +631,9 @@ HEADER_CPP
 */
 //!@{
 //! @isostd{BSD,https://linux.die.net/man/3/asprintf}
-_FORMAT(printf, 1, 2)
+// NOTE: no `_FORMAT(printf, 1, 2)` attribute here, because the libccc extension
+//       conversion specifiers (`%b`,`%B`,`%C`,`%S`,`%q`,`%k`,`%K`,`%m`) would
+//       make the compiler's `-Wformat` checker emit spurious warnings/errors.
 _MALLOC()
 t_char*					String_Format(t_char const* format, ...);
 #define c_asprintf		String_Format
@@ -651,7 +666,7 @@ t_char*					String_Format_VA(t_char const* format, va_list args);
 */
 //!@{
 //!	@isostd{C89,https://en.cppreference.com/w/c/io/snprintf}
-_FORMAT(printf, 3, 4)
+// NOTE: no `_FORMAT(printf, 3, 4)` attribute here (see note above String_Format)
 t_size						String_Format_N(t_char* dest, t_size max, t_char const* format, ...);
 #define c_snprintf			String_Format_N
 #define c_strnfmt			String_Format_N
