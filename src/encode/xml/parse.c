@@ -247,9 +247,6 @@ t_bool	XML_Parse_Text(s_xml_textbuffer* buffer, s_xml_parse* p)
 				PARSINGERROR_XML("Could not parse XML entity/character reference")
 			continue;
 		}
-		if (p->strict && p->content[p->offset] == '>' &&
-			p->offset >= 2 && String_Equals_N(p->content + p->offset - 2, "]]", 2))
-			PARSINGERROR_XML("The literal sequence \"]]>\" is not allowed in XML text content")
 		// scan a run of plain chars (until any entity ref, tag, or end of line)
 		start = p->offset;
 		while (CAN_PARSE(0) &&
@@ -257,6 +254,9 @@ t_bool	XML_Parse_Text(s_xml_textbuffer* buffer, s_xml_parse* p)
 			p->content[p->offset] != '&' &&
 			p->content[p->offset] != '\0')
 		{
+			if (p->strict && p->content[p->offset] == '>' &&
+				p->offset >= 2 && String_Equals_N(p->content + p->offset - 2, "]]", 2))
+				PARSINGERROR_XML("The literal sequence \"]]>\" is not allowed in XML text content")
 			if (p->content[p->offset] == '\n')
 				p->line++;
 			p->offset++;
