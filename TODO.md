@@ -25,7 +25,7 @@
 #include <libccc/text/format.h> // TODO printf
 #include <libccc/text/escape.h>
 #include <libccc/text/unicode.h>
-#include <libccc/text/regexp.h>	// TODO all: functions for regular expressions pattern matching/replacing
+#include <libccc/text/regex.h>	// TODO all: functions for regular expressions pattern matching/replacing
 #include <libccc/math/math.h>
 #include <libccc/math/int.h>
 #include <libccc/math/fixed.h>	// TODO advanced math functions
@@ -99,6 +99,8 @@
 
 ### Other stdlibs to take ideas from
 - https://github.com/oz123/awesome-c#game-programming
+- [musl](https://musl.libc.org/), [git](https://git.musl-libc.org/cgit/musl)
+- [boost](https://www.boost.org/), [git](https://github.com/boostorg/boost)
 - [libcork](https://libcork.io/), [git](https://github.com/dcreager/libcork)
 - [glib](https://docs.gtk.org/glib), [git](https://gitlab.gnome.org/GNOME/glib/)
 - [apr](https://apr.apache.org/), [git](https://svn.apache.org/viewvc/apr/apr/tags/1.7.0/)
