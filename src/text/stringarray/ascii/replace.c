@@ -1,4 +1,5 @@
 
+#include "libccc/string.h"
 #include "libccc/stringarray.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
@@ -20,9 +21,10 @@ t_char**	StringArray_Replace(t_char const* const* strarr, t_char const* str_old,
 		return (result);
 	for (t_uint i = 0; i < length; ++i)
 	{
-		if (result[i] == str_old)
+		if (String_Equals(result[i], str_old))
 		{
-			result[i] = (t_char*)str_new;
+			String_Free(result[i]);
+			result[i] = String_Duplicate(str_new);
 		}
 	}
 	return (result);
@@ -47,9 +49,10 @@ t_char**	StringArray_ReplaceFirst(t_char const* const* strarr, t_char const* str
 	{
 		if (n == 0)
 			return (result);
-		if (result[i] == str_old)
+		if (String_Equals(result[i], str_old))
 		{
-			result[i] = (t_char*)str_new;
+			String_Free(result[i]);
+			result[i] = String_Duplicate(str_new);
 			n -= 1;
 		}
 	}
@@ -76,9 +79,10 @@ t_char**	StringArray_ReplaceLast(t_char const* const* strarr, t_char const* str_
 	{
 		if (n == 0)
 			return (result);
-		if (result[i] == str_old)
+		if (String_Equals(result[i], str_old))
 		{
-			result[i] = (t_char*)str_new;
+			String_Free(result[i]);
+			result[i] = String_Duplicate(str_new);
 			n -= 1;
 		}
 	}

@@ -18,9 +18,10 @@ t_char**	StringArray_Add(t_char** dest, t_char const* str)
 		"string to add given is NULL")
 		return (NULL);
 	length = (StringArray_Length((t_char const**)dest));
-	result = (t_char**)Memory_Reallocate(dest, (length + 1) * sizeof(t_char*));
+	result = (t_char**)Memory_Reallocate(dest, (length + 2) * sizeof(t_char*));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	result[length] = String_Duplicate(str);
+	result[length + 1] = NULL;
 	return (result);
 }
