@@ -672,7 +672,7 @@ t_sint					StringArrayUTF8_IndexOf_F(t_utf8 const* const* strarr, t_bool (*match
 **	TODO document this
 */
 //!@{
-t_uint						StringArrayUTF8_Count_Char(t_utf8 const* const* strarr, t_utf8 const c);
+t_uint						StringArrayUTF8_Count_Char(t_utf8 const* const* strarr, t_utf32 c);
 #define c_mbsarrcount_char	StringArrayUTF8_Count_Char
 //!@}
 
