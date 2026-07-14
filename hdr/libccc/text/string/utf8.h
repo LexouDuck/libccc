@@ -60,7 +60,6 @@ typedef t_bool	(*f_string_utf8_filter_i)	(t_utf8 c, t_size i);
 ||                          Basic String Operations                           ||
 \*============================================================================*/
 
-#if 0 // These functions do not yet exist and/or are a work in progress
 
 //!@doc Returns a new string which is `n + 1` bytes long (to account for the null-terminator).
 /*!
@@ -331,7 +330,6 @@ t_size				StringUTF8_Add_L(t_utf8* dest, t_utf8 const* src, t_size size);
 #define c_mbsladd	StringUTF8_Add_L
 //!@}
 
-#endif
 
 /*============================================================================*\
 ||                                String Checks                               ||
@@ -507,7 +505,6 @@ t_sint					StringUTF8_Compare_N_IgnoreCase(t_utf8 const* str1, t_utf8 const* str
 // TODO StringUTF8_CompareUntil_Charset()
 // TODO StringUTF8_CompareUntil_String()
 
-#if 0 // These functions do not yet exist and/or are a work in progress
 
 //!@doc Check if the given `str` contains characters from `charset`
 /*!
@@ -540,7 +537,6 @@ t_bool						StringUTF8_HasOnly(t_utf8 const* str, t_utf8 const* charset);
 // TODO strspn()
 // TODO strcspn()
 
-#endif
 
 //!@doc Count the total occurences of the given char `c` in the given string `str`
 /*!
@@ -846,7 +842,6 @@ t_sintmax							StringUTF8_IndexOf_N_String(t_utf8 const* str, t_utf8 const* que
 ||                              String Replacements                           ||
 \*============================================================================*/
 
-#if 0 // These functions do not yet exist and/or are a work in progress
 
 //!@doc Removes all occurences of the given `query` string within the given string `str`.
 /*!
@@ -909,13 +904,11 @@ t_utf8*						StringUTF8_Replace_String(t_utf8 const* str, t_utf8 const* str_old,
 #define c_mbsrep_str		StringUTF8_Replace_String
 //!@}
 
-#endif
 
 /*============================================================================*\
 ||                      String Concatenation Operations                       ||
 \*============================================================================*/
 
-#if 0 // These functions do not yet exist and/or are a work in progress
 
 //!@doc Concatenates two strings into a new one
 /*!
@@ -993,13 +986,11 @@ t_utf8*					StringUTF8_Join(t_utf8 const** strarr, t_utf8 const* sep);
 #define c_mbsjoin		StringUTF8_Join
 //!@}
 
-#endif
 
 /*============================================================================*\
 ||                           String In-Place Editing                          ||
 \*============================================================================*/
 
-#if 0 // These functions do not yet exist and/or are a work in progress
 
 //!@doc Reallocates the given string `dest`, inserting the string `src` at the given `index`.
 /*!
@@ -1071,13 +1062,11 @@ t_utf8*							StringUTF8_Map_InPlace(t_utf8* *a_str, t_utf32 (*map)(t_utf32));
 #define c_mbsmap_inplace		StringUTF8_Map_InPlace
 //!@}
 
-#endif
 
 /*============================================================================*\
 ||                        String Whitespace Operations                        ||
 \*============================================================================*/
 
-#if 0 // These functions do not yet exist and/or are a work in progress
 
 //!@doc Trims any char from `charset` from both sides of the given string `str`
 /*!
@@ -1168,7 +1157,6 @@ t_utf8*					StringUTF8_Pad_R(t_utf8 const* str, t_utf32 c, t_size length);
 #define c_mbspadr		StringUTF8_Pad_R
 //!@}
 
-#endif
 
 /*============================================================================*\
 ||                          Other String Operations                           ||
@@ -1230,7 +1218,6 @@ t_utf8*					StringUTF8_Sub(t_utf8 const* str, t_size index, t_size n);
 ||                           Functional Operations                            ||
 \*============================================================================*/
 
-#if 0 // These functions do not yet exist and/or are a work in progress
 
 //!@doc Calls a custom function `f` for each character of the given string `str`
 /*!
@@ -1301,7 +1288,7 @@ t_utf8*					StringUTF8_Map_I(t_utf8 const* str, t_utf32 (*map)(t_utf32 c, t_size
 */
 //!@{
 _MALLOC()
-t_utf8*					StringUTF8_Filter(t_utf8 const* str, t_bool (*filter)(t_utf8 c));
+t_utf8*					StringUTF8_Filter(t_utf8 const* str, t_bool (*filter)(t_utf32 c));
 #define c_mbsfilter		StringUTF8_Filter
 //!@}
 
@@ -1319,7 +1306,6 @@ t_utf8*					StringUTF8_Filter_I(t_utf8 const* str, t_bool (*filter)(t_utf32 c, t
 #define c_mbsifilter	StringUTF8_Filter_I
 //!@}
 
-#endif
 
 /*! @endgroup */
 HEADER_END
