@@ -52,6 +52,7 @@
 ./hdr/libccc/sys/io.h
 ./hdr/libccc/sys/logger.h
 ./hdr/libccc/sys/program.h
+./hdr/libccc/sys/socket.h
 ./hdr/libccc/sys/time.h
 ./hdr/libccc/text/char/ascii.h
 ./hdr/libccc/text/char/unicode.h

@@ -390,6 +390,14 @@
 ./src/sys/program/env.c
 ./src/sys/program/exit.c
 ./src/sys/program/run.c
+./src/sys/socket/connect.c
+./src/sys/socket/getaddr.c
+./src/sys/socket/option.c
+./src/sys/socket/platform.c
+./src/sys/socket/recv.c
+./src/sys/socket/send.c
+./src/sys/socket/sockaddr.c
+./src/sys/socket/socket.c
 ./src/sys/time/date.c
 ./src/sys/time/parse.c
 ./src/sys/time/print.c
