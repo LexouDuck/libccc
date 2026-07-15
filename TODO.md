@@ -22,10 +22,10 @@
 #include <libccc/text/stringarray/ascii.h>
 #include <libccc/text/stringarray/utf32.h>
 #include <libccc/text/stringarray/utf8.h>
-#include <libccc/text/format.h> // TODO printf
+#include <libccc/text/format.h>
 #include <libccc/text/escape.h>
 #include <libccc/text/unicode.h>
-#include <libccc/text/regex.h>	// TODO all: functions for regular expressions pattern matching/replacing
+#include <libccc/text/regex.h>
 #include <libccc/math/math.h>
 #include <libccc/math/int.h>
 #include <libccc/math/fixed.h>	// TODO advanced math functions
@@ -48,7 +48,7 @@
 #include <libccc/generic/list.h>
 #include <libccc/generic/dict.h>
 #include <libccc/generic/tree.h>
-#include <libccc/generic/set.h>	// TODO s_set = unordered set, containing only unique values
+#include <libccc/generic/set.h>
 #include <libccc/generic/object.h>	// TODO s_object = anonymous, dynamic, extensible objects (json library: wjelement)
 #include <libccc/sys/io.h>
 #include <libccc/sys/time.h>	// TODO system clock 'timespec' functions: clock_gettime(), etc
@@ -56,12 +56,12 @@
 #include <libccc/sys/async.h>	// TODO native win32 (IOCP) event loop backend; use min-heap for timers (like libuv)
 #include <libccc/sys/thread.h>	// TODO native win32 threading backend (currently requires pthread, eg: MinGW winpthreads)
 #include <libccc/sys/signal.h>	// TODO all: system signal handling: SIGSEGV, SIGFPE, SIGTRAP, SIGABORT, etc
-#include <libccc/sys/socket.h>	// DONE: network socket functions - send(), recv(), etc
-#include <libccc/sys/network.h>	// DONE: utility functions for common network protocols: TCP/IP, UDP (maybe DELTA-T?)
+#include <libccc/sys/socket.h>
+#include <libccc/sys/network.h>
 #include <libccc/encode/common.h>
 #include <libccc/encode/json.h>
-#include <libccc/encode/xml.h>	// TODO
-#include <libccc/encode/yaml.h>	// TODO
+#include <libccc/encode/xml.h>
+#include <libccc/encode/yaml.h>
 #include <libccc/encode/toml.h>
 #include <libccc/hash/crc.h>	// TODO CRC-[8|16|32|64]
 #include <libccc/hash/checksum.h>	// TODO fletcher-[4|8|16|32], BSD, SYSV, IPv4, xor8
