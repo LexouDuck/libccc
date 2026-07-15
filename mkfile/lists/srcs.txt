@@ -369,6 +369,13 @@
 ./src/random/csprng.c
 ./src/random/prng.c
 ./src/random/random.c
+./src/sys/async/event.c
+./src/sys/async/handle.c
+./src/sys/async/idle.c
+./src/sys/async/loop.c
+./src/sys/async/poll.c
+./src/sys/async/timer.c
+./src/sys/async/work.c
 ./src/sys/error/checker.c
 ./src/sys/error/error_ccc.c
 ./src/sys/error/error_std.c

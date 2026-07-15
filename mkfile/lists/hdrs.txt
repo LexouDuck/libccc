@@ -48,6 +48,7 @@
 ./hdr/libccc/string.h
 ./hdr/libccc/stringarray.h
 ./hdr/libccc/sys/ansi.h
+./hdr/libccc/sys/async.h
 ./hdr/libccc/sys/error.h
 ./hdr/libccc/sys/io.h
 ./hdr/libccc/sys/logger.h
