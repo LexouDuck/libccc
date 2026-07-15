@@ -386,6 +386,10 @@
 ./src/sys/logger/init.c
 ./src/sys/logger/log.c
 ./src/sys/logger/util.c
+./src/sys/network/order.c
+./src/sys/network/resolve.c
+./src/sys/network/tcp.c
+./src/sys/network/udp.c
 ./src/sys/program/dir.c
 ./src/sys/program/env.c
 ./src/sys/program/exit.c

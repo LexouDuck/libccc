@@ -51,6 +51,7 @@
 ./hdr/libccc/sys/error.h
 ./hdr/libccc/sys/io.h
 ./hdr/libccc/sys/logger.h
+./hdr/libccc/sys/network.h
 ./hdr/libccc/sys/program.h
 ./hdr/libccc/sys/socket.h
 ./hdr/libccc/sys/time.h
