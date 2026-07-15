@@ -53,11 +53,11 @@
 #include <libccc/sys/io.h>
 #include <libccc/sys/time.h>	// TODO system clock 'timespec' functions: clock_gettime(), etc
 #include <libccc/sys/logger.h>
-#include <libccc/sys/async.h>	// TODO all: libuv ?
-#include <libccc/sys/thread.h>	// TODO all: POSIX-thread (pthread) cross-platform interface/wrappers
+#include <libccc/sys/async.h>	// TODO native win32 (IOCP) event loop backend; use min-heap for timers (like libuv)
+#include <libccc/sys/thread.h>	// TODO native win32 threading backend (currently requires pthread, eg: MinGW winpthreads)
 #include <libccc/sys/signal.h>	// TODO all: system signal handling: SIGSEGV, SIGFPE, SIGTRAP, SIGABORT, etc
-#include <libccc/sys/socket.h>	// TODO all: network socket functions - send(), recv(), etc
-#include <libccc/sys/network.h>	// TODO all: utility functions for common network protocols: TCP/IP, UDP (maybe DELTA-T?)
+#include <libccc/sys/socket.h>	// DONE: network socket functions - send(), recv(), etc
+#include <libccc/sys/network.h>	// DONE: utility functions for common network protocols: TCP/IP, UDP (maybe DELTA-T?)
 #include <libccc/encode/common.h>
 #include <libccc/encode/json.h>
 #include <libccc/encode/xml.h>	// TODO
