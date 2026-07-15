@@ -402,6 +402,10 @@
 ./src/sys/socket/send.c
 ./src/sys/socket/sockaddr.c
 ./src/sys/socket/socket.c
+./src/sys/thread/cond.c
+./src/sys/thread/mutex.c
+./src/sys/thread/rwlock.c
+./src/sys/thread/thread.c
 ./src/sys/time/date.c
 ./src/sys/time/parse.c
 ./src/sys/time/print.c
