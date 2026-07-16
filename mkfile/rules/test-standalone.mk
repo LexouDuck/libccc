@@ -42,6 +42,60 @@ $(NAME_TEST_FOREACH): all $(SRCS_TEST_FOREACH)
 
 
 
+NAME_TEST_THREAD = libccc_test-thread
+SRCS_TEST_THREAD = $(TESTDIR_STANDALONE)thread.c
+
+.PHONY:\
+test-thread #! Builds and runs the test program for the libccc/sys/thread API
+test-thread: $(NAME_TEST_THREAD)
+	@$(call run,$(NAME_TEST_THREAD)) $(ARGS)
+	@rm $(NAME_TEST_THREAD)
+
+$(NAME_TEST_THREAD): all $(SRCS_TEST_THREAD)
+	@printf "Compiling testing program: "$@" -> "
+	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_BUILDMODE_debug) \
+		-I$(HDRDIR) $(SRCS_TEST_THREAD) \
+		$(TEST_LDLIBS)
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
+
+
+
+NAME_TEST_ASYNC = libccc_test-async
+SRCS_TEST_ASYNC = $(TESTDIR_STANDALONE)async.c
+
+.PHONY:\
+test-async #! Builds and runs the test program for the libccc/sys/async API
+test-async: $(NAME_TEST_ASYNC)
+	@$(call run,$(NAME_TEST_ASYNC)) $(ARGS)
+	@rm $(NAME_TEST_ASYNC)
+
+$(NAME_TEST_ASYNC): all $(SRCS_TEST_ASYNC)
+	@printf "Compiling testing program: "$@" -> "
+	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_BUILDMODE_debug) \
+		-I$(HDRDIR) $(SRCS_TEST_ASYNC) \
+		$(TEST_LDLIBS)
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
+
+
+
+NAME_TEST_NETWORK = libccc_test-network
+SRCS_TEST_NETWORK = $(TESTDIR_STANDALONE)network.c
+
+.PHONY:\
+test-network #! Builds and runs the test program for the libccc/sys/network API (threaded & async networking)
+test-network: $(NAME_TEST_NETWORK)
+	@$(call run,$(NAME_TEST_NETWORK)) $(ARGS)
+	@rm $(NAME_TEST_NETWORK)
+
+$(NAME_TEST_NETWORK): all $(SRCS_TEST_NETWORK)
+	@printf "Compiling testing program: "$@" -> "
+	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_BUILDMODE_debug) \
+		-I$(HDRDIR) $(SRCS_TEST_NETWORK) \
+		$(TEST_LDLIBS)
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
+
+
+
 NAME_TEST_KVT = libccc_test-kvt
 SRCS_TEST_KVT = $(TESTDIR_STANDALONE)kvt.c
 

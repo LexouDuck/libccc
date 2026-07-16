@@ -19,12 +19,17 @@
 **	Whereas `libccc/sys/socket.h` offers thin, portable wrappers over each
 **	individual BSD socket call, this header offers the functions you actually
 **	want to call in typical application code:
-**	- DNS hostname resolution (Network_Resolve(): a sane `getaddrinfo()` wrapper)
+**	- DNS hostname resolution (Network_Resolve(): a sane `getaddrinfo()` wrapper,
+**	  and Network_Resolve_Async(), which resolves on the event loop's thread pool)
 **	- one-call TCP client connection setup (TCP_Connect())
-**	- one-call TCP server socket setup (TCP_Listen()), and a simple
-**	  accept-loop helper (TCP_Serve()) for callback-based servers
+**	- one-call TCP server socket setup (TCP_Listen()), with two accept-loop
+**	  helpers for callback-based servers: TCP_Serve() (sequential), and
+**	  TCP_Serve_Concurrent() (one thread per connection, via `libccc/sys/thread.h`)
 **	- one-call UDP socket setup (UDP_New()), with hostname-resolving
 **	  send/receive convenience functions (UDP_SendTo()/UDP_RecvFrom())
+**	- fully asynchronous, non-blocking, event-driven networking, built on the
+**	  `libccc/sys/async.h` event loop: #s_async_tcp_server, #s_async_tcp,
+**	  and #s_async_udp handles (analogous to libuv's `uv_tcp_t`/`uv_udp_t`)
 **	- endianness-safe byte order conversion functions (which work regardless
 **	  of the host machine's endianness, without any platform detection macros)
 **
@@ -38,6 +43,7 @@
 
 #include "libccc.h"
 #include "libccc/sys/socket.h"
+#include "libccc/sys/async.h"
 
 HEADER_CPP
 
@@ -64,6 +70,151 @@ typedef t_bool	(*f_tcp_handler)(t_socket client, s_sockaddr const* addr, void* c
 
 //! The maximum length for a hostname string filled by Network_GetHostName() (as per RFC 1035)
 #define NETWORK_HOSTNAME_MAXLENGTH	256
+
+
+
+/*============================================================================*\
+||                       Asynchronous Networking: Types                       ||
+\*============================================================================*/
+
+/*
+**	The following handle types integrate networking with the event loop from
+**	`libccc/sys/async.h`, for fully non-blocking, callback-driven networking
+**	(analogous to libuv's `uv_tcp_t`/`uv_udp_t`/`uv_getaddrinfo_t`).
+**
+**	Each of these handle structs embeds its underlying async handle as its
+**	FIRST member, and exposes a `data` field for your own custom user data
+**	(just like the `data` field of any regular #s_asynchandle).
+**	As with all async handles, these structs are user-allocated (typically
+**	on the stack, or inside one of your own context structs), and every one
+**	of their callbacks is invoked on the event loop thread.
+*/
+
+//!@doc An asynchronous DNS resolution request handle, for Network_Resolve_Async()
+//!@{
+typedef struct async_resolve	s_async_resolve;
+TYPEDEF_ALIAS(					s_async_resolve, ASYNC_RESOLVE, STRUCT)
+//! The type of callback function invoked when a #s_async_resolve request completes
+/*!
+**	@param	resolve		The resolution request handle which has completed
+**	@param	error		`0`(#ERROR_NONE) if resolution succeeded, otherwise a non-zero error code (ie: #ERROR_NOTFOUND)
+**	@param	addresses	The array of resolved addresses (or `NULL`, on error);
+**						NOTE: this array is freed automatically after this callback returns,
+**						so you must copy any address which you wish to keep
+**	@param	amount		The amount of addresses in the `addresses` array
+*/
+typedef void	(*f_async_resolve)(s_async_resolve* resolve, e_cccerror error, s_sockaddr const* addresses, t_uint amount);
+TYPEDEF_ALIAS(	f_async_resolve, ASYNC_RESOLVE_FUNCTION, FUNCTION)
+struct async_resolve
+{
+	s_async_work	work;		//!< [internal] the underlying thread pool work handle (must be the first member)
+	void*			data;		//!< [PUBLIC] an opaque user pointer: use it to store any custom contextual data
+	f_async_resolve	callback;	//!< [internal] the user callback to invoke upon completion
+	t_char*			host;		//!< [internal] the hostname being resolved (duplicated, freed automatically)
+	t_port			port;		//!< [internal] the port number to store in each resolved address
+	s_sockaddr*		addresses;	//!< [internal] the resolved address array (freed automatically)
+	t_uint			amount;		//!< [internal] the amount of resolved addresses
+	e_cccerror		error;		//!< [internal] the error code of the resolution operation
+};
+//!@}
+
+
+
+//!@doc An asynchronous TCP server handle: accepts incoming connections via a callback
+//!@{
+typedef struct async_tcp_server	s_async_tcp_server;
+TYPEDEF_ALIAS(					s_async_tcp_server, ASYNC_TCP_SERVER, STRUCT)
+//! The type of callback function invoked by a #s_async_tcp_server, for each incoming connection
+/*!
+**	@param	server	The server handle which accepted this connection
+**	@param	client	The newly accepted client socket: you now own this socket
+**					(typically, you would wrap it with AsyncTCP_Init() to handle
+**					it asynchronously; otherwise, remember to Socket_Close() it)
+**	@param	addr	The address of the connecting client
+*/
+typedef void	(*f_async_tcp_accept)(s_async_tcp_server* server, t_socket client, s_sockaddr const* addr);
+TYPEDEF_ALIAS(	f_async_tcp_accept, ASYNC_TCP_ACCEPT_FUNCTION, FUNCTION)
+struct async_tcp_server
+{
+	s_async_poll		poll;		//!< [internal] the underlying I/O poll handle (must be the first member)
+	void*				data;		//!< [PUBLIC] an opaque user pointer: use it to store any custom contextual data
+	t_socket			socket;		//!< [PUBLIC-read-only] the underlying listening socket
+	f_async_tcp_accept	on_accept;	//!< [internal] the user callback to invoke for each incoming connection
+};
+//!@}
+
+
+
+//!@doc An asynchronous TCP connection handle: non-blocking reads/writes via callbacks
+//!@{
+typedef struct async_tcp	s_async_tcp;
+TYPEDEF_ALIAS(				s_async_tcp, ASYNC_TCP, STRUCT)
+//! The type of callback function invoked when a #s_async_tcp connection attempt completes (see AsyncTCP_Connect())
+/*!
+**	@param	conn	The connection handle whose connection attempt has completed
+**	@param	error	`0`(#ERROR_NONE) if the connection was established, otherwise a non-zero error code
+*/
+typedef void	(*f_async_tcp_connect)(s_async_tcp* conn, e_cccerror error);
+TYPEDEF_ALIAS(	f_async_tcp_connect, ASYNC_TCP_CONNECT_FUNCTION, FUNCTION)
+//! The type of callback function invoked when data arrives on a #s_async_tcp connection (see AsyncTCP_StartRead())
+/*!
+**	@param	conn	The connection handle on which data arrived
+**	@param	buffer	The buffer holding the received bytes (only valid for the duration of this callback: copy it if needed)
+**	@param	length	The amount of bytes received; `0` means the peer has closed
+**					the connection (EOF), and a negative value means a read error occurred
+*/
+typedef void	(*f_async_tcp_read)(s_async_tcp* conn, t_u8 const* buffer, t_sintmax length);
+TYPEDEF_ALIAS(	f_async_tcp_read, ASYNC_TCP_READ_FUNCTION, FUNCTION)
+//! [internal] A single pending write buffer, in a #s_async_tcp handle's write queue
+struct async_tcp_writebuf
+{
+	struct async_tcp_writebuf*	next;	//!< [internal] the next pending write buffer in the queue
+	t_size						size;	//!< [internal] the total size of this buffer, in bytes
+	t_size						sent;	//!< [internal] the amount of bytes of this buffer already sent
+	t_u8*						data;	//!< [internal] the bytes to send (allocated copy)
+};
+struct async_tcp
+{
+	s_async_poll				poll;		//!< [internal] the underlying I/O poll handle (must be the first member)
+	void*						data;		//!< [PUBLIC] an opaque user pointer: use it to store any custom contextual data
+	t_socket					socket;		//!< [PUBLIC-read-only] the underlying connection socket
+	f_async_tcp_connect			on_connect;	//!< [internal] the user callback to invoke when the pending connection attempt completes
+	f_async_tcp_read			on_read;	//!< [internal] the user callback to invoke when data arrives
+	t_bool						connecting;	//!< [internal] whether a non-blocking connection attempt is currently pending
+	t_bool						reading;	//!< [internal] whether reading is currently enabled (see AsyncTCP_StartRead())
+	struct async_tcp_writebuf*	queue_head;	//!< [internal] the first pending write buffer (or `NULL`, if none)
+	struct async_tcp_writebuf*	queue_tail;	//!< [internal] the last pending write buffer (or `NULL`, if none)
+};
+//!@}
+
+//! The size of the (stack) buffer used for each non-blocking read, by #s_async_tcp and #s_async_udp handles
+#ifndef ASYNC_NETWORK_BUFFER_SIZE
+#define ASYNC_NETWORK_BUFFER_SIZE	(8 * 1024)
+#endif
+
+
+
+//!@doc An asynchronous UDP handle: non-blocking datagram reception via a callback
+//!@{
+typedef struct async_udp	s_async_udp;
+TYPEDEF_ALIAS(				s_async_udp, ASYNC_UDP, STRUCT)
+//! The type of callback function invoked when a datagram arrives on a #s_async_udp handle (see AsyncUDP_StartRecv())
+/*!
+**	@param	udp		The UDP handle on which a datagram arrived
+**	@param	buffer	The buffer holding the datagram bytes (only valid for the duration of this callback: copy it if needed)
+**	@param	length	The amount of bytes in the datagram
+**	@param	from	The address of the peer which sent this datagram
+*/
+typedef void	(*f_async_udp_recv)(s_async_udp* udp, t_u8 const* buffer, t_size length, s_sockaddr const* from);
+TYPEDEF_ALIAS(	f_async_udp_recv, ASYNC_UDP_RECV_FUNCTION, FUNCTION)
+struct async_udp
+{
+	s_async_poll		poll;		//!< [internal] the underlying I/O poll handle (must be the first member)
+	void*				data;		//!< [PUBLIC] an opaque user pointer: use it to store any custom contextual data
+	t_socket			socket;		//!< [PUBLIC-read-only] the underlying datagram socket
+	f_async_udp_recv	on_recv;	//!< [internal] the user callback to invoke for each received datagram
+};
+//!@}
 
 
 
@@ -292,6 +443,36 @@ e_cccerror				TCP_Serve(t_socket sock, f_tcp_handler handle, void* context);
 #define c_tcpserve		TCP_Serve
 //!@}
 
+//!@doc Runs a concurrent accept loop on the socket `sock`, handling each connection in its own thread
+/*!
+**	@nonstd
+**
+**	This function behaves like TCP_Serve(), except that each accepted
+**	connection is handled in its own newly spawned thread (via
+**	`libccc/sys/thread.h`), so that several connections can be served
+**	simultaneously, and one slow client cannot stall the others.
+**
+**	As with TCP_Serve(), the client socket is closed automatically once its
+**	handler returns. If any handler returns `FALSE`, the server begins its
+**	shutdown: the accept loop stops, and this function waits for every
+**	currently running handler thread to finish, before returning.
+**
+**	NOTE: since handlers run concurrently, your handler function must be
+**	thread-safe with regards to whatever shared state it accesses through
+**	the `context` pointer (protect it with a #t_mutex, if it is mutable).
+**
+**	@param	sock	The listening socket (see TCP_Listen()) on which to accept connections
+**	@param	handle	The handler function to call (in a new thread) for each accepted connection
+**	@param	context	A custom user-data pointer, passed through to each `handle` call (can be `NULL`)
+**	@returns
+**	`0`(#OK) if the server loop ended normally (ie: a handler returned `FALSE`),
+**	otherwise a non-zero error code (ie: if a call to accept() failed)
+*/
+//!@{
+e_cccerror					TCP_Serve_Concurrent(t_socket sock, f_tcp_handler handle, void* context);
+#define c_tcpserveconc		TCP_Serve_Concurrent
+//!@}
+
 
 
 /*============================================================================*\
@@ -359,6 +540,263 @@ t_sintmax				UDP_SendTo(t_socket sock, void const* data, t_size n, t_char const*
 //!@{
 t_sintmax				UDP_RecvFrom(t_socket sock, void* buffer, t_size n, s_sockaddr* dest_addr);
 #define c_udprecvfrom	UDP_RecvFrom
+//!@}
+
+
+
+/*============================================================================*\
+||                     Asynchronous Networking: Functions                     ||
+\*============================================================================*/
+
+/*
+**	NOTE: as with the rest of `libccc/sys/async.h`, every one of these
+**	functions must be called from the event loop's own thread (with the
+**	notable exception of the write-side of #s_async_tcp/#s_async_udp handles,
+**	which is safe from handle callbacks, as those run on the loop thread).
+*/
+
+//!@doc Resolves the given `host` name asynchronously, on the event loop's thread pool
+/*!
+**	@nonstd, analogous to libuv's `uv_getaddrinfo()`
+**
+**	This function behaves like Network_Resolve_All(), except that the
+**	(potentially slow, blocking) DNS lookup is performed on one of the event
+**	loop's worker pool threads (via AsyncWork_Submit()), so as to not block
+**	the event loop; the given `callback` is then invoked back on the event
+**	loop thread, with the results (see #f_async_resolve for the details).
+**
+**	@param	loop		The event loop on which to perform the resolution
+**	@param	resolve		The resolution request handle to initialize and submit
+**	@param	host		The hostname (or numeric IP address string) to resolve (duplicated internally)
+**	@param	port		The port number to store in each resulting address (in host byte order)
+**	@param	callback	The function to invoke (on the loop thread) once resolution completes
+**	@returns
+**	`0`(#OK) if the request was submitted successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror					Network_Resolve_Async(s_asyncloop* loop, s_async_resolve* resolve, t_char const* host, t_port port, f_async_resolve callback);
+#define c_netresolveasync	Network_Resolve_Async
+//!@}
+
+
+
+//!@doc Creates a TCP server listening on `addr`, accepting connections asynchronously on the given event loop
+/*!
+**	@nonstd, analogous to libuv's `uv_listen()`
+**
+**	This function sets up a listening TCP socket (like TCP_Listen()), puts it
+**	in non-blocking mode, and registers it with the given event loop: the
+**	given `on_accept` callback will be invoked (on the loop thread) for each
+**	incoming connection, once the loop is running (see AsyncLoop_Run()).
+**
+**	@param	loop		The event loop on which to serve
+**	@param	server		The server handle to initialize
+**	@param	addr		The local address to listen on (use SockAddr_Any() to listen on all interfaces)
+**	@param	backlog		The maximum amount of pending connections to queue up (if `0`, a reasonable default is used)
+**	@param	on_accept	The callback to invoke for each incoming connection (see #f_async_tcp_accept)
+**	@returns
+**	`0`(#OK) if the server was set up successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror					AsyncTCP_Listen(s_asyncloop* loop, s_async_tcp_server* server, s_sockaddr const* addr, t_uint backlog, f_async_tcp_accept on_accept);
+#define c_asynctcplisten	AsyncTCP_Listen
+//!@}
+
+//!@doc Stops the given asynchronous TCP server, closing its listening socket
+/*!
+**	@nonstd
+**
+**	@param	server	The server handle to stop
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror						AsyncTCP_Server_Stop(s_async_tcp_server* server);
+#define c_asynctcpserverstop	AsyncTCP_Server_Stop
+//!@}
+
+
+
+//!@doc Initializes an asynchronous TCP connection handle, wrapping the given (connected) socket `sock`
+/*!
+**	@nonstd
+**
+**	The given socket is put in non-blocking mode, and registered with the
+**	given event loop. This is typically used to wrap the client socket
+**	received in a #f_async_tcp_accept callback; to create an outgoing
+**	connection instead, see AsyncTCP_Connect().
+**
+**	@param	loop	The event loop on which this connection will be handled
+**	@param	conn	The connection handle to initialize
+**	@param	sock	The (connected) TCP socket to wrap
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror				AsyncTCP_Init(s_asyncloop* loop, s_async_tcp* conn, t_socket sock);
+#define c_asynctcpinit	AsyncTCP_Init
+//!@}
+
+//!@doc Creates a TCP socket, and connects it to `addr` asynchronously (without blocking the event loop)
+/*!
+**	@nonstd, analogous to libuv's `uv_tcp_connect()`
+**
+**	This function initializes the given connection handle (like AsyncTCP_Init()),
+**	and begins a non-blocking connection attempt to the given address:
+**	the given `on_connect` callback is invoked (on the loop thread) once the
+**	connection attempt completes, whether successfully or not.
+**	Any AsyncTCP_Write()/AsyncTCP_StartRead() calls made before the connection
+**	completes are handled gracefully (writes are queued, reads begin once connected).
+**
+**	@param	loop		The event loop on which this connection will be handled
+**	@param	conn		The connection handle to initialize
+**	@param	addr		The remote address to connect to
+**	@param	on_connect	The callback to invoke once the connection attempt completes (see #f_async_tcp_connect)
+**	@returns
+**	`0`(#OK) if the connection attempt was started successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror					AsyncTCP_Connect(s_asyncloop* loop, s_async_tcp* conn, s_sockaddr const* addr, f_async_tcp_connect on_connect);
+#define c_asynctcpconnect	AsyncTCP_Connect
+//!@}
+
+//!@doc Starts reading from the given TCP connection: `on_read` is invoked whenever data arrives
+/*!
+**	@nonstd, analogous to libuv's `uv_read_start()`
+**
+**	@param	conn	The connection handle to start reading from
+**	@param	on_read	The callback to invoke whenever data arrives (see #f_async_tcp_read)
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror						AsyncTCP_StartRead(s_async_tcp* conn, f_async_tcp_read on_read);
+#define c_asynctcpread			AsyncTCP_StartRead
+//!@}
+
+//!@doc Stops reading from the given TCP connection (its `on_read` callback will no longer be invoked)
+/*!
+**	@nonstd, analogous to libuv's `uv_read_stop()`
+**
+**	@param	conn	The connection handle to stop reading from
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror						AsyncTCP_StopRead(s_async_tcp* conn);
+#define c_asynctcpstopread		AsyncTCP_StopRead
+//!@}
+
+//!@doc Writes `n` bytes of `data` to the given TCP connection, without ever blocking
+/*!
+**	@nonstd, analogous to libuv's `uv_write()`
+**
+**	As much of the given data as possible is sent immediately; any remainder
+**	is copied to an internal queue, and sent automatically (by the event loop)
+**	as soon as the connection becomes writable again. This means the given
+**	`data` buffer can be safely discarded as soon as this function returns.
+**
+**	@param	conn	The connection handle to write to
+**	@param	data	The buffer of data to send (copied internally, if it cannot be sent immediately)
+**	@param	n		The amount of bytes to send from `data`
+**	@returns
+**	`0`(#OK) if the data was sent (or queued) successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror					AsyncTCP_Write(s_async_tcp* conn, void const* data, t_size n);
+#define c_asynctcpwrite		AsyncTCP_Write
+//!@}
+
+//!@doc Closes the given TCP connection, freeing any queued writes, and closing its socket
+/*!
+**	@nonstd
+**
+**	NOTE: any data still waiting in the write queue is discarded: if you wish
+**	to ensure everything is sent before closing, keep the connection open
+**	until your protocol-level exchange confirms reception.
+**
+**	@param	conn	The connection handle to close
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror				AsyncTCP_Close(s_async_tcp* conn);
+#define c_asynctcpclose	AsyncTCP_Close
+//!@}
+
+
+
+//!@doc Initializes an asynchronous UDP handle, wrapping the given datagram socket `sock`
+/*!
+**	@nonstd
+**
+**	The given socket is put in non-blocking mode, and registered with the
+**	given event loop. To send datagrams on this handle, simply use
+**	Socket_SendTo()/UDP_SendTo() with `udp->socket` (individual datagram
+**	sends do not meaningfully block, so no special async variant is needed).
+**
+**	@param	loop	The event loop on which this UDP handle will be handled
+**	@param	udp		The UDP handle to initialize
+**	@param	sock	The (#SOCKTYPE_DGRAM) socket to wrap (see UDP_New())
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror				AsyncUDP_Init(s_asyncloop* loop, s_async_udp* udp, t_socket sock);
+#define c_asyncudpinit	AsyncUDP_Init
+//!@}
+
+//!@doc Starts receiving on the given UDP handle: `on_recv` is invoked for each arriving datagram
+/*!
+**	@nonstd, analogous to libuv's `uv_udp_recv_start()`
+**
+**	@param	udp		The UDP handle to start receiving on
+**	@param	on_recv	The callback to invoke for each received datagram (see #f_async_udp_recv)
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror					AsyncUDP_StartRecv(s_async_udp* udp, f_async_udp_recv on_recv);
+#define c_asyncudprecv		AsyncUDP_StartRecv
+//!@}
+
+//!@doc Stops receiving on the given UDP handle (its `on_recv` callback will no longer be invoked)
+/*!
+**	@nonstd, analogous to libuv's `uv_udp_recv_stop()`
+**
+**	@param	udp	The UDP handle to stop receiving on
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror					AsyncUDP_StopRecv(s_async_udp* udp);
+#define c_asyncudpstoprecv	AsyncUDP_StopRecv
+//!@}
+
+//!@doc Closes the given UDP handle, closing its socket
+/*!
+**	@nonstd
+**
+**	@param	udp	The UDP handle to close
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code
+*/
+//!@{
+e_cccerror				AsyncUDP_Close(s_async_udp* udp);
+#define c_asyncudpclose	AsyncUDP_Close
 //!@}
 
 

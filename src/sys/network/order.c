@@ -1,4 +1,9 @@
 
+#ifndef __NOSTD__
+	#ifndef _POSIX_C_SOURCE
+	#define _POSIX_C_SOURCE	200809L	// needed to expose POSIX APIs (pthread_rwlock_t etc), when compiling with a strict `-std=c**` option
+	#endif
+#endif
 #include "libccc.h"
 #include "libccc/sys/network.h"
 

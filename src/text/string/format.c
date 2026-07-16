@@ -801,18 +801,21 @@ void	Format_WriteFixed_Hex(s_format_output* out, s_format_spec const* spec,
 	}
 	if (part_f * 2 >= denom)
 	{	// round the last fraction digit (carry can propagate into the integer part)
+		t_bool	carry = TRUE;
 		i = count;
-		while (i-- > 0)
+		while (i > 0)
 		{
+			i -= 1;
 			if (fraction[i] == 'f' || fraction[i] == 'F')
 				fraction[i] = '0';
 			else
 			{
 				fraction[i] = (fraction[i] == '9' ? charset[10] : fraction[i] + 1);
+				carry = FALSE;
 				break;
 			}
 		}
-		if (i >= count)	// unsigned wrap: the carry went beyond the first fraction digit
+		if (carry)	// the carry went beyond the first fraction digit
 			part_i += 1;
 	}
 	if (!spec->has_precision)

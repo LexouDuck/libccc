@@ -15,29 +15,48 @@
 
 #if (defined(_WIN32) && !defined(__CYGWIN__))
 
+#include "libccc/sys/thread.h"
+
 static t_bool	socket_wsa_initialized = FALSE;
+static t_mutex	socket_wsa_mutex = MUTEX_INITIALIZER;
 
 e_cccerror	Socket_Init(void)
 {
 	WSADATA	wsadata;
 	int		result;
 
+	Mutex_Lock(&socket_wsa_mutex);
 	if (socket_wsa_initialized)
+	{
+		Mutex_Unlock(&socket_wsa_mutex);
 		return (ERROR_NONE);
+	}
 	result = WSAStartup(MAKEWORD(2, 2), &wsadata);
 	if CCCERROR((result != 0), ERROR_SYSTEM,
 		"call to WSAStartup() failed, with error code %i", result)
+	{
+		Mutex_Unlock(&socket_wsa_mutex);
 		return (ERROR_SYSTEM);
+	}
 	socket_wsa_initialized = TRUE;
+	Mutex_Unlock(&socket_wsa_mutex);
 	return (ERROR_NONE);
 }
 
 e_cccerror	Socket_Exit(void)
 {
+	int	result;
+
+	Mutex_Lock(&socket_wsa_mutex);
 	if (!socket_wsa_initialized)
+	{
+		Mutex_Unlock(&socket_wsa_mutex);
 		return (ERROR_NONE);
+	}
 	socket_wsa_initialized = FALSE;
-	if CCCERROR((WSACleanup() != 0), ERROR_SYSTEM,
+	result = WSACleanup();
+	Mutex_Unlock(&socket_wsa_mutex);
+	if CCCERROR((result != 0), ERROR_SYSTEM,
 		"call to WSACleanup() failed")
 		return (ERROR_SYSTEM);
 	return (ERROR_NONE);
@@ -67,6 +86,24 @@ void	__Socket_UpdateErrno(void)
 {
 #if (defined(_WIN32) && !defined(__CYGWIN__))
 	errno = WSAGetLastError();
+#endif
+}
+
+t_bool	__Socket_IsErrorWouldBlock(void)
+{
+#if (defined(_WIN32) && !defined(__CYGWIN__))
+	return (errno == WSAEWOULDBLOCK);
+#else
+	return (errno == EWOULDBLOCK || errno == EAGAIN);
+#endif
+}
+
+t_bool	__Socket_IsErrorInProgress(void)
+{
+#if (defined(_WIN32) && !defined(__CYGWIN__))
+	return (errno == WSAEWOULDBLOCK); // winsock reports in-progress connects with WSAEWOULDBLOCK
+#else
+	return (errno == EINPROGRESS);
 #endif
 }
 

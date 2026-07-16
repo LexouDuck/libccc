@@ -55,6 +55,10 @@
 
 //! Updates `errno` from the platform's socket error state (WSAGetLastError() on win32, no-op elsewhere)
 void		__Socket_UpdateErrno(void);
+//! Checks whether the current `errno` value indicates a non-blocking operation which would have blocked (`EWOULDBLOCK`/`EAGAIN`/`WSAEWOULDBLOCK`)
+t_bool		__Socket_IsErrorWouldBlock(void);
+//! Checks whether the current `errno` value indicates a non-blocking connect operation which is still in progress (`EINPROGRESS`/`WSAEWOULDBLOCK`)
+t_bool		__Socket_IsErrorInProgress(void);
 
 //! Converts a portable #e_sockaf value to the platform's native `AF_*` value (returns `-1` if invalid)
 int			__Socket_NativeAF(e_sockaf family);

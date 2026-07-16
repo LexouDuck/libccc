@@ -1,7 +1,7 @@
 
 #if !(defined(_WIN32) && !defined(__CYGWIN__))
 	#ifndef _POSIX_C_SOURCE
-	#define _POSIX_C_SOURCE 200112L	// needed to expose getaddrinfo()/getnameinfo() in <netdb.h>, in strict ISO C mode
+	#define _POSIX_C_SOURCE	200809L	// needed to expose getaddrinfo()/getnameinfo() (and pthread_rwlock_t etc), when compiling with a strict `-std=c**` option
 	#endif
 #endif
 

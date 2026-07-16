@@ -393,6 +393,9 @@
 ./src/sys/logger/init.c
 ./src/sys/logger/log.c
 ./src/sys/logger/util.c
+./src/sys/network/async_resolve.c
+./src/sys/network/async_tcp.c
+./src/sys/network/async_udp.c
 ./src/sys/network/order.c
 ./src/sys/network/resolve.c
 ./src/sys/network/tcp.c
