@@ -31,8 +31,8 @@
 #include <libccc/math/fixed.h>	// TODO advanced math functions
 #include <libccc/math/float.h>
 #include <libccc/math/complex.h>
-#include <libccc/math/quaternion.h>	// TODO
-#include <libccc/math/octonion.h>	// TODO
+#include <libccc/math/quaternion.h>
+#include <libccc/math/octonion.h>
 #include <libccc/math/vlq.h>	// TODO all: variable-length-quantites (VLQ) arbitrary-precision math
 #include <libccc/math/sort.h>
 #include <libccc/math/stat.h>
@@ -46,10 +46,9 @@
 #include <libccc/random/csprng.h>
 #include <libccc/generic/array.h>
 #include <libccc/generic/list.h>
+#include <libccc/generic/set.h>
 #include <libccc/generic/dict.h>
 #include <libccc/generic/tree.h>
-#include <libccc/generic/set.h>
-#include <libccc/generic/object.h>	// TODO s_object = anonymous, dynamic, extensible objects (json library: wjelement)
 #include <libccc/sys/io.h>
 #include <libccc/sys/time.h>	// TODO system clock 'timespec' functions: clock_gettime(), etc
 #include <libccc/sys/logger.h>
