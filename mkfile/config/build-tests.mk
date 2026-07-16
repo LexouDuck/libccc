@@ -125,7 +125,7 @@ TEST_LDLIBS_BUILDMODE_release =
 TEST_LDLIBS_OS = $(TEST_LDLIBS_OS_$(OSMODE))
 TEST_LDLIBS_OS_windows = -L./
 TEST_LDLIBS_OS_macos = 
-TEST_LDLIBS_OS_linux = -lm
+TEST_LDLIBS_OS_linux = -lm -lpthread
 TEST_LDLIBS_OS_other = 
 TEST_LDLIBS_OS_emscripten = -lm
 ifneq ($(findstring mingw,$(CC)),)

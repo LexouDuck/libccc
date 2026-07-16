@@ -24,6 +24,12 @@ e_cccerror	AsyncPoll_Init(s_asyncloop* loop, s_async_poll* poll, t_fd fd)
 	if CCCERROR((fd < 0), ERROR_INVALIDARGS, 
 		"file descriptor given has a negative value: %i", fd)
 		return (ERROR_INVALIDARGS);
+#if defined(_WIN32)
+	if CCCERROR((TRUE), ERROR_SYSTEM, 
+		"async poll handles are not yet supported by the Windows event loop backend") // TODO implement native win32 (IOCP) event loop backend
+		return (ERROR_SYSTEM);
+	return (ERROR_SYSTEM); // (unconditional: poll handles must never be attached on Windows, even with error-checking disabled)
+#endif
 	poll->base.data = NULL;
 	poll->callback = NULL;
 	poll->fd = fd;

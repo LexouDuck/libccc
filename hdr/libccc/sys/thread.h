@@ -16,9 +16,14 @@
 **	This header defines a cross-platform API for concurrency/multithreading:
 **	threads, mutexes, condition variables, and read/write locks.
 **
-**	The libccc thread API is a set of easy-to-use wrappers above the POSIX
-**	thread library (pthread), which is the most widely available threading API.
-**	The goal is to smooth over the various quirks of the pthread interface:
+**	The libccc thread API is a set of easy-to-use wrappers above the native
+**	threading facilities of the platform. The API is identical on every
+**	platform, and there are currently two implementation backends:
+**	- on POSIX platforms: the POSIX thread library (pthread)
+**	- on Windows: the native win32 threading API (`_beginthreadex()`,
+**	  `SRWLOCK`, `CONDITION_VARIABLE` - so there is no dependency on any
+**	  pthread-compatibility library, even when building with MinGW)
+**	The goal is to smooth over the various quirks of these interfaces:
 **	- All functions perform the usual libccc `NULL` pointer argument checks
 **	  (as configured by #LIBCONFIG_ERROR_HANDLING), rather than segfaulting.
 **	- All fallible functions return a libccc #e_cccerror error code, and emit
@@ -29,6 +34,11 @@
 **	- Timeouts are expressed as relative durations (using #s_nanotime),
 **	  rather than the rather clunky absolute-timestamp API of pthread.
 **
+**	NOTE: one minor platform difference: on Windows, a #t_thread obtained from
+**	Thread_Self() can be compared with Thread_Equals(), but cannot be given to
+**	Thread_Join()/Thread_Detach() (only #t_thread values obtained via
+**	Thread_New() can be joined/detached on Windows).
+**
 **	@isostd{POSIX,https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/pthread.h.html}
 **	@isostd{C,https://en.cppreference.com/w/c/thread}
 */
@@ -38,8 +48,11 @@
 \*============================================================================*/
 
 #ifndef __NOSTD__
-	#if (defined(_WIN32) && !defined(__MINGW32__))
-		#error "libccc/sys/thread is implemented above the POSIX thread API: on Windows, you must use a compiler/environment which provides <pthread.h> (for example: MinGW, with its winpthreads library)" // TODO implement native win32 threading backend
+	#if defined(_WIN32)
+		// native win32 threading backend: the types below are self-contained
+		// (they are binary-compatible with the corresponding win32 types, so
+		// this public header does not need to `#include <windows.h>` at all;
+		// the implementation files verify this compatibility at compile time)
 	#else
 		#ifndef _POSIX_C_SOURCE
 		#define _POSIX_C_SOURCE	200809L	// needed to expose `pthread_rwlock_t` and friends, when compiling with a strict `-std=c**` option
@@ -47,10 +60,14 @@
 		#include <pthread.h>
 	#endif
 #else
-	typedef unsigned long int	pthread_t; // TODO find platform-specific type
-	typedef union pthread_mutex  { char _data[64]; long int _align; }	pthread_mutex_t; // TODO find platform-specific type
-	typedef union pthread_cond   { char _data[64]; long int _align; }	pthread_cond_t; // TODO find platform-specific type
-	typedef union pthread_rwlock { char _data[64]; long int _align; }	pthread_rwlock_t; // TODO find platform-specific type
+	#if defined(_WIN32)
+		// native win32 threading backend: the types below are self-contained
+	#else
+		typedef unsigned long int	pthread_t; // TODO find platform-specific type
+		typedef union pthread_mutex  { char _data[64]; long int _align; }	pthread_mutex_t; // TODO find platform-specific type
+		typedef union pthread_cond   { char _data[64]; long int _align; }	pthread_cond_t; // TODO find platform-specific type
+		typedef union pthread_rwlock { char _data[64]; long int _align; }	pthread_rwlock_t; // TODO find platform-specific type
+	#endif
 #endif
 
 #include "libccc.h"
@@ -86,7 +103,16 @@ HEADER_CPP
 **	operator: use the Thread_Equals() function instead.
 */
 //!@{
+#if defined(_WIN32)
+typedef struct thread
+{
+	void*	handle;	//!< [internal] the win32 `HANDLE` of this thread (is `NULL` for a #t_thread obtained via Thread_Self())
+	t_u32	id;		//!< [internal] the win32 thread identifier (this is what Thread_Equals() compares)
+	void*	data;	//!< [internal] per-thread bookkeeping block (only for threads created with Thread_New())
+}					t_thread;
+#else
 typedef pthread_t	t_thread;
+#endif
 TYPEDEF_ALIAS(		t_thread, THREAD, PRIMITIVE)
 //!@}
 
@@ -116,11 +142,20 @@ TYPEDEF_ALIAS(	f_thread, THREAD_FUNCTION, FUNCTION)
 **	Mutex_Init(), or by assigning the #MUTEX_INITIALIZER static initializer.
 */
 //!@{
+#if defined(_WIN32)
+typedef struct mutex
+{
+	void*	ptr;	//!< [internal] binary-compatible with the win32 `SRWLOCK` type (verified at compile time, in "src/sys/thread/mutex.c")
+}						t_mutex;
+#else
 typedef pthread_mutex_t	t_mutex;
+#endif
 TYPEDEF_ALIAS(			t_mutex, MUTEX, PRIMITIVE)
 //!@}
 //! The static initializer value for a #t_mutex (alternative to calling Mutex_Init())
-#ifndef __NOSTD__
+#if defined(_WIN32)
+#define MUTEX_INITIALIZER	{ NULL } // matches the win32 `SRWLOCK_INIT` static initializer
+#elif !defined(__NOSTD__)
 #define MUTEX_INITIALIZER	PTHREAD_MUTEX_INITIALIZER
 #else
 #define MUTEX_INITIALIZER	{ 0 } // TODO find platform-specific value
@@ -146,11 +181,20 @@ TYPEDEF_ALIAS(			t_mutex, MUTEX, PRIMITIVE)
 **	Cond_Init(), or by assigning the #COND_INITIALIZER static initializer.
 */
 //!@{
+#if defined(_WIN32)
+typedef struct cond
+{
+	void*	ptr;	//!< [internal] binary-compatible with the win32 `CONDITION_VARIABLE` type (verified at compile time, in "src/sys/thread/cond.c")
+}						t_cond;
+#else
 typedef pthread_cond_t	t_cond;
+#endif
 TYPEDEF_ALIAS(			t_cond, COND, PRIMITIVE)
 //!@}
 //! The static initializer value for a #t_cond (alternative to calling Cond_Init())
-#ifndef __NOSTD__
+#if defined(_WIN32)
+#define COND_INITIALIZER	{ NULL } // matches the win32 `CONDITION_VARIABLE_INIT` static initializer
+#elif !defined(__NOSTD__)
 #define COND_INITIALIZER	PTHREAD_COND_INITIALIZER
 #else
 #define COND_INITIALIZER	{ 0 } // TODO find platform-specific value
@@ -172,11 +216,21 @@ TYPEDEF_ALIAS(			t_cond, COND, PRIMITIVE)
 **	RWLock_Init(), or by assigning the #RWLOCK_INITIALIZER static initializer.
 */
 //!@{
+#if defined(_WIN32)
+typedef struct rwlock
+{
+	void*	ptr;	//!< [internal] binary-compatible with the win32 `SRWLOCK` type (verified at compile time, in "src/sys/thread/rwlock.c")
+	t_u32	writer;	//!< [internal] the id of the thread currently holding write access, if any (needed by RWLock_Unlock())
+}							t_rwlock;
+#else
 typedef pthread_rwlock_t	t_rwlock;
+#endif
 TYPEDEF_ALIAS(				t_rwlock, RWLOCK, PRIMITIVE)
 //!@}
 //! The static initializer value for a #t_rwlock (alternative to calling RWLock_Init())
-#ifndef __NOSTD__
+#if defined(_WIN32)
+#define RWLOCK_INITIALIZER	{ NULL, 0 } // matches the win32 `SRWLOCK_INIT` static initializer
+#elif !defined(__NOSTD__)
 #define RWLOCK_INITIALIZER	PTHREAD_RWLOCK_INITIALIZER
 #else
 #define RWLOCK_INITIALIZER	{ 0 } // TODO find platform-specific value

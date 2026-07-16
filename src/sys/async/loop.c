@@ -1,5 +1,10 @@
 
-#ifndef __NOSTD__
+#if defined(_WIN32)
+	#if !defined(_WIN32_WINNT) || (_WIN32_WINNT < 0x0600)
+	#undef  _WIN32_WINNT
+	#define _WIN32_WINNT	0x0600	// require Windows Vista or later (for `GetTickCount64()`)
+	#endif
+#elif !defined(__NOSTD__)
 	#ifndef _POSIX_C_SOURCE
 	#define _POSIX_C_SOURCE	200809L	// needed to expose POSIX APIs, when compiling with a strict `-std=c**` option
 	#endif
@@ -8,7 +13,10 @@
 #include "libccc/memory.h"
 #include "libccc/sys/async.h"
 
-#ifndef __NOSTD__
+#if defined(_WIN32)
+	#define WIN32_LEAN_AND_MEAN
+	#include <windows.h>	// TODO handle __NOSTD__ for the win32 backend ?
+#elif !defined(__NOSTD__)
 	#include <unistd.h>
 	#include <fcntl.h>
 	#include <poll.h>
@@ -38,6 +46,7 @@
 
 
 
+#if !defined(_WIN32)
 static e_cccerror	__AsyncLoop_SetNonBlocking(t_fd fd)
 {
 	int	flags;
@@ -51,6 +60,7 @@ static e_cccerror	__AsyncLoop_SetNonBlocking(t_fd fd)
 		return (ERROR_SYSTEM);
 	return (ERROR_NONE);
 }
+#endif
 
 
 
@@ -62,6 +72,22 @@ s_asyncloop*	AsyncLoop_New(void)
 	if CCCERROR((loop == NULL), ERROR_ALLOCFAILURE, 
 		"could not allocate new event loop")
 		return (NULL);
+#if defined(_WIN32)
+	loop->wakeup_event = (void*)CreateEventW(NULL, FALSE, FALSE, NULL); // auto-reset, initially unsignaled
+	if CCCERROR((loop->wakeup_event == NULL), ERROR_SYSTEM, 
+		"could not create event loop wakeup event (GetLastError: %lu)", GetLastError())
+	{
+		Memory_Delete((void**)&loop);
+		return (NULL);
+	}
+	if (Mutex_Init(&loop->mutex) != ERROR_NONE ||
+		Cond_Init(&loop->pool_cond) != ERROR_NONE)
+	{
+		CloseHandle((HANDLE)loop->wakeup_event);
+		Memory_Delete((void**)&loop);
+		return (NULL);
+	}
+#else
 	if CCCERROR((pipe(loop->wakeup) != 0), ERROR_SYSTEM, 
 		"could not create event loop wakeup pipe")
 	{
@@ -85,6 +111,7 @@ s_asyncloop*	AsyncLoop_New(void)
 		Memory_Delete((void**)&loop);
 		return (NULL);
 	}
+#endif
 	AsyncLoop_UpdateTime(loop);
 	return (loop);
 }
@@ -128,8 +155,12 @@ e_cccerror	AsyncLoop_Delete(s_asyncloop* *a_loop)
 	}
 	Cond_Delete(&loop->pool_cond);
 	Mutex_Delete(&loop->mutex);
+#if defined(_WIN32)
+	CloseHandle((HANDLE)loop->wakeup_event);
+#else
 	close(loop->wakeup[0]);
 	close(loop->wakeup[1]);
+#endif
 	if (loop->pollfds)
 		Memory_Delete(&loop->pollfds);
 	if (loop->pollhandles)
@@ -160,16 +191,40 @@ t_asynctime	AsyncLoop_Now(s_asyncloop const* loop)
 
 e_cccerror	AsyncLoop_UpdateTime(s_asyncloop* loop)
 {
-	struct timespec	t;
-
 	if CCCERROR((loop == NULL), ERROR_NULLPOINTER, 
 		"event loop given is NULL")
 		return (ERROR_NULLPOINTER);
-	if CCCERROR((clock_gettime(CLOCK_MONOTONIC, &t) != 0), ERROR_SYSTEM, 
-		"could not get the current monotonic time")
-		return (ERROR_SYSTEM);
-	loop->now = ((t_asynctime)t.tv_sec * 1000) + ((t_asynctime)t.tv_nsec / 1000000);
-	return (ERROR_NONE);
+#if defined(_WIN32)
+	{
+		LARGE_INTEGER	counter;
+		static t_u64	frequency = 0; // ticks per second: fixed at system boot (benign race: every thread computes the same value)
+
+		if (frequency == 0)
+		{
+			LARGE_INTEGER	f;
+			QueryPerformanceFrequency(&f); // (cannot fail on Windows XP or later)
+			frequency = (t_u64)f.QuadPart;
+		}
+		// NOTE: `QueryPerformanceCounter()` is used rather than `GetTickCount64()`,
+		// because the latter only has the granularity of the system timer tick
+		// (usually ~15.6ms), which is too coarse for short timer deadlines
+		if CCCERROR((QueryPerformanceCounter(&counter) == 0), ERROR_SYSTEM, 
+			"could not get the current monotonic time (GetLastError: %lu)", GetLastError())
+			return (ERROR_SYSTEM);
+		loop->now = (t_asynctime)((t_u64)counter.QuadPart * 1000 / frequency);
+		return (ERROR_NONE);
+	}
+#else
+	{
+		struct timespec	t;
+
+		if CCCERROR((clock_gettime(CLOCK_MONOTONIC, &t) != 0), ERROR_SYSTEM, 
+			"could not get the current monotonic time")
+			return (ERROR_SYSTEM);
+		loop->now = ((t_asynctime)t.tv_sec * 1000) + ((t_asynctime)t.tv_nsec / 1000000);
+		return (ERROR_NONE);
+	}
+#endif
 }
 
 e_cccerror	AsyncLoop_Stop(s_asyncloop* loop)
@@ -322,6 +377,24 @@ static int	__AsyncLoop_PollTimeout(s_asyncloop* loop, e_asyncrun mode)
 
 
 
+#if defined(_WIN32)
+
+//! The polling phase of a loop iteration, win32 version: waits on the loop's wakeup Event
+static void	__AsyncLoop_Poll(s_asyncloop* loop, int timeout)
+{
+	DWORD	result;
+
+	// NOTE: there can be no active poll handles on Windows (AsyncPoll_Init() is
+	// not supported by this backend), so the polling phase only has to wait for
+	// the loop's wakeup Event object (which is auto-reset: waiting consumes it)
+	result = WaitForSingleObject((HANDLE)loop->wakeup_event, (timeout < 0 ? INFINITE : (DWORD)timeout));
+	if CCCERROR((result == WAIT_FAILED), ERROR_SYSTEM, 
+		"error while polling for I/O (GetLastError: %lu)", GetLastError())
+		return;
+}
+
+#else
+
 //! Grows the loop's `pollfds`/`pollhandles` buffers to hold at least `amount` items
 static e_cccerror	__AsyncLoop_PollReserve(s_asyncloop* loop, t_uint amount)
 {
@@ -424,6 +497,8 @@ static void	__AsyncLoop_Poll(s_asyncloop* loop, int timeout)
 	loop->poll_amount = 0;
 	loop->poll_index = 0;
 }
+
+#endif
 
 
 

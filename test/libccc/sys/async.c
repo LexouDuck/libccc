@@ -1,28 +1,18 @@
 
-#if (defined(_WIN32) && !defined(__MINGW32__))
-// TODO the async API is POSIX-only for now: no tests can run in this environment
-#else
+#if !defined(_WIN32)
 	#ifndef _POSIX_C_SOURCE
 	#define _POSIX_C_SOURCE	200809L
 	#endif
-	#include <unistd.h>
+	#include <unistd.h>	// (only used by the poll handle scenario test, which needs `pipe()`)
 #endif
 
 #include "libccc.h"
 #include "libccc/bool.h"
-#if (defined(_WIN32) && !defined(__MINGW32__))
-// TODO the async API is POSIX-only for now (see "libccc/sys/async.h")
-#else
 #include "libccc/sys/thread.h"
 #include "libccc/sys/async.h"
-#endif
 
 #include "test.h"
 #include "test_utils.h"
-
-#if (defined(_WIN32) && !defined(__MINGW32__))
-// TODO the async API is POSIX-only for now: no tests can run in this environment
-#else
 
 
 
@@ -190,6 +180,8 @@ static t_u64	scenario_async_event(void)
 
 
 
+#if !defined(_WIN32) // (poll handles are not yet supported by the Windows event loop backend)
+
 //! shared by the fd-polling scenario
 typedef struct asynctest_poll
 {
@@ -244,6 +236,8 @@ static t_u64	scenario_async_poll(void)
 	AsyncLoop_Delete(&loop);
 	return (ctx.bytes_read); // expected: 5
 }
+
+#endif
 
 
 
@@ -439,7 +433,9 @@ void	test_async(void)
 	print_test_async_u64 ("async timer (repeating)",				FALSE,                      3, scenario_async_timer_repeat,  "delay=10ms, repeat=15ms");
 	print_test_async_u64 ("async idle (once per iteration)",		FALSE,                      5, scenario_async_idle,          "5 iterations");
 	print_test_async_u64 ("async event (cross-thread send)",		FALSE,                      1, scenario_async_event,         "2 sends, coalesced");
+#if !defined(_WIN32) // (poll handles are not yet supported by the Windows event loop backend)
 	print_test_async_u64 ("async poll (pipe becomes readable)",		FALSE,                      5, scenario_async_poll,          "5 bytes written to pipe");
+#endif
 	print_test_async_u64 ("async work (thread pool)",				FALSE,   ASYNCTEST_WORK_AMOUNT, scenario_async_work,          "16 work items");
 	print_test_async_bool("async run modes (NOWAIT/ONCE)",			FALSE,                   TRUE, scenario_async_runmodes,      "");
 	print_test_async_bool("async loop time (cached clock)",			FALSE,                   TRUE, scenario_async_time,          "");
@@ -448,8 +444,6 @@ void	test_async(void)
 #endif
 
 
-
-#endif
 
 /*============================================================================*\
 ||                            Test Suite Function                             ||
@@ -461,11 +455,7 @@ int		testsuite_sys_async(void)
 {
 	print_suite_title("libccc/sys/async");
 
-#if (defined(_WIN32) && !defined(__MINGW32__))
-	// TODO the async API is POSIX-only for now: no tests can run in this environment
-#else
 	test_async();
-#endif
 
 	return (OK);
 }

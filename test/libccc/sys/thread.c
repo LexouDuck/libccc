@@ -1,19 +1,11 @@
 
 #include "libccc.h"
 #include "libccc/bool.h"
-#if (defined(_WIN32) && !defined(__MINGW32__))
-// TODO the thread API is POSIX-only for now (see "libccc/sys/thread.h")
-#else
 #include "libccc/sys/thread.h"
-#endif
 #include "libccc/sys/time.h"
 
 #include "test.h"
 #include "test_utils.h"
-
-#if (defined(_WIN32) && !defined(__MINGW32__))
-// TODO the thread API is POSIX-only for now: no tests can run in this environment
-#else
 
 
 
@@ -446,8 +438,6 @@ void	test_thread(void)
 
 
 
-#endif
-
 /*============================================================================*\
 ||                            Test Suite Function                             ||
 \*============================================================================*/
@@ -458,11 +448,7 @@ int		testsuite_sys_thread(void)
 {
 	print_suite_title("libccc/sys/thread");
 
-#if (defined(_WIN32) && !defined(__MINGW32__))
-	// TODO the thread API is POSIX-only for now: no tests can run in this environment
-#else
 	test_thread();
-#endif
 
 	return (OK);
 }

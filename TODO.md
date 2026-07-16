@@ -40,7 +40,7 @@
 #include <libccc/math/algebra/interval.h>
 #include <libccc/math/algebra/vector.h>
 #include <libccc/math/algebra/matrix.h>
-#include <libccc/math/algebra/tensor.h>// TODO
+#include <libccc/math/algebra/tensor.h>
 #include <libccc/random.h>	// TODO several RNG methods (use function pointer, so others can implement custom RNG logic ?)
 #include <libccc/random/prng.h>
 #include <libccc/random/csprng.h>
@@ -53,8 +53,8 @@
 #include <libccc/sys/io.h>
 #include <libccc/sys/time.h>	// TODO system clock 'timespec' functions: clock_gettime(), etc
 #include <libccc/sys/logger.h>
-#include <libccc/sys/async.h>	// TODO native win32 (IOCP) event loop backend; use min-heap for timers (like libuv)
-#include <libccc/sys/thread.h>	// TODO native win32 threading backend (currently requires pthread, eg: MinGW winpthreads)
+#include <libccc/sys/async.h>	// TODO win32: IOCP backend for poll handles (all other handle types work on win32); use min-heap for timers (like libuv)
+#include <libccc/sys/thread.h>
 #include <libccc/sys/signal.h>	// TODO all: system signal handling: SIGSEGV, SIGFPE, SIGTRAP, SIGABORT, etc
 #include <libccc/sys/socket.h>
 #include <libccc/sys/network.h>

@@ -35,7 +35,11 @@ struct asyncloop
 	t_uint			poll_capacity;	//!< the current capacity (in items) of the `pollfds`/`pollhandles` buffers
 	t_uint			poll_amount;	//!< the amount of items currently in the `pollfds`/`pollhandles` buffers
 	t_uint			poll_index;		//!< poll-dispatching cursor: allows poll handles to be safely stopped from within callbacks
+#if defined(_WIN32)
+	void*			wakeup_event;	//!< the win32 auto-reset Event object used to wake up the loop from other threads
+#else
 	t_fd			wakeup[2];		//!< the self-pipe used to wake up the loop from other threads (`[0]`: read end, `[1]`: write end)
+#endif
 	// cross-thread state (protected by `mutex`)
 	t_mutex			mutex;			//!< protects: event handles' `pending` flags, and the thread pool work queues
 	t_cond			pool_cond;		//!< signaled when work is added to `queue_todo` (or when `pool_shutdown` is set)

@@ -1,5 +1,10 @@
 
-#ifndef __NOSTD__
+#if defined(_WIN32)
+	#if !defined(_WIN32_WINNT) || (_WIN32_WINNT < 0x0600)
+	#undef  _WIN32_WINNT
+	#define _WIN32_WINNT	0x0600	// require Windows Vista or later
+	#endif
+#elif !defined(__NOSTD__)
 	#ifndef _POSIX_C_SOURCE
 	#define _POSIX_C_SOURCE	200809L	// needed to expose POSIX APIs, when compiling with a strict `-std=c**` option
 	#endif
@@ -7,7 +12,10 @@
 #include "libccc.h"
 #include "libccc/sys/async.h"
 
-#ifndef __NOSTD__
+#if defined(_WIN32)
+	#define WIN32_LEAN_AND_MEAN
+	#include <windows.h>	// TODO handle __NOSTD__ for the win32 backend ?
+#elif !defined(__NOSTD__)
 	#include <unistd.h>
 #else
 	long int	write(int fd, void const* buffer, unsigned long int n);
@@ -76,11 +84,15 @@ void	__AsyncHandle_SetActive(s_asynchandle* handle, t_bool active)
 
 void	__AsyncLoop_Wakeup(s_asyncloop* loop)
 {
+#if defined(_WIN32)
+	SetEvent((HANDLE)loop->wakeup_event); // (auto-reset Event: consumed by the loop's polling phase)
+#else
 	char	byte = 0;
 	long	result;
 
 	result = write(loop->wakeup[1], &byte, 1);
 	(void)result; // a full pipe means a wakeup is already pending: nothing to do
+#endif
 }
 
 

@@ -37,6 +37,13 @@
 **	which the user is free to use to store any custom contextual data,
 **	so that it may be easily retrieved from within a callback function.
 **
+**	The API is identical on every platform, and there are currently two
+**	implementation backends:
+**	- on POSIX platforms: a `poll()`-based event loop, woken up via a self-pipe
+**	- on Windows: a native win32 event loop, woken up via an Event object
+**	NOTE: the one exception is #s_async_poll handles, which are not yet
+**	supported by the Windows backend (TODO: implement an IOCP-based backend).
+**
 **	Unless otherwise noted, the functions of this API are not thread-safe:
 **	they must be called from the thread which runs the event loop
 **	(the notable exception being AsyncEvent_Send(), whose entire purpose
@@ -64,10 +71,6 @@
 /*============================================================================*\
 ||                                   Includes                                 ||
 \*============================================================================*/
-
-#if (defined(_WIN32) && !defined(__MINGW32__))
-	#error "libccc/sys/async is implemented above POSIX APIs (pipe/poll/pthread): on Windows, you must use a compiler/environment which provides these (for example: MinGW)" // TODO implement native win32 (IOCP) event loop backend
-#endif
 
 #include "libccc.h"
 
@@ -272,6 +275,10 @@ TYPEDEF_ALIAS(	t_asyncpoll_events, ASYNCPOLL_EVENTS, PRIMITIVE)
 //!@doc A poll handle: invokes its callback when a file descriptor becomes readable/writable
 /*!
 **	This type is analogous to libuv's `uv_poll_t`.
+**
+**	NOTE: poll handles are not yet supported by the Windows backend
+**	(AsyncPoll_Init() will return an error): all of the other handle types
+**	work on every platform (TODO: implement an IOCP-based backend).
 */
 //!@{
 typedef struct async_poll	s_async_poll;
