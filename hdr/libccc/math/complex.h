@@ -200,10 +200,42 @@ s_complex					Complex_Div(s_complex const* z1, s_complex const* z2);
 
 
 
-// TODO cplxpow
-// TODO cplxsqrt
-// TODO cplxcbrt
-// TODO cplxnrt
+//!@doc Returns the given complex number `z`, raised to the given real `power` (principal branch)
+/*!
+**	Computed as `exp(power * log(z))`, using the principal branch of the logarithm.
+*/
+//!@{
+s_complex				Complex_Pow(s_complex const* z, t_float power);
+#define c_cplxpow		Complex_Pow
+#define Complex_Power	Complex_Pow
+//!@}
+
+//!@doc Returns the square root of the given complex number (principal branch)
+//!@{
+s_complex						Complex_Root2(s_complex const* z);
+#define c_cplxsqrt				Complex_Root2
+#define c_cplxroot2				Complex_Root2
+#define Complex_SqRt			Complex_Root2
+#define Complex_SquareRoot		Complex_Root2
+//!@}
+
+//!@doc Returns the cube root of the given complex number (principal branch)
+//!@{
+s_complex						Complex_Root3(s_complex const* z);
+#define c_cplxcbrt				Complex_Root3
+#define c_cplxroot3				Complex_Root3
+#define Complex_CbRt			Complex_Root3
+#define Complex_CubeRoot		Complex_Root3
+//!@}
+
+//!@doc Returns the n-th root of the given complex number (principal branch)
+//!@{
+s_complex						Complex_RootN(s_complex const* z, t_u8 n);
+#define c_cplxnrt				Complex_RootN
+#define c_cplxrootn				Complex_RootN
+#define Complex_NRt				Complex_RootN
+#define Complex_NRoot			Complex_RootN
+//!@}
 
 
 
@@ -211,11 +243,55 @@ s_complex					Complex_Div(s_complex const* z1, s_complex const* z2);
 ||                       Complex: exponentiation functions                    ||
 \*============================================================================*/
 
-// TODO cplxarg
-// TODO cplxproj
+//!@doc Returns the argument (angle) `θ` of the given complex number, in the range `(-PI, +PI]`
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/carg}
+**
+**	The argument is the angle of the polar form of the complex number: `z = |z| * exp(i * θ)`.
+**	It is computed as `atan2(z.im, z.re)` (so, the argument of zero is zero).
+*/
+//!@{
+t_float						Complex_Arg(s_complex const* z);
+#define c_cplxarg			Complex_Arg
+#define Complex_Argument	Complex_Arg
+#define Complex_Angle		Complex_Arg
+//!@}
 
-// TODO cplxexp
-// TODO cplxlog
+//!@doc Returns the projection of the given complex number onto the Riemann sphere
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/cproj}
+**
+**	The result is equal to `z`, unless one of its parts is infinite, in which case
+**	the result is `+INFINITY` for the real part, and `±0` for the imaginary part
+**	(preserving the sign of the imaginary part of `z`).
+*/
+//!@{
+s_complex						Complex_Proj(s_complex const* z);
+#define c_cplxproj				Complex_Proj
+#define Complex_Projection		Complex_Proj
+//!@}
+
+//!@doc Returns the exponential function applied to the given complex number: `e^z`
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/cexp}
+*/
+//!@{
+s_complex						Complex_Exp(s_complex const* z);
+#define c_cplxexp				Complex_Exp
+#define Complex_Exponential		Complex_Exp
+//!@}
+
+//!@doc Returns the natural logarithm of the given complex number (principal branch)
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/clog}
+*/
+//!@{
+s_complex						Complex_Log(s_complex const* z);
+#define c_cplxlog				Complex_Log
+#define c_cplxln				Complex_Log
+#define Complex_Ln				Complex_Log
+#define Complex_NaturalLog		Complex_Log
+//!@}
 
 
 
@@ -223,19 +299,134 @@ s_complex					Complex_Div(s_complex const* z1, s_complex const* z2);
 ||                       Complex: trigonometry functions                      ||
 \*============================================================================*/
 
-// TODO cplxcos
-// TODO cplxsin
-// TODO cplxtan
-// TODO cplxacos
-// TODO cplxasin
-// TODO cplxatan
+//!@doc Returns the cosine of the given complex number
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/ccos}
+*/
+//!@{
+s_complex					Complex_Cos(s_complex const* z);
+#define c_cplxcos			Complex_Cos
+#define Complex_Cosine		Complex_Cos
+//!@}
 
-// TODO cplxcosh
-// TODO cplxsinh
-// TODO cplxtanh
-// TODO cplxacosh
-// TODO cplxasinh
-// TODO cplxatanh
+//!@doc Returns the sine of the given complex number
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/csin}
+*/
+//!@{
+s_complex					Complex_Sin(s_complex const* z);
+#define c_cplxsin			Complex_Sin
+#define Complex_Sine		Complex_Sin
+//!@}
+
+//!@doc Returns the tangent of the given complex number
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/ctan}
+*/
+//!@{
+s_complex					Complex_Tan(s_complex const* z);
+#define c_cplxtan			Complex_Tan
+#define Complex_Tangent		Complex_Tan
+//!@}
+
+//!@doc Returns the arc-cosine of the given complex number (inverse of the cos function)
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/cacos}
+*/
+//!@{
+s_complex					Complex_ArcCos(s_complex const* z);
+#define c_cplxacos			Complex_ArcCos
+#define Complex_Cos_1		Complex_ArcCos
+#define Complex_ArcCosine	Complex_ArcCos
+//!@}
+
+//!@doc Returns the arc-sine of the given complex number (inverse of the sin function)
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/casin}
+*/
+//!@{
+s_complex					Complex_ArcSin(s_complex const* z);
+#define c_cplxasin			Complex_ArcSin
+#define Complex_Sin_1		Complex_ArcSin
+#define Complex_ArcSine		Complex_ArcSin
+//!@}
+
+//!@doc Returns the arc-tangent of the given complex number (inverse of the tan function)
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/catan}
+*/
+//!@{
+s_complex					Complex_ArcTan(s_complex const* z);
+#define c_cplxatan			Complex_ArcTan
+#define Complex_Tan_1		Complex_ArcTan
+#define Complex_ArcTangent	Complex_ArcTan
+//!@}
+
+//!@doc Returns the hyperbolic cosine of the given complex number
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/ccosh}
+*/
+//!@{
+s_complex							Complex_CosH(s_complex const* z);
+#define c_cplxcosh					Complex_CosH
+#define Complex_Cos_H				Complex_CosH
+#define Complex_Cosine_Hyperbolic	Complex_CosH
+//!@}
+
+//!@doc Returns the hyperbolic sine of the given complex number
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/csinh}
+*/
+//!@{
+s_complex							Complex_SinH(s_complex const* z);
+#define c_cplxsinh					Complex_SinH
+#define Complex_Sin_H				Complex_SinH
+#define Complex_Sine_Hyperbolic		Complex_SinH
+//!@}
+
+//!@doc Returns the hyperbolic tangent of the given complex number
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/ctanh}
+*/
+//!@{
+s_complex							Complex_TanH(s_complex const* z);
+#define c_cplxtanh					Complex_TanH
+#define Complex_Tan_H				Complex_TanH
+#define Complex_Tangent_Hyperbolic	Complex_TanH
+//!@}
+
+//!@doc Returns the inverse hyperbolic cosine of the given complex number (inverse of the cosh function)
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/cacosh}
+*/
+//!@{
+s_complex							Complex_InvCosH(s_complex const* z);
+#define c_cplxacosh					Complex_InvCosH
+#define Complex_Cos_1_H				Complex_InvCosH
+#define Complex_InvCosine_Hyperbolic	Complex_InvCosH
+//!@}
+
+//!@doc Returns the inverse hyperbolic sine of the given complex number (inverse of the sinh function)
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/casinh}
+*/
+//!@{
+s_complex							Complex_InvSinH(s_complex const* z);
+#define c_cplxasinh					Complex_InvSinH
+#define Complex_Sin_1_H				Complex_InvSinH
+#define Complex_InvSine_Hyperbolic	Complex_InvSinH
+//!@}
+
+//!@doc Returns the inverse hyperbolic tangent of the given complex number (inverse of the tanh function)
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/catanh}
+*/
+//!@{
+s_complex							Complex_InvTanH(s_complex const* z);
+#define c_cplxatanh					Complex_InvTanH
+#define Complex_Tan_1_H				Complex_InvTanH
+#define Complex_InvTangent_Hyperbolic	Complex_InvTanH
+//!@}
 
 // TODO add polar form operations
 

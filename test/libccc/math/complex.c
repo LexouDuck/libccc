@@ -259,6 +259,258 @@ void	test_complex_div(void)
 
 
 
+static
+void	test_complex_pow(void)
+{
+	s_complex	squared = Complex_Mul(&z_1_2, &z_1_2);
+	print_test_complex("Complex_Pow (z^2 == z*z)",
+		Complex_Pow(&z_1_2, 2.), squared);
+	print_test_complex("Complex_Pow (z^1 == z)",
+		Complex_Pow(&z_1_2, 1.), z_1_2);
+	print_test_complex("Complex_Pow (z^0 == 1)",
+		Complex_Pow(&z_1_2, 0.), z_identity);
+	print_test_complex("Complex_Pow (z^-1 == inverse)",
+		Complex_Pow(&z_1_2, -1.), Complex_Inverse(&z_1_2));
+	print_test_complex("Complex_Pow (real base: 4^0.5 == 2)",
+		Complex_Pow(&(s_complex){ .re = 4., .im = 0. }, 0.5),
+		(s_complex){ .re = 2., .im = 0. });
+	print_test_complex("Complex_Pow ((-1)^0.5 == i)",
+		Complex_Pow(&(s_complex){ .re = -1., .im = 0. }, 0.5), z_i);
+	print_test_complex("Complex_Pow (0^2 == 0)",
+		Complex_Pow(&z_zero, 2.), z_zero);
+	print_test_complex("Complex_Pow (0^0 == 1)",
+		Complex_Pow(&z_zero, 0.), z_identity);
+	print_test_complex("Complex_Pow (0^-1 -> error)",
+		Complex_Pow(&z_zero, -1.), COMPLEX_ERROR);
+}
+
+static
+void	test_complex_root(void)
+{
+	s_complex	root = Complex_Root2(&z_1_2);
+	print_test_complex("Complex_Root2 (sqrt(z)^2 == z)",
+		Complex_Mul(&root, &root), z_1_2);
+	print_test_complex("Complex_Root2 (sqrt(4) == 2)",
+		Complex_Root2(&(s_complex){ .re = 4., .im = 0. }),
+		(s_complex){ .re = 2., .im = 0. });
+	print_test_complex("Complex_Root2 (sqrt(-1) == i)",
+		Complex_Root2(&(s_complex){ .re = -1., .im = 0. }), z_i);
+	print_test_complex("Complex_Root2 (sqrt(2i) == 1+i)",
+		Complex_Root2(&(s_complex){ .re = 0., .im = 2. }),
+		(s_complex){ .re = 1., .im = 1. });
+
+	root = Complex_Root3(&z_1_2);
+	s_complex	cube = Complex_Mul(&root, &root);
+	print_test_complex("Complex_Root3 (cbrt(z)^3 == z)",
+		Complex_Mul(&cube, &root), z_1_2);
+
+	root = Complex_RootN(&z_1_2, 4);
+	s_complex	tmp = Complex_Mul(&root, &root);
+	print_test_complex("Complex_RootN (nrt(z,4)^4 == z)",
+		Complex_Mul(&tmp, &tmp), z_1_2);
+	print_test_complex("Complex_RootN (nrt(z,1) == z)",
+		Complex_RootN(&z_1_2, 1), z_1_2);
+	print_test_complex("Complex_RootN (nrt(z,0) -> error)",
+		Complex_RootN(&z_1_2, 0), COMPLEX_ERROR);
+}
+
+static
+void	test_complex_arg(void)
+{
+	print_test_complex_float("Complex_Arg (of 1 == 0)",       Complex_Arg(&z_identity), 0.);
+	print_test_complex_float("Complex_Arg (of i == +PI/2)",   Complex_Arg(&z_i), +(t_float)PI / 2.);
+	print_test_complex_float("Complex_Arg (of -i == -PI/2)",  Complex_Arg(&(s_complex){ .re = 0., .im = -1. }), -(t_float)PI / 2.);
+	print_test_complex_float("Complex_Arg (of -1 == PI)",     Complex_Arg(&(s_complex){ .re = -1., .im = 0. }), (t_float)PI);
+	print_test_complex_float("Complex_Arg (of 1+i == PI/4)",  Complex_Arg(&(s_complex){ .re = 1., .im = 1. }), (t_float)PI / 4.);
+	print_test_complex_float("Complex_Arg (of zero == 0)",    Complex_Arg(&z_zero), 0.);
+}
+
+static
+void	test_complex_proj(void)
+{
+	print_test_complex("Complex_Proj (of finite z == z)",
+		Complex_Proj(&z_1_2), z_1_2);
+	print_test_complex("Complex_Proj (of zero == zero)",
+		Complex_Proj(&z_zero), z_zero);
+	print_test_complex("Complex_Proj (of +INF real part)",
+		Complex_Proj(&(s_complex){ .re = (t_float)INFINITY, .im = 2. }),
+		(s_complex){ .re = (t_float)INFINITY, .im = 0. });
+	print_test_complex("Complex_Proj (of -INF real part)",
+		Complex_Proj(&(s_complex){ .re = -(t_float)INFINITY, .im = 2. }),
+		(s_complex){ .re = (t_float)INFINITY, .im = 0. });
+	print_test_complex("Complex_Proj (of INF imaginary part)",
+		Complex_Proj(&(s_complex){ .re = 1., .im = (t_float)INFINITY }),
+		(s_complex){ .re = (t_float)INFINITY, .im = 0. });
+	// the sign of the imaginary part must be preserved
+	s_complex	result = Complex_Proj(&(s_complex){ .re = 1., .im = -(t_float)INFINITY });
+	print_test_complex_bool("Complex_Proj (preserves imaginary sign)",
+		(result.im == 0. && 1. / result.im < 0.), TRUE);
+}
+
+static
+void	test_complex_exp(void)
+{
+	print_test_complex("Complex_Exp (exp(0) == 1)",
+		Complex_Exp(&z_zero), z_identity);
+	print_test_complex("Complex_Exp (exp(1) == e)",
+		Complex_Exp(&z_identity),
+		(s_complex){ .re = Float_Exp(1.), .im = 0. });
+	// Euler's identity: exp(i*PI) == -1
+	print_test_complex("Complex_Exp (exp(PI*i) == -1)",
+		Complex_Exp(&(s_complex){ .re = 0., .im = (t_float)PI }),
+		(s_complex){ .re = -1., .im = 0. });
+	print_test_complex("Complex_Exp (exp(PI/2*i) == i)",
+		Complex_Exp(&(s_complex){ .re = 0., .im = (t_float)PI / 2. }), z_i);
+	// exp preserves the norm relation: |exp(z)| == exp(z.re)
+	s_complex	result = Complex_Exp(&z_1_2);
+	print_test_complex_float("Complex_Exp (|exp(z)| == exp(z.re))",
+		Complex_Norm(&result), Float_Exp(z_1_2.re));
+	// exp turns addition into multiplication: exp(z1 + z2) == exp(z1) * exp(z2)
+	s_complex	sum = Complex_Add(&z_1_2, &z_3_4);
+	s_complex	exp_z1 = Complex_Exp(&z_1_2);
+	s_complex	exp_z2 = Complex_Exp(&z_3_4);
+	print_test_complex("Complex_Exp (exp(z1+z2) == exp(z1)*exp(z2))",
+		Complex_Exp(&sum),
+		Complex_Mul(&exp_z1, &exp_z2));
+}
+
+static
+void	test_complex_log(void)
+{
+	print_test_complex("Complex_Log (log(1) == 0)",
+		Complex_Log(&z_identity), z_zero);
+	print_test_complex("Complex_Log (log(e) == 1)",
+		Complex_Log(&(s_complex){ .re = Float_Exp(1.), .im = 0. }), z_identity);
+	print_test_complex("Complex_Log (log(i) == PI/2*i)",
+		Complex_Log(&z_i),
+		(s_complex){ .re = 0., .im = (t_float)PI / 2. });
+	print_test_complex("Complex_Log (log(-1) == PI*i)",
+		Complex_Log(&(s_complex){ .re = -1., .im = 0. }),
+		(s_complex){ .re = 0., .im = (t_float)PI });
+	print_test_complex("Complex_Log (of zero -> error)",
+		Complex_Log(&z_zero), COMPLEX_ERROR);
+	// round-trip identities
+	s_complex	log = Complex_Log(&z_1_2);
+	print_test_complex("Complex_Log (exp(log(z)) == z)",
+		Complex_Exp(&log), z_1_2);
+	s_complex	exp = Complex_Exp(&(s_complex){ .re = 0.5, .im = -0.75 });
+	print_test_complex("Complex_Log (log(exp(z)) == z)",
+		Complex_Log(&exp), (s_complex){ .re = 0.5, .im = -0.75 });
+}
+
+static
+void	test_complex_trig(void)
+{
+	// consistency with real-number trigonometry
+	s_complex	z_real = { .re = 0.7, .im = 0. };
+	print_test_complex("Complex_Cos (of real number)",
+		Complex_Cos(&z_real), (s_complex){ .re = Float_Cos(0.7), .im = 0. });
+	print_test_complex("Complex_Sin (of real number)",
+		Complex_Sin(&z_real), (s_complex){ .re = Float_Sin(0.7), .im = 0. });
+	print_test_complex("Complex_Tan (of real number)",
+		Complex_Tan(&z_real), (s_complex){ .re = Float_Tan(0.7), .im = 0. });
+	// cos of a pure imaginary number is real: cos(bi) == cosh(b)
+	print_test_complex("Complex_Cos (cos(i*b) == cosh(b))",
+		Complex_Cos(&(s_complex){ .re = 0., .im = 0.7 }),
+		(s_complex){ .re = Float_CosH(0.7), .im = 0. });
+	// pythagorean identity: sin(z)^2 + cos(z)^2 == 1
+	s_complex	z_mixed = { .re = 0.5, .im = -0.75 };
+	s_complex	sin = Complex_Sin(&z_mixed);
+	s_complex	cos = Complex_Cos(&z_mixed);
+	s_complex	sin2 = Complex_Mul(&sin, &sin);
+	s_complex	cos2 = Complex_Mul(&cos, &cos);
+	print_test_complex("Complex trig (sin^2 + cos^2 == 1)",
+		Complex_Add(&sin2, &cos2), z_identity);
+	// tan(z) == sin(z) / cos(z)
+	print_test_complex("Complex_Tan (tan == sin/cos)",
+		Complex_Tan(&z_mixed), Complex_Div(&sin, &cos));
+	// inverse functions: round-trip identities
+	s_complex	tmp;
+	tmp = Complex_ArcCos(&z_mixed);
+	print_test_complex("Complex_ArcCos (cos(acos(z)) == z)",
+		Complex_Cos(&tmp), z_mixed);
+	tmp = Complex_ArcCos(&z_1_2);
+	print_test_complex("Complex_ArcCos (cos(acos(z)) == z, |z| > 1)",
+		Complex_Cos(&tmp), z_1_2);
+	tmp = Complex_ArcSin(&z_mixed);
+	print_test_complex("Complex_ArcSin (sin(asin(z)) == z)",
+		Complex_Sin(&tmp), z_mixed);
+	tmp = Complex_ArcSin(&z_1_2);
+	print_test_complex("Complex_ArcSin (sin(asin(z)) == z, |z| > 1)",
+		Complex_Sin(&tmp), z_1_2);
+	tmp = Complex_ArcTan(&z_mixed);
+	print_test_complex("Complex_ArcTan (tan(atan(z)) == z)",
+		Complex_Tan(&tmp), z_mixed);
+	// inverse functions: consistency with real-number trigonometry
+	z_real = (s_complex){ .re = 0.5, .im = 0. };
+	print_test_complex("Complex_ArcCos (of real number)",
+		Complex_ArcCos(&z_real), (s_complex){ .re = Float_ArcCos(0.5), .im = 0. });
+	print_test_complex("Complex_ArcSin (of real number)",
+		Complex_ArcSin(&z_real), (s_complex){ .re = Float_ArcSin(0.5), .im = 0. });
+	print_test_complex("Complex_ArcTan (of real number)",
+		Complex_ArcTan(&z_real), (s_complex){ .re = Float_ArcTan(0.5), .im = 0. });
+}
+
+static
+void	test_complex_trig_hyperbolic(void)
+{
+	// consistency with real-number functions
+	s_complex	z_real = { .re = 0.7, .im = 0. };
+	print_test_complex("Complex_CosH (of real number)",
+		Complex_CosH(&z_real), (s_complex){ .re = Float_CosH(0.7), .im = 0. });
+	print_test_complex("Complex_SinH (of real number)",
+		Complex_SinH(&z_real), (s_complex){ .re = Float_SinH(0.7), .im = 0. });
+	print_test_complex("Complex_TanH (of real number)",
+		Complex_TanH(&z_real), (s_complex){ .re = Float_TanH(0.7), .im = 0. });
+	// hyperbolic identity: cosh(z)^2 - sinh(z)^2 == 1
+	s_complex	z_mixed = { .re = 0.5, .im = -0.75 };
+	s_complex	sinh = Complex_SinH(&z_mixed);
+	s_complex	cosh = Complex_CosH(&z_mixed);
+	s_complex	sinh2 = Complex_Mul(&sinh, &sinh);
+	s_complex	cosh2 = Complex_Mul(&cosh, &cosh);
+	print_test_complex("Complex trig (cosh^2 - sinh^2 == 1)",
+		Complex_Sub(&cosh2, &sinh2), z_identity);
+	// tanh(z) == sinh(z) / cosh(z)
+	print_test_complex("Complex_TanH (tanh == sinh/cosh)",
+		Complex_TanH(&z_mixed), Complex_Div(&sinh, &cosh));
+	// consistency with the exponential function: sinh(z) == (exp(z) - exp(-z)) / 2
+	s_complex	z_neg = { .re = -z_mixed.re, .im = -z_mixed.im };
+	s_complex	exp_pos = Complex_Exp(&z_mixed);
+	s_complex	exp_neg = Complex_Exp(&z_neg);
+	s_complex	diff = Complex_Sub(&exp_pos, &exp_neg);
+	print_test_complex("Complex_SinH (sinh == (exp(z) - exp(-z)) / 2)",
+		Complex_SinH(&z_mixed),
+		(s_complex){ .re = diff.re / 2., .im = diff.im / 2. });
+	// inverse functions: round-trip identities
+	s_complex	tmp;
+	tmp = Complex_InvCosH(&z_mixed);
+	print_test_complex("Complex_InvCosH (cosh(acosh(z)) == z)",
+		Complex_CosH(&tmp), z_mixed);
+	tmp = Complex_InvCosH(&z_1_2);
+	print_test_complex("Complex_InvCosH (cosh(acosh(z)) == z, |z| > 1)",
+		Complex_CosH(&tmp), z_1_2);
+	tmp = Complex_InvSinH(&z_mixed);
+	print_test_complex("Complex_InvSinH (sinh(asinh(z)) == z)",
+		Complex_SinH(&tmp), z_mixed);
+	tmp = Complex_InvSinH(&z_1_2);
+	print_test_complex("Complex_InvSinH (sinh(asinh(z)) == z, |z| > 1)",
+		Complex_SinH(&tmp), z_1_2);
+	tmp = Complex_InvTanH(&(s_complex){ .re = 0.25, .im = -0.3 });
+	print_test_complex("Complex_InvTanH (tanh(atanh(z)) == z)",
+		Complex_TanH(&tmp), (s_complex){ .re = 0.25, .im = -0.3 });
+	// inverse functions: consistency with real-number functions
+	z_real = (s_complex){ .re = 0.5, .im = 0. };
+	print_test_complex("Complex_InvSinH (of real number)",
+		Complex_InvSinH(&z_real), (s_complex){ .re = Float_InvSinH(0.5), .im = 0. });
+	print_test_complex("Complex_InvTanH (of real number)",
+		Complex_InvTanH(&z_real), (s_complex){ .re = Float_InvTanH(0.5), .im = 0. });
+	z_real = (s_complex){ .re = 2., .im = 0. };
+	print_test_complex("Complex_InvCosH (of real number)",
+		Complex_InvCosH(&z_real), (s_complex){ .re = Float_InvCosH(2.), .im = 0. });
+}
+
+
+
 /*============================================================================*\
 ||                            Test Suite Function                             ||
 \*============================================================================*/
@@ -278,6 +530,14 @@ int		testsuite_math_complex(void)
 	test_complex_inverse();
 	test_complex_normalize();
 	test_complex_div();
+	test_complex_pow();
+	test_complex_root();
+	test_complex_arg();
+	test_complex_proj();
+	test_complex_exp();
+	test_complex_log();
+	test_complex_trig();
+	test_complex_trig_hyperbolic();
 
 	return (OK);
 }
