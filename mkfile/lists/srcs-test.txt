@@ -27,6 +27,8 @@
 ./test/libccc/math/float.c
 ./test/libccc/math/int.c
 ./test/libccc/math/math.c
+./test/libccc/math/octonion.c
+./test/libccc/math/quaternion.c
 ./test/libccc/math/stat.c
 ./test/libccc/math/vlq.c
 ./test/libccc/memory.c
