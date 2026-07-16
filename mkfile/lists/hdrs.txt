@@ -28,6 +28,7 @@
 ./hdr/libccc/math/algebra.h
 ./hdr/libccc/math/algebra/interval.h
 ./hdr/libccc/math/algebra/matrix.h
+./hdr/libccc/math/algebra/tensor.h
 ./hdr/libccc/math/algebra/vector.h
 ./hdr/libccc/math/complex.h
 ./hdr/libccc/math/constants.h

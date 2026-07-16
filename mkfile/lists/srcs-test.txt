@@ -10,6 +10,8 @@
 ./test/libccc/encode/json.c
 ./test/libccc/encode/kvt.c
 ./test/libccc/encode/toml.c
+./test/libccc/encode/xml.c
+./test/libccc/encode/yaml.c
 ./test/libccc/fixed.c
 ./test/libccc/float.c
 ./test/libccc/generic/array.c
@@ -33,7 +35,11 @@
 ./test/libccc/random/random.c
 ./test/libccc/string.c
 ./test/libccc/stringarray.c
+./test/libccc/sys/async.c
 ./test/libccc/sys/io.c
+./test/libccc/sys/network.c
+./test/libccc/sys/socket.c
+./test/libccc/sys/thread.c
 ./test/libccc/sys/time.c
 ./test/libccc/text/char/ascii.c
 ./test/libccc/text/char/unicode.c

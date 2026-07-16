@@ -24,6 +24,7 @@
 
 #include "libccc/math/algebra/vector.h"
 #include "libccc/math/algebra/matrix.h"
+#include "libccc/math/algebra/tensor.h"
 #include "libccc/math/algebra/interval.h"
 
 HEADER_CPP
