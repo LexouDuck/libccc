@@ -13,7 +13,7 @@
 #define __LIBCCC_MATH_ALGEBRA_VECTOR_H
 /*!@group{libccc_math_algebra_vector,61,libccc/math/algebra/vector.h}
 **
-**	This header defines vector type and functions, in several dimensions (2d/3d/4d)
+**	This header defines vector types and functions, in several dimensions (2d/3d/4d, and generic N-dimensional)
 */
 // TODO add other function macros for integral, distance, etc
 
@@ -104,6 +104,26 @@ TYPEDEF_ALIAS(	u_vector4d, VECTOR_4D, UNION)
 //!@}
 //! The default/null value for a #s_vector4d (all fields set to zero)
 #define VECTOR4D_NULL	(s_vector4d){ .x = 0, .y = 0, .z = 0, .t = 0 } 
+
+
+
+//!@doc A vector struct for storing generic N-dimensional values (the amount of dimensions is stored at runtime)
+/*!
+**	Unlike the fixed-size vector structs above, this struct holds its coordinate
+**	values in a heap-allocated array buffer, whose size is only known at runtime.
+**	As such, any #s_vector created via the Vector() or Vector_New() constructor
+**	functions must be freed appropriately, by calling Vector_Free() or Vector_Delete().
+*/
+//!@{
+typedef struct vector
+{
+	t_uint		dims;		//!< The amount of dimensions/coordinates stored in this vector
+	t_float*	values;		//!< The array which holds the `dims` coordinate values of this vector
+}				s_vector;
+TYPEDEF_ALIAS(	s_vector, VECTOR, STRUCT)
+//!@}
+//! The default/null value for a #s_vector (zero dimensions, with no allocated buffer)
+#define VECTOR_NULL	(s_vector){ .dims = 0, .values = NULL } 
 
 
 
@@ -260,7 +280,173 @@ s_vector3d						Vector3D_Cross(s_vector3d const* v1, s_vector3d const* v2);
 ||                        4-dimensional Vector Operations                     ||
 \*============================================================================*/
 
-// TODO define and implement 4D vector operations
+//!@doc Returns a vector struct, with the given coordinates
+//!@{
+s_vector4d			Vector4D(t_float x, t_float y, t_float z, t_float t);
+#define c_vec4		Vector4D
+//!@}
+
+//!@doc Allocates a new vector struct, with the given coordinates
+//!@{
+_MALLOC()
+s_vector4d*			Vector4D_New(t_float x, t_float y, t_float z, t_float t);
+#define c_vec4new	Vector4D_New
+//!@}
+
+
+
+//!@doc Returns `TRUE` if the two given vectors are equal (all their values are identical)
+//!@{
+t_bool					Vector4D_Equals(s_vector4d const* v1, s_vector4d const* v2);
+#define c_vec4equ		Vector4D_Equals
+//!@}
+
+//!@doc Scales the given `vector` by a factor of `scale`
+//!@{
+s_vector4d				Vector4D_Scale(s_vector4d const* vector, t_float scale);
+#define c_vec4scale		Vector4D_Scale
+//!@}
+
+//!@doc Inverts the sign of the coordinates of the given `vector`
+//!@{
+s_vector4d					Vector4D_Invert(s_vector4d const* vector);
+#define c_vec4invert		Vector4D_Invert
+//!@}
+
+//!@doc Returns the norm/magnitude of the given `vector`, squared (call sqrt to get the real norm)
+//!@{
+t_float						Vector4D_Norm(s_vector4d const* vector);
+#define c_vec4norm			Vector4D_Norm
+#define Vector4D_Length		Vector4D_Norm
+#define Vector4D_Magnitude	Vector4D_Norm
+//!@}
+
+//!@doc Makes the norm/magnitude of the given `vector` become 1 (without changing its direction)
+//!@{
+s_vector4d					Vector4D_Normalize(s_vector4d const* vector);
+#define c_vec4normalize		Vector4D_Normalize
+//!@}
+
+
+
+//!@doc Returns the sum of the two given vectors (adding each of their coordinates together)
+//!@{
+s_vector4d						Vector4D_Add(s_vector4d const* v1, s_vector4d const* v2);
+#define c_vec4add				Vector4D_Add
+//!@}
+
+//!@doc Returns the dot/scalar product of the two given vectors (the sum of their multiplied coordinates)
+//!@{
+t_float							Vector4D_Dot(s_vector4d const* v1, s_vector4d const* v2);
+#define c_vec4dot				Vector4D_Dot
+#define Vector4D_DotProduct		Vector4D_Dot
+#define Vector4D_InnerProduct	Vector4D_Dot
+#define Vector4D_ScalarProduct	Vector4D_Dot
+//!@}
+
+
+
+/*============================================================================*\
+||                        N-dimensional Vector Operations                     ||
+\*============================================================================*/
+
+//!@doc Returns a vector struct of the given amount of dimensions `dims`, allocating its `values` buffer
+/*!
+**	@param	dims	The amount of dimensions/coordinates for the new vector
+**	@param	values	The array of coordinate values to copy into the new vector (if `NULL`, the vector is zero-filled)
+**	@returns a new vector struct (its `values` buffer must be freed by calling Vector_Free())
+*/
+//!@{
+s_vector			Vector(t_uint dims, t_float const* values);
+#define c_vec		Vector
+//!@}
+
+//!@doc Allocates a new vector struct on heap, with the given amount of dimensions `dims`
+/*!
+**	@param	dims	The amount of dimensions/coordinates for the new vector
+**	@param	values	The array of coordinate values to copy into the new vector (if `NULL`, the vector is zero-filled)
+**	@returns a newly allocated vector struct (must be freed by calling Vector_Delete())
+*/
+//!@{
+_MALLOC()
+s_vector*			Vector_New(t_uint dims, t_float const* values);
+#define c_vecnew	Vector_New
+//!@}
+
+//!@doc Returns a newly allocated copy of the given `vector`
+//!@{
+s_vector			Vector_Duplicate(s_vector const* vector);
+#define c_vecdup	Vector_Duplicate
+//!@}
+
+//!@doc Deallocates the `values` buffer of the given `vector` (and sets its fields to zero)
+//!@{
+void				Vector_Free(s_vector* vector);
+#define c_vecfree	Vector_Free
+//!@}
+
+//!@doc Deallocates the given heap-allocated `vector` (its `values` buffer, and the struct itself)
+//!@{
+void				Vector_Delete(s_vector* *a_vector);
+#define c_vecdel	Vector_Delete
+//!@}
+
+
+
+//!@doc Returns `TRUE` if the two given vectors are equal (same dimensions, and all their values are identical)
+//!@{
+t_bool				Vector_Equals(s_vector const* v1, s_vector const* v2);
+#define c_vecequ	Vector_Equals
+//!@}
+
+//!@doc Scales the given `vector` by a factor of `scale`
+//!@{
+s_vector			Vector_Scale(s_vector const* vector, t_float scale);
+#define c_vecscale	Vector_Scale
+//!@}
+
+//!@doc Inverts the sign of the coordinates of the given `vector`
+//!@{
+s_vector				Vector_Invert(s_vector const* vector);
+#define c_vecinvert		Vector_Invert
+//!@}
+
+//!@doc Returns the norm/magnitude of the given `vector`, squared (call sqrt to get the real norm)
+//!@{
+t_float					Vector_Norm(s_vector const* vector);
+#define c_vecnorm		Vector_Norm
+#define Vector_Length	Vector_Norm
+#define Vector_Magnitude	Vector_Norm
+//!@}
+
+//!@doc Makes the norm/magnitude of the given `vector` become 1 (without changing its direction)
+//!@{
+s_vector				Vector_Normalize(s_vector const* vector);
+#define c_vecnormalize	Vector_Normalize
+//!@}
+
+
+
+//!@doc Returns the sum of the two given vectors (adding each of their coordinates together)
+/*!
+**	@returns #VECTOR_NULL if the two given vectors do not have the same amount of dimensions
+*/
+//!@{
+s_vector					Vector_Add(s_vector const* v1, s_vector const* v2);
+#define c_vecadd			Vector_Add
+//!@}
+
+//!@doc Returns the dot/scalar product of the two given vectors (the sum of their multiplied coordinates)
+/*!
+**	@returns `0` if the two given vectors do not have the same amount of dimensions
+*/
+//!@{
+t_float						Vector_Dot(s_vector const* v1, s_vector const* v2);
+#define c_vecdot			Vector_Dot
+#define Vector_DotProduct	Vector_Dot
+#define Vector_InnerProduct	Vector_Dot
+#define Vector_ScalarProduct	Vector_Dot
+//!@}
 
 
 
