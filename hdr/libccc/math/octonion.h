@@ -181,10 +181,43 @@ s_octonion					Octonion_Div(s_octonion const* o1, s_octonion const* o2);
 
 
 
-// TODO octopow
-// TODO octosqrt
-// TODO octocbrt
-// TODO octonrt
+//!@doc Returns the given octonion `o`, raised to the given real `power` (principal branch)
+/*!
+**	Computed as `exp(power * log(o))`, using the principal branch of the logarithm.
+**	When the given octonion `o` is a negative real number, the `i` axis is used by convention.
+*/
+//!@{
+s_octonion				Octonion_Pow(s_octonion const* o, t_float power);
+#define c_octopow		Octonion_Pow
+#define Octonion_Power	Octonion_Pow
+//!@}
+
+//!@doc Returns the square root of the given octonion (principal branch)
+//!@{
+s_octonion						Octonion_Root2(s_octonion const* o);
+#define c_octosqrt				Octonion_Root2
+#define c_octoroot2				Octonion_Root2
+#define Octonion_SqRt			Octonion_Root2
+#define Octonion_SquareRoot		Octonion_Root2
+//!@}
+
+//!@doc Returns the cube root of the given octonion (principal branch)
+//!@{
+s_octonion						Octonion_Root3(s_octonion const* o);
+#define c_octocbrt				Octonion_Root3
+#define c_octoroot3				Octonion_Root3
+#define Octonion_CbRt			Octonion_Root3
+#define Octonion_CubeRoot		Octonion_Root3
+//!@}
+
+//!@doc Returns the n-th root of the given octonion (principal branch)
+//!@{
+s_octonion						Octonion_RootN(s_octonion const* o, t_u8 n);
+#define c_octonrt				Octonion_RootN
+#define c_octorootn				Octonion_RootN
+#define Octonion_NRt			Octonion_RootN
+#define Octonion_NRoot			Octonion_RootN
+//!@}
 
 
 
@@ -192,11 +225,39 @@ s_octonion					Octonion_Div(s_octonion const* o1, s_octonion const* o2);
 ||                       Octonion: exponentiation functions                   ||
 \*============================================================================*/
 
-// TODO octoarg
+//!@doc Returns the argument (angle) `θ` of the given octonion, in the range `[0, PI]`
+/*!
+**	The argument is the angle of the polar form of the octonion: `o = |o| * exp(n * θ)`,
+**	where `n` is the unit vector part of `o`. It is computed as `atan2(|v|, o.s)`,
+**	where `|v|` is the norm of the vector (imaginary) part of `o`.
+*/
+//!@{
+t_float						Octonion_Arg(s_octonion const* o);
+#define c_octoarg			Octonion_Arg
+#define Octonion_Argument	Octonion_Arg
+#define Octonion_Angle		Octonion_Arg
+//!@}
+
 // TODO octoproj
 
-// TODO octoexp
-// TODO octolog
+//!@doc Returns the exponential function applied to the given octonion: `e^o`
+//!@{
+s_octonion						Octonion_Exp(s_octonion const* o);
+#define c_octoexp				Octonion_Exp
+#define Octonion_Exponential	Octonion_Exp
+//!@}
+
+//!@doc Returns the natural logarithm of the given octonion (principal branch)
+/*!
+**	When the given octonion `o` is a negative real number, the `i` axis is used by convention.
+*/
+//!@{
+s_octonion						Octonion_Log(s_octonion const* o);
+#define c_octolog				Octonion_Log
+#define c_octoln				Octonion_Log
+#define Octonion_Ln				Octonion_Log
+#define Octonion_NaturalLog		Octonion_Log
+//!@}
 
 
 
@@ -204,19 +265,98 @@ s_octonion					Octonion_Div(s_octonion const* o1, s_octonion const* o2);
 ||                       Octonion: trigonometry functions                     ||
 \*============================================================================*/
 
-// TODO octocos
-// TODO octosin
-// TODO octotan
-// TODO octoacos
-// TODO octoasin
-// TODO octoatan
+//!@doc Returns the cosine of the given octonion
+//!@{
+s_octonion					Octonion_Cos(s_octonion const* o);
+#define c_octocos			Octonion_Cos
+#define Octonion_Cosine		Octonion_Cos
+//!@}
 
-// TODO octocosh
-// TODO octosinh
-// TODO octotanh
-// TODO octoacosh
-// TODO octoasinh
-// TODO octoatanh
+//!@doc Returns the sine of the given octonion
+//!@{
+s_octonion					Octonion_Sin(s_octonion const* o);
+#define c_octosin			Octonion_Sin
+#define Octonion_Sine		Octonion_Sin
+//!@}
+
+//!@doc Returns the tangent of the given octonion
+//!@{
+s_octonion					Octonion_Tan(s_octonion const* o);
+#define c_octotan			Octonion_Tan
+#define Octonion_Tangent	Octonion_Tan
+//!@}
+
+//!@doc Returns the arc-cosine of the given octonion (inverse of the cos function)
+//!@{
+s_octonion					Octonion_ArcCos(s_octonion const* o);
+#define c_octoacos			Octonion_ArcCos
+#define Octonion_Cos_1		Octonion_ArcCos
+#define Octonion_ArcCosine	Octonion_ArcCos
+//!@}
+
+//!@doc Returns the arc-sine of the given octonion (inverse of the sin function)
+//!@{
+s_octonion					Octonion_ArcSin(s_octonion const* o);
+#define c_octoasin			Octonion_ArcSin
+#define Octonion_Sin_1		Octonion_ArcSin
+#define Octonion_ArcSine	Octonion_ArcSin
+//!@}
+
+//!@doc Returns the arc-tangent of the given octonion (inverse of the tan function)
+//!@{
+s_octonion					Octonion_ArcTan(s_octonion const* o);
+#define c_octoatan			Octonion_ArcTan
+#define Octonion_Tan_1		Octonion_ArcTan
+#define Octonion_ArcTangent	Octonion_ArcTan
+//!@}
+
+//!@doc Returns the hyperbolic cosine of the given octonion
+//!@{
+s_octonion							Octonion_CosH(s_octonion const* o);
+#define c_octocosh					Octonion_CosH
+#define Octonion_Cos_H				Octonion_CosH
+#define Octonion_Cosine_Hyperbolic	Octonion_CosH
+//!@}
+
+//!@doc Returns the hyperbolic sine of the given octonion
+//!@{
+s_octonion							Octonion_SinH(s_octonion const* o);
+#define c_octosinh					Octonion_SinH
+#define Octonion_Sin_H				Octonion_SinH
+#define Octonion_Sine_Hyperbolic	Octonion_SinH
+//!@}
+
+//!@doc Returns the hyperbolic tangent of the given octonion
+//!@{
+s_octonion							Octonion_TanH(s_octonion const* o);
+#define c_octotanh					Octonion_TanH
+#define Octonion_Tan_H				Octonion_TanH
+#define Octonion_Tangent_Hyperbolic	Octonion_TanH
+//!@}
+
+//!@doc Returns the inverse hyperbolic cosine of the given octonion (inverse of the cosh function)
+//!@{
+s_octonion								Octonion_InvCosH(s_octonion const* o);
+#define c_octoacosh						Octonion_InvCosH
+#define Octonion_Cos_1_H				Octonion_InvCosH
+#define Octonion_InvCosine_Hyperbolic	Octonion_InvCosH
+//!@}
+
+//!@doc Returns the inverse hyperbolic sine of the given octonion (inverse of the sinh function)
+//!@{
+s_octonion								Octonion_InvSinH(s_octonion const* o);
+#define c_octoasinh						Octonion_InvSinH
+#define Octonion_Sin_1_H				Octonion_InvSinH
+#define Octonion_InvSine_Hyperbolic		Octonion_InvSinH
+//!@}
+
+//!@doc Returns the inverse hyperbolic tangent of the given octonion (inverse of the tanh function)
+//!@{
+s_octonion								Octonion_InvTanH(s_octonion const* o);
+#define c_octoatanh						Octonion_InvTanH
+#define Octonion_Tan_1_H				Octonion_InvTanH
+#define Octonion_InvTangent_Hyperbolic	Octonion_InvTanH
+//!@}
 
 // TODO add polar form operations
 
