@@ -169,10 +169,43 @@ s_quaternion				Quaternion_Div(s_quaternion const* q1, s_quaternion const* q2);
 
 
 
-// TODO quatpow
-// TODO quatsqrt
-// TODO quatcbrt
-// TODO quatnrt
+//!@doc Returns the given quaternion `q`, raised to the given real `power` (principal branch)
+/*!
+**	Computed as `exp(power * log(q))`, using the principal branch of the logarithm.
+**	When the given quaternion `q` is a negative real number, the `i` axis is used by convention.
+*/
+//!@{
+s_quaternion				Quaternion_Pow(s_quaternion const* q, t_float power);
+#define c_quatpow			Quaternion_Pow
+#define Quaternion_Power	Quaternion_Pow
+//!@}
+
+//!@doc Returns the square root of the given quaternion (principal branch)
+//!@{
+s_quaternion					Quaternion_Root2(s_quaternion const* q);
+#define c_quatsqrt				Quaternion_Root2
+#define c_quatroot2				Quaternion_Root2
+#define Quaternion_SqRt			Quaternion_Root2
+#define Quaternion_SquareRoot	Quaternion_Root2
+//!@}
+
+//!@doc Returns the cube root of the given quaternion (principal branch)
+//!@{
+s_quaternion					Quaternion_Root3(s_quaternion const* q);
+#define c_quatcbrt				Quaternion_Root3
+#define c_quatroot3				Quaternion_Root3
+#define Quaternion_CbRt			Quaternion_Root3
+#define Quaternion_CubeRoot		Quaternion_Root3
+//!@}
+
+//!@doc Returns the n-th root of the given quaternion (principal branch)
+//!@{
+s_quaternion					Quaternion_RootN(s_quaternion const* q, t_u8 n);
+#define c_quatnrt				Quaternion_RootN
+#define c_quatrootn				Quaternion_RootN
+#define Quaternion_NRt			Quaternion_RootN
+#define Quaternion_NRoot		Quaternion_RootN
+//!@}
 
 
 
@@ -180,11 +213,39 @@ s_quaternion				Quaternion_Div(s_quaternion const* q1, s_quaternion const* q2);
 ||                      Quaternion: exponentiation functions                  ||
 \*============================================================================*/
 
-// TODO quatarg
+//!@doc Returns the argument (angle) `θ` of the given quaternion, in the range `[0, PI]`
+/*!
+**	The argument is the angle of the polar form of the quaternion: `q = |q| * exp(n * θ)`,
+**	where `n` is the unit vector part of `q`. It is computed as `atan2(|v|, q.s)`,
+**	where `|v|` is the norm of the vector (imaginary) part of `q`.
+*/
+//!@{
+t_float						Quaternion_Arg(s_quaternion const* q);
+#define c_quatarg			Quaternion_Arg
+#define Quaternion_Argument	Quaternion_Arg
+#define Quaternion_Angle	Quaternion_Arg
+//!@}
+
 // TODO quatproj
 
-// TODO quatexp
-// TODO quatlog
+//!@doc Returns the exponential function applied to the given quaternion: `e^q`
+//!@{
+s_quaternion					Quaternion_Exp(s_quaternion const* q);
+#define c_quatexp				Quaternion_Exp
+#define Quaternion_Exponential	Quaternion_Exp
+//!@}
+
+//!@doc Returns the natural logarithm of the given quaternion (principal branch)
+/*!
+**	When the given quaternion `q` is a negative real number, the `i` axis is used by convention.
+*/
+//!@{
+s_quaternion					Quaternion_Log(s_quaternion const* q);
+#define c_quatlog				Quaternion_Log
+#define c_quatln				Quaternion_Log
+#define Quaternion_Ln			Quaternion_Log
+#define Quaternion_NaturalLog	Quaternion_Log
+//!@}
 
 
 
@@ -192,19 +253,98 @@ s_quaternion				Quaternion_Div(s_quaternion const* q1, s_quaternion const* q2);
 ||                      Quaternion: trigonometry functions                    ||
 \*============================================================================*/
 
-// TODO quatcos
-// TODO quatsin
-// TODO quattan
-// TODO quatacos
-// TODO quatasin
-// TODO quatatan
+//!@doc Returns the cosine of the given quaternion
+//!@{
+s_quaternion				Quaternion_Cos(s_quaternion const* q);
+#define c_quatcos			Quaternion_Cos
+#define Quaternion_Cosine	Quaternion_Cos
+//!@}
 
-// TODO quatcosh
-// TODO quatsinh
-// TODO quattanh
-// TODO quatacosh
-// TODO quatasinh
-// TODO quatatanh
+//!@doc Returns the sine of the given quaternion
+//!@{
+s_quaternion				Quaternion_Sin(s_quaternion const* q);
+#define c_quatsin			Quaternion_Sin
+#define Quaternion_Sine		Quaternion_Sin
+//!@}
+
+//!@doc Returns the tangent of the given quaternion
+//!@{
+s_quaternion				Quaternion_Tan(s_quaternion const* q);
+#define c_quattan			Quaternion_Tan
+#define Quaternion_Tangent	Quaternion_Tan
+//!@}
+
+//!@doc Returns the arc-cosine of the given quaternion (inverse of the cos function)
+//!@{
+s_quaternion					Quaternion_ArcCos(s_quaternion const* q);
+#define c_quatacos				Quaternion_ArcCos
+#define Quaternion_Cos_1		Quaternion_ArcCos
+#define Quaternion_ArcCosine	Quaternion_ArcCos
+//!@}
+
+//!@doc Returns the arc-sine of the given quaternion (inverse of the sin function)
+//!@{
+s_quaternion					Quaternion_ArcSin(s_quaternion const* q);
+#define c_quatasin				Quaternion_ArcSin
+#define Quaternion_Sin_1		Quaternion_ArcSin
+#define Quaternion_ArcSine		Quaternion_ArcSin
+//!@}
+
+//!@doc Returns the arc-tangent of the given quaternion (inverse of the tan function)
+//!@{
+s_quaternion					Quaternion_ArcTan(s_quaternion const* q);
+#define c_quatatan				Quaternion_ArcTan
+#define Quaternion_Tan_1		Quaternion_ArcTan
+#define Quaternion_ArcTangent	Quaternion_ArcTan
+//!@}
+
+//!@doc Returns the hyperbolic cosine of the given quaternion
+//!@{
+s_quaternion							Quaternion_CosH(s_quaternion const* q);
+#define c_quatcosh						Quaternion_CosH
+#define Quaternion_Cos_H				Quaternion_CosH
+#define Quaternion_Cosine_Hyperbolic	Quaternion_CosH
+//!@}
+
+//!@doc Returns the hyperbolic sine of the given quaternion
+//!@{
+s_quaternion							Quaternion_SinH(s_quaternion const* q);
+#define c_quatsinh						Quaternion_SinH
+#define Quaternion_Sin_H				Quaternion_SinH
+#define Quaternion_Sine_Hyperbolic		Quaternion_SinH
+//!@}
+
+//!@doc Returns the hyperbolic tangent of the given quaternion
+//!@{
+s_quaternion							Quaternion_TanH(s_quaternion const* q);
+#define c_quattanh						Quaternion_TanH
+#define Quaternion_Tan_H				Quaternion_TanH
+#define Quaternion_Tangent_Hyperbolic	Quaternion_TanH
+//!@}
+
+//!@doc Returns the inverse hyperbolic cosine of the given quaternion (inverse of the cosh function)
+//!@{
+s_quaternion							Quaternion_InvCosH(s_quaternion const* q);
+#define c_quatacosh						Quaternion_InvCosH
+#define Quaternion_Cos_1_H				Quaternion_InvCosH
+#define Quaternion_InvCosine_Hyperbolic	Quaternion_InvCosH
+//!@}
+
+//!@doc Returns the inverse hyperbolic sine of the given quaternion (inverse of the sinh function)
+//!@{
+s_quaternion							Quaternion_InvSinH(s_quaternion const* q);
+#define c_quatasinh						Quaternion_InvSinH
+#define Quaternion_Sin_1_H				Quaternion_InvSinH
+#define Quaternion_InvSine_Hyperbolic	Quaternion_InvSinH
+//!@}
+
+//!@doc Returns the inverse hyperbolic tangent of the given quaternion (inverse of the tanh function)
+//!@{
+s_quaternion								Quaternion_InvTanH(s_quaternion const* q);
+#define c_quatatanh							Quaternion_InvTanH
+#define Quaternion_Tan_1_H					Quaternion_InvTanH
+#define Quaternion_InvTangent_Hyperbolic	Quaternion_InvTanH
+//!@}
 
 // TODO add polar form operations
 
