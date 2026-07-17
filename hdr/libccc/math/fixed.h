@@ -503,7 +503,7 @@ t_bool					Q128_GreaterThanOrEqual(t_q128 x, t_q128 y);
 **	@nonstd
 */
 //!@{
-#define					Fixed_Min	CONCAT(QINT_TYPE,_Min)
+#define					Fixed_Min	CONCAT(FIXED_TYPE,_Min)
 #define c_qmin			Fixed_Min
 #define Fixed_Minimum	Fixed_Min
 
@@ -530,7 +530,7 @@ t_q128					Q128_Min(t_q128 x, t_q128 y);
 **	@nonstd
 */
 //!@{
-#define					Fixed_Max	CONCAT(QINT_TYPE,_Max)
+#define					Fixed_Max	CONCAT(FIXED_TYPE,_Max)
 #define c_qmax			Fixed_Max
 #define Fixed_Maximum	Fixed_Max
 
@@ -877,7 +877,7 @@ t_q32						Q32_Hypotenuse(t_q32 x, t_q32 y);
 t_q64						Q64_Hypotenuse(t_q64 x, t_q64 y);
 #define c_q64hypot			Q64_Hypotenuse
 
-#if LIBCONFIG_USE_FLOAT128
+#if LIBCONFIG_USE_INT128
 t_q128						Q128_Hypotenuse(t_q128 x, t_q128 y);
 #define c_q128hypot			Q128_Hypotenuse
 #endif

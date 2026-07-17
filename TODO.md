@@ -76,14 +76,9 @@
 #include <libccc/compress/lzma.h>
 #include <libccc/image/color.h>
 ```
+- add hedley to libccc_define.h ?
 - add option #define LIBCONFIG_PRINT_ENCODING	(ANSI,ASCII,UTF8) which changes printf behavior ?
 - add printf format specifier flags to String_Format wrapper for the following:
-	- specifier: unsigned binary integer: `%b`
-	- specifier: boolean (TRUE or FALSE): `%B`
-	- specifier: char	(escape-sequence): `%C`
-	- specifier: string (escape-sequence): `%S`
-	- specifier: fixed-point `%q` (and `%k`/`%K` for fixed-point hex)
-	- specifier: data/memory bytes hex display: `%m`, doing `%.5m` will print at most 5 bytes of memory
 	- specifier: pointer array (void\*, null-pointer-terminated): `%[s]` for a string array for example:
 		- `%.5[s]` will show only the 5 first strings
 		- `%[.5s]` will show the first 5 chars of each string
