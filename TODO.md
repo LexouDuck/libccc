@@ -10,10 +10,10 @@
 #include <libccc/float.h>
 #include <libccc/memory.h>
 #include <libccc/pointer.h>
-#include <libccc/pointerarray.h>
+#include <libccc/pointerarray.h> // TODO tests
 #include <libccc/string.h>
 #include <libccc/stringarray.h>
-#include <libccc/enum.h>
+#include <libccc/enum.h> // TODO tests
 #include <libccc/text/char/ascii.h>
 #include <libccc/text/char/unicode.h>
 #include <libccc/text/string/ascii.h>
@@ -28,7 +28,7 @@
 #include <libccc/text/regex.h>
 #include <libccc/math/math.h>
 #include <libccc/math/int.h>
-#include <libccc/math/fixed.h>	// TODO advanced math functions
+#include <libccc/math/fixed.h>
 #include <libccc/math/float.h>
 #include <libccc/math/complex.h>
 #include <libccc/math/quaternion.h>

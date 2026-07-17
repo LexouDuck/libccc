@@ -487,11 +487,15 @@
 ./src/sys/io/chmod.c
 ./src/sys/io/close.c
 ./src/sys/io/color.c
+./src/sys/io/directory.c
 ./src/sys/io/fd.c
+./src/sys/io/file.c
 ./src/sys/io/open.c
 ./src/sys/io/output.c
+./src/sys/io/path.c
 ./src/sys/io/read.c
 ./src/sys/io/readline.c
+./src/sys/io/stat.c
 ./src/sys/io/write.c
 ./src/sys/logger/core.c
 ./src/sys/logger/init.c

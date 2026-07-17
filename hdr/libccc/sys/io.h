@@ -158,6 +158,27 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 
 
 
+//!@doc The character used to separate folder names within a filepath
+/*!
+**	@nonstd
+**
+**	This character is platform-dependent: it is `'\'` on Windows, and `'/'` everywhere else.
+**	NB: Windows also accepts `'/'` as a valid path separator, so the libccc
+**	path-handling functions (`IO_Path_*`) will treat both `'/'` and `'\'`
+**	as valid path separator characters, when parsing paths on Windows.
+*/
+//!@{
+#ifdef _WIN32
+#define IO_PATH_SEPARATOR		'\\'
+#define IO_PATH_SEPARATOR_STR	"\\"
+#else
+#define IO_PATH_SEPARATOR		'/'
+#define IO_PATH_SEPARATOR_STR	"/"
+#endif
+//!@}
+
+
+
 #endif
 #ifndef __LIBCCC_SYS_IO_F
 #define __LIBCCC_SYS_IO_F
@@ -280,6 +301,282 @@ e_cccerror					IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_cha
 
 
 // TODO wrapper for tmpfile() @isostd{C,https://en.cppreference.com/w/c/io/tmpfile}
+
+
+
+/*============================================================================*\
+||                          Filesystem Path Functions                         ||
+\*============================================================================*/
+
+//!@doc Combines the two given paths `path1` and `path2` into one, adding a path separator between them if needed
+/*!
+**	@nonstd equivalent to C# `Path.Combine()`, python `os.path.join()`, node.js `path.join()`
+**
+**	Joins the two given paths together, inserting the platform-appropriate
+**	#IO_PATH_SEPARATOR char between them if necessary (any redundant path
+**	separator chars at the junction point will be merged into a single one).
+**	If `path2` is an absolute path, then a duplicate of `path2` is returned.
+**
+**	@param	path1	The first (left-hand) part of the path to combine
+**	@param	path2	The second (right-hand) part of the path to combine
+**	@returns
+**	A newly allocated string containing the combined path,
+**	or `NULL` if an error occurred.
+*/
+//!@{
+t_char*						IO_Path_Combine(t_char const* path1, t_char const* path2);
+#define c_pathcombine		IO_Path_Combine
+#define IO_Path_Join		IO_Path_Combine
+//!@}
+
+//!@doc Gets the parent directory portion of the given `filepath`
+/*!
+**	@nonstd equivalent to C# `Path.GetDirectoryName()`, python `os.path.dirname()`, node.js `path.dirname()`
+**
+**	@param	filepath	The path from which to get the parent directory portion
+**	@returns
+**	A newly allocated string containing the given `filepath`, but with
+**	everything from the last path separator char onwards removed.
+**	If the given `filepath` contains no path separator chars,
+**	then the string returned is `"."` (ie: the current directory).
+**	If the given `filepath` is a root path, or refers to a file which is
+**	directly at the root, then the root path itself (eg: `"/"`) is returned.
+**	Returns `NULL` if an error occurred.
+*/
+//!@{
+t_char*						IO_Path_GetDirectory(t_char const* filepath);
+#define c_pathdir			IO_Path_GetDirectory
+#define IO_Path_GetFolder	IO_Path_GetDirectory
+//!@}
+
+//!@doc Gets the filename portion of the given `filepath` (ie: everything after the last path separator)
+/*!
+**	@nonstd equivalent to C# `Path.GetFileName()`, python `os.path.basename()`, node.js `path.basename()`
+**
+**	@param	filepath	The path from which to get the filename portion
+**	@returns
+**	A newly allocated string containing only the filename portion of the
+**	given `filepath` (ie: everything after the last path separator char).
+**	If the given `filepath` ends with a path separator char,
+**	then the string returned is empty (ie: `""`).
+**	Returns `NULL` if an error occurred.
+*/
+//!@{
+t_char*						IO_Path_GetFileName(t_char const* filepath);
+#define c_pathfile			IO_Path_GetFileName
+#define IO_Path_GetBaseName	IO_Path_GetFileName
+//!@}
+
+//!@doc Gets the file extension portion of the given `filepath` (including the `'.'` dot char)
+/*!
+**	@nonstd equivalent to C# `Path.GetExtension()`, node.js `path.extname()`
+**
+**	@param	filepath	The path from which to get the file extension portion
+**	@returns
+**	A newly allocated string containing only the file extension portion of
+**	the given `filepath`, including the leading `'.'` dot char (eg: `".txt"`).
+**	If the filename portion of the given `filepath` contains no `'.'` dot char,
+**	or begins with a dot char (ie: a "hidden file", like `".gitignore"`),
+**	then the string returned is empty (ie: `""`).
+**	Returns `NULL` if an error occurred.
+*/
+//!@{
+t_char*						IO_Path_GetExtension(t_char const* filepath);
+#define c_pathext			IO_Path_GetExtension
+#define IO_Path_GetFileExtension	IO_Path_GetExtension
+//!@}
+
+//!@doc Checks whether the given `filepath` is an absolute path (as opposed to a relative path)
+/*!
+**	@nonstd equivalent to C# `Path.IsPathRooted()`, python `os.path.isabs()`, node.js `path.isAbsolute()`
+**
+**	@param	filepath	The path to check
+**	@returns
+**	`TRUE` if the given `filepath` is an absolute path (ie: starts with a
+**	path separator char - or on Windows, a drive letter, like `"C:\"`),
+**	otherwise `FALSE`.
+*/
+//!@{
+t_bool						IO_Path_IsAbsolute(t_char const* filepath);
+#define c_pathisabs			IO_Path_IsAbsolute
+#define IO_Path_IsRooted	IO_Path_IsAbsolute
+//!@}
+
+
+
+/*============================================================================*\
+||                            Filesystem Operations                           ||
+\*============================================================================*/
+
+//!@doc Checks whether a file exists at the given `filepath`
+/*!
+**	@nonstd equivalent to C# `File.Exists()`, python `os.path.isfile()`, node.js `fs.existsSync()`
+**
+**	@param	filepath	The path of the file to check
+**	@returns
+**	`TRUE` if a regular file exists at the given `filepath`,
+**	otherwise `FALSE` (also returns `FALSE` if the path exists,
+**	but is a directory, or some other special filesystem object).
+*/
+//!@{
+t_bool						IO_FileExists(t_char const* filepath);
+#define c_fexists			IO_FileExists
+#define IO_File_Exists		IO_FileExists
+//!@}
+
+//!@doc Checks whether a directory exists at the given `path`
+/*!
+**	@nonstd equivalent to C# `Directory.Exists()`, python `os.path.isdir()`
+**
+**	@param	path	The path of the directory to check
+**	@returns
+**	`TRUE` if a directory exists at the given `path`,
+**	otherwise `FALSE` (also returns `FALSE` if the path exists,
+**	but is a regular file, or some other special filesystem object).
+*/
+//!@{
+t_bool						IO_DirectoryExists(t_char const* path);
+#define c_direxists			IO_DirectoryExists
+#define IO_Directory_Exists	IO_DirectoryExists
+//!@}
+
+//!@doc Gets the size (in bytes) of the file at the given `filepath`
+/*!
+**	@nonstd equivalent to python `os.path.getsize()`
+**
+**	@isostd{POSIX,https://linux.die.net/man/2/stat}
+**
+**	@param	filepath	The path of the file whose size should be queried
+**	@returns
+**	The size (in bytes) of the file at the given `filepath`,
+**	or a negative value if an error occurred.
+*/
+//!@{
+t_sintmax					IO_GetFileSize(t_char const* filepath);
+#define c_fsize				IO_GetFileSize
+#define IO_File_GetSize		IO_GetFileSize
+//!@}
+
+//!@doc Creates a new directory at the given `path`, with the given file access `mode` permissions
+/*!
+**	@nonstd equivalent to C# `Directory.CreateDirectory()`, python `os.mkdir()`
+**
+**	@isostd{POSIX,https://linux.die.net/man/3/mkdir}
+**
+**	NB: If a directory already exists at the given `path`, this function
+**	does nothing, and returns #ERROR_NONE (like most modern languages do).
+**	NB: On Windows, the `mode` argument is ignored (as the OS handles this differently).
+**
+**	@param	path	The path at which to create a new directory
+**	@param	mode	The file access mode (permissions) with which to create the directory
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code (ie: an `errno` value)
+*/
+//!@{
+e_cccerror						IO_CreateDirectory(t_char const* path, t_io_mode mode);
+#define c_mkdir					IO_CreateDirectory
+#define IO_Directory_Create		IO_CreateDirectory
+//!@}
+
+//!@doc Creates a new directory at the given `path`, creating any missing parent directories along the way
+/*!
+**	@nonstd equivalent to C# `Directory.CreateDirectory()`, python `os.makedirs()`, or the shell command `mkdir -p`
+**
+**	NB: If a directory already exists at the given `path`, this function
+**	does nothing, and returns #ERROR_NONE (like most modern languages do).
+**	NB: On Windows, the `mode` argument is ignored (as the OS handles this differently).
+**
+**	@param	path	The path at which to create a new directory
+**	@param	mode	The file access mode (permissions) with which to create the director(y/ies)
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code (ie: an `errno` value)
+*/
+//!@{
+e_cccerror							IO_CreateDirectory_Recursive(t_char const* path, t_io_mode mode);
+#define c_mkdir_p					IO_CreateDirectory_Recursive
+#define IO_Directory_Create_Recursive	IO_CreateDirectory_Recursive
+//!@}
+
+//!@doc Deletes the (empty) directory at the given `path`
+/*!
+**	@nonstd equivalent to C# `Directory.Delete()`, python `os.rmdir()`
+**
+**	@isostd{POSIX,https://linux.die.net/man/3/rmdir}
+**
+**	NB: The directory must be empty for this operation to succeed.
+**
+**	@param	path	The path of the directory to delete
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code (ie: an `errno` value)
+*/
+//!@{
+e_cccerror						IO_DeleteDirectory(t_char const* path);
+#define c_rmdir					IO_DeleteDirectory
+#define IO_Directory_Delete		IO_DeleteDirectory
+//!@}
+
+//!@doc Deletes the file at the given `filepath`
+/*!
+**	@nonstd equivalent to C# `File.Delete()`, python `os.remove()`, node.js `fs.unlinkSync()`
+**
+**	@isostd{C89,https://en.cppreference.com/w/c/io/remove}
+**
+**	@param	filepath	The path of the file to delete
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code (ie: an `errno` value)
+*/
+//!@{
+e_cccerror						IO_DeleteFile(t_char const* filepath);
+#define c_fremove				IO_DeleteFile
+#define IO_File_Delete			IO_DeleteFile
+//!@}
+
+//!@doc Moves (or renames) the file at `oldpath`, to be located at `newpath`
+/*!
+**	@nonstd equivalent to C# `File.Move()`, python `os.rename()`/`shutil.move()`, node.js `fs.renameSync()`
+**
+**	@isostd{C89,https://en.cppreference.com/w/c/io/rename}
+**
+**	NB: If a simple `rename()` operation is not possible (for example, when
+**	moving a file across two different filesystems/devices), this function
+**	will instead attempt to copy the file over, and then delete the original.
+**
+**	@param	oldpath	The current path of the file to move
+**	@param	newpath	The new path to which the file should be moved
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code (ie: an `errno` value)
+*/
+//!@{
+e_cccerror						IO_MoveFile(t_char const* oldpath, t_char const* newpath);
+#define c_fmove					IO_MoveFile
+#define IO_File_Move			IO_MoveFile
+#define IO_RenameFile			IO_MoveFile
+#define IO_File_Rename			IO_MoveFile
+//!@}
+
+//!@doc Copies the file at `srcpath`, to the given `dstpath` (overwriting any pre-existing file at `dstpath`)
+/*!
+**	@nonstd equivalent to C# `File.Copy()`, python `shutil.copy()`, node.js `fs.copyFileSync()`
+**
+**	NB: The file access mode permissions of the source file will be
+**	preserved, and applied to the newly created copy of the file.
+**
+**	@param	srcpath	The path of the source file to copy
+**	@param	dstpath	The path of the destination, where the copied file will be created
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code (ie: an `errno` value)
+*/
+//!@{
+e_cccerror						IO_CopyFile(t_char const* srcpath, t_char const* dstpath);
+#define c_fcopy					IO_CopyFile
+#define IO_File_Copy			IO_CopyFile
+//!@}
 
 
 
