@@ -180,7 +180,7 @@ typedef struct test_##NAME \
 	size_t		length;		/*!< used by certain types, notably 'mem'(`void*`) and 'list'(`s_list*`) */\
 	s_timer		timer;		/*!< the execution performance timer for this test */\
 }			s_test_##NAME; \
-void	print_test_##NAME(s_test_##NAME* test, char const* args);
+void	print_test_##NAME(s_test_##NAME* test, char const* args, char const* warning);
 
 DEFINEFUNC_PRINT_TEST(enum,		int)
 
@@ -406,7 +406,7 @@ DEFINEFUNC_PRINT_TEST(alloc,	void*)
 	print_timer_result(&test.timer, FALSE); \
 	TEST_PRINT_(FORMAT, ##__VA_ARGS__) \
 	test.function = "_"#FUNCTION; \
-	print_test_##TYPENAME(&test, args); \
+	print_test_##TYPENAME(&test, args, NULL); \
 	if (args)	free(args); \
 	args = NULL; \
 
@@ -415,7 +415,7 @@ DEFINEFUNC_PRINT_TEST(alloc,	void*)
 	print_timer_result(&test.timer, TRUE); \
 	TEST_PRINT_(FORMAT, ##__VA_ARGS__) \
 	test.function = #FUNCTION; \
-	print_test_##TYPENAME(&test, args); \
+	print_test_##TYPENAME(&test, args, NULL); \
 	if (args)	free(args); \
 	args = NULL; \
 

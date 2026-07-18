@@ -216,7 +216,7 @@ void	print_test_memcpy(char const* test_name, t_testflags flags,
 	test.function = "memcpy 'dest' arg";
 	test.result = dest_libccc;
 	test.expect = dest_libc;
-	print_test_mem(&test, NULL);
+	print_test_mem(&test, NULL, NULL);
 }
 void	test_memcpy(void)
 {
@@ -275,7 +275,7 @@ void	print_test_memccpy(char const* test_name, t_testflags flags,
 		.timer = test.timer,
 		.length = test.length,
 	};
-	print_test_mem(&test2, NULL);
+	print_test_mem(&test2, NULL, NULL);
 */
 }
 void	test_memccpy(void)
@@ -336,7 +336,7 @@ void	print_test_memmove(char const* test_name, t_testflags flags, int show_dest_
 	test.function = "memmove 'dest' arg";
 	test.result = dest_libccc;
 	test.expect = dest_libc;
-	print_test_mem(&test, show_dest_arg ? NULL : args);
+	print_test_mem(&test, (show_dest_arg ? NULL : args), NULL);
 }
 void	test_memmove(void)
 {

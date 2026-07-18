@@ -78,7 +78,7 @@ void	print_test(
 	char const*	result,
 	char const*	expect,
 	t_testflags	flags,
-	int			error,
+	bool		error,
 	char const*	warning)
 {
 	static char const*  previous = NULL;
@@ -127,6 +127,7 @@ void	print_test(
 	{
 		if (flags & FLAG_WARNING)
 		{
+			g_test.suites[g_test.current_suite].totals.warnings += 1;
 			if (warning)
 			{
 				printf(ANSI_COLOR_FG_YELLOW "Warning" ANSI_RESET ": %s\n", warning);
@@ -140,7 +141,6 @@ void	print_test(
 					result,
 					expect);
 			}
-			g_test.suites[g_test.current_suite].totals.warnings += 1;
 		}
 		else
 		{
@@ -192,9 +192,9 @@ void	print_test(
 
 
 #define DEFINE_TESTFUNCTION_INT(NAME, SIGNED, BITS) \
-void	print_test_##NAME(s_test_##NAME* test, char const* args) \
+void	print_test_##NAME(s_test_##NAME* test, char const* args, char const* warning) \
 { \
-	int error; \
+	bool error; \
 	if (test->result_sig) \
 		error = !test->expect_sig; \
 	else if (test->expect_sig) \
@@ -204,7 +204,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 		(test->result_sig ? signal_strs[test->result_sig] : SIGNED##BITS##tostr(test->result)), \
 		(test->expect_sig ? signal_strs[test->expect_sig] : SIGNED##BITS##tostr(test->expect)), \
 		test->flags, \
-		error, NULL); \
+		error, warning); \
 } \
 
 DEFINE_TESTFUNCTION_INT(bool,    u,64)
@@ -237,10 +237,10 @@ DEFINE_TESTFUNCTION_INT(uintmax, u,64)
 
 
 #define DEFINE_TESTFUNCTION_FIXED(NAME, BITS) \
-void	print_test_##NAME(s_test_##NAME* test, char const* args) \
+void	print_test_##NAME(s_test_##NAME* test, char const* args, char const* warning) \
 { \
-	int warning = FALSE; \
-	int error = FALSE; \
+	bool extra_warning = FALSE; \
+	bool error = FALSE; \
 	char* str_result; \
 	char* str_expect; \
 	if (test->result_sig) \
@@ -254,31 +254,34 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 		!Q##BITS##_IsNaN(test->result) && !Q##BITS##_IsNaN(test->expect) && \
 		!Q##BITS##_IsInf(test->result) && !Q##BITS##_IsInf(test->expect)) \
 	{ \
-		if (abs((long)(test->result._ - test->expect._)) <= 1) \
+		if (abs(test->result._ - test->expect._) <= 1) \
 		{ \
 			error = FALSE; \
-			warning = TRUE; \
+			extra_warning = TRUE; \
 		} \
 	} \
 	char* tmp = NULL; \
-	if (warning) \
+	if (extra_warning) \
 	{ \
-		tmp = (char*)malloc(1 + 128); \
+		g_test.suites[g_test.current_suite].totals.warnings += 1; \
+		char const* message = "Approximation error:\n" \
+			"- received: %s\n" \
+			"- expected: %s\n"; \
+		tmp = (char*)malloc(128 + strlen(message) + (warning ? strlen(warning) : 0)); \
 		if (tmp == NULL) return; \
-		size_t len = snprintf(tmp,	128, "Approximation error:\n" \
-				"- received: %s\n" \
-				"- expected: %s\n", \
+		size_t len = snprintf(tmp, 128 + strlen(message), message, \
 			str_result, \
 			str_expect); \
-		g_test.suites[g_test.current_suite].totals.warnings += 1; \
 		if (len == 0) \
 			return; \
+		if (warning) \
+			tmp = strcat(tmp, message); \
 	} \
 	print_test(test->name, test->function, args, \
 		(test->result_sig ? signal_strs[test->result_sig] : str_result), \
 		(test->expect_sig ? signal_strs[test->expect_sig] : str_expect), \
 		test->flags, \
-		error, (warning ? tmp : NULL)); \
+		error, (tmp ? tmp : warning)); \
 	if (tmp)	free(tmp); \
 	if (str_result)	free(str_result); \
 	if (str_expect)	free(str_expect); \
@@ -303,10 +306,10 @@ DEFINE_TESTFUNCTION_FIXED(fixed, 64) // LIBCONFIG_FIXED
 #define FLOAT_TEST_PRECISION	1e-6
 
 #define DEFINE_TESTFUNCTION_FLOAT(NAME, BITS) \
-void	print_test_##NAME(s_test_##NAME* test, char const* args) \
+void	print_test_##NAME(s_test_##NAME* test, char const* args, char const* warning) \
 { \
-	int warning = FALSE; \
-	int error = FALSE; \
+	bool extra_warning = FALSE; \
+	bool error = FALSE; \
 	char str_result[BITS]; \
 	char str_expect[BITS]; \
 	if (test->result_sig) \
@@ -326,30 +329,33 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 			(fabs(test->result - test->expect) <= max(fabs(test->result), fabs(test->expect)) * FLOAT_TEST_PRECISION)) \
 		{ \
 			error = FALSE; \
-			warning = TRUE; \
+			extra_warning = TRUE; \
 		} \
 		/* else printf("DEBUG: result=%g | expect=%g | diff=%g\n", test->result, test->expect, fabs(test->result - test->expect)); */\
 	} \
 	char* tmp = NULL; \
-	if (warning) \
+	if (extra_warning) \
 	{ \
-		tmp = (char*)malloc(1 + 128); \
+		g_test.suites[g_test.current_suite].totals.warnings += 1; \
+		char const* message = "Approximation error (diff:%g):\n" \
+			"- received: " F##BITS##_PRECISION_FORMAT "\n" \
+			"- expected: " F##BITS##_PRECISION_FORMAT "\n"; \
+		tmp = (char*)malloc(128 + strlen(message) + (warning ? strlen(warning) : 0)); \
 		if (tmp == NULL) return; \
-		size_t len = snprintf(tmp,	128, "Approximation error (diff:%g):\n" \
-				"- received: " F##BITS##_PRECISION_FORMAT "\n" \
-				"- expected: " F##BITS##_PRECISION_FORMAT "\n", \
+		size_t len = snprintf(tmp, 128 + strlen(message), message, \
 			fabs(test->result - test->expect), \
 			test->result, \
 			test->expect); \
-		g_test.suites[g_test.current_suite].totals.warnings += 1; \
 		if (len == 0) \
 			return; \
+		if (warning) \
+			tmp = strcat(tmp, message); \
 	} \
 	print_test(test->name, test->function, args, \
 		(test->result_sig ? signal_strs[test->result_sig] : str_result), \
 		(test->expect_sig ? signal_strs[test->expect_sig] : str_expect), \
 		test->flags, \
-		error, (warning ? tmp : NULL)); \
+		error, (tmp ? tmp : warning)); \
 	if (tmp)	free(tmp); \
 } \
 
@@ -366,18 +372,18 @@ DEFINE_TESTFUNCTION_FLOAT(f80, 80)
 DEFINE_TESTFUNCTION_FLOAT(f128, 128)
 #endif
 
-void	print_test_float(s_test_float* test, char const* args)
+void	print_test_float(s_test_float* test, char const* args, char const* warning)
 {
-	CONCAT(print_test_f,LIBCONFIG_FLOAT_BITS)((CONCAT(s_test_f,LIBCONFIG_FLOAT_BITS)*)test, args);
+	CONCAT(print_test_f,LIBCONFIG_FLOAT_BITS)((CONCAT(s_test_f,LIBCONFIG_FLOAT_BITS)*)test, args, warning);
 }
 
 
 
-void	print_test_sign(s_test_sign* test, char const* args)
+void	print_test_sign(s_test_sign* test, char const* args, char const* warning)
 {
 	char* tmp = NULL;
-	int warning = FALSE;
-	int error = FALSE;
+	bool extra_warning = FALSE;
+	bool error;
 	if (test->result_sig)
 		error = !test->expect_sig;
 	else if (test->expect_sig)
@@ -390,37 +396,42 @@ void	print_test_sign(s_test_sign* test, char const* args)
 		test->expect_sig = (e_signal)0; // reuse this variable to store sign (-1, 0, +1)
 		if (test->expect < 0) test->expect_sig = (e_signal)-1;
 		if (test->expect > 0) test->expect_sig = (e_signal)+1;
-		warning = (test->result != test->expect);
-		if (warning)
+		extra_warning = (test->result != test->expect);
+		if (extra_warning)
 			error = (test->result_sig != test->expect_sig);
 		// reset both to their previous state
 		test->result_sig = (e_signal)0;
 		test->expect_sig = (e_signal)0;
 	}
-	if (warning)
+	if (extra_warning)
 	{
-		tmp = (char*)malloc(1 + 128);	if (tmp == NULL) return;
-		size_t len = snprintf(tmp,	128, "Return value differs, but sign is the same (got %ji, but expected %ji).",
+		g_test.suites[g_test.current_suite].totals.warnings += 1;
+		char const* message = "Return value differs, but sign is the same (got %ji, but expected %ji).";
+		tmp = (char*)malloc(128 + strlen(message) + (warning ? strlen(warning) : 0));
+		if (tmp == NULL) return;
+		size_t len = snprintf(tmp, 128 + strlen(message), message,
 			test->result,
 			test->expect);
 		if (len == 0)
 			return;
+		if (warning)
+			tmp = strcat(tmp, message);
 	}
 	print_test(test->name, test->function, args,
 		(test->result_sig ? signal_strs[test->result_sig] : s64tostr(test->result)),
 		(test->expect_sig ? signal_strs[test->expect_sig] : s64tostr(test->expect)),
 		test->flags,
-		error, (warning ? tmp : NULL));
+		error, (tmp ? tmp : warning));
 	if (tmp)	free(tmp);
 }
 
 
 
-void	print_test_ptr(s_test_ptr* test, char const* args)
+void	print_test_ptr(s_test_ptr* test, char const* args, char const* warning)
 {
 	char* tmp_result = ptrtostr(test->result);
 	char* tmp_expect = ptrtostr(test->expect);
-	int error;
+	bool error;
 
 	if (test->result_sig || test->expect_sig)
 		error = (test->result_sig != test->expect_sig);
@@ -429,18 +440,18 @@ void	print_test_ptr(s_test_ptr* test, char const* args)
 		(test->result_sig ? signal_strs[test->result_sig] : tmp_result),
 		(test->expect_sig ? signal_strs[test->expect_sig] : tmp_expect),
 		test->flags,
-		error, NULL);
+		error, warning);
 	if (tmp_result)	free(tmp_result);
 	if (tmp_expect)	free(tmp_expect);
 }
 
 
 
-void	print_test_mem(s_test_mem* test, char const* args)
+void	print_test_mem(s_test_mem* test, char const* args, char const* warning)
 {
 	char* tmp_result = print_memory(test->result, test->length);
 	char* tmp_expect = print_memory(test->expect, test->length);
-	int error;
+	bool error;
 
 	if (test->result_sig || test->expect_sig)
 		error = (test->result_sig != test->expect_sig);
@@ -452,19 +463,19 @@ void	print_test_mem(s_test_mem* test, char const* args)
 		(test->result_sig ? signal_strs[test->result_sig] : tmp_result),
 		(test->expect_sig ? signal_strs[test->expect_sig] : tmp_expect),
 		test->flags,
-		error, NULL);
+		error, warning);
 	if (tmp_result)	free(tmp_result);
 	if (tmp_expect)	free(tmp_expect);
 }
 
 
 
-void	print_test_str(s_test_str* test, char const* args)
+void	print_test_str(s_test_str* test, char const* args, char const* warning)
 {
 	char* tmp;
 	char* tmp_result = (test->result == NULL ? NULL : (g_test.config.show_escaped ? strtoescape(test->result) : strdup(test->result)));
 	char* tmp_expect = (test->expect == NULL ? NULL : (g_test.config.show_escaped ? strtoescape(test->expect) : strdup(test->expect)));
-	int error;
+	bool error;
 
 	tmp = tmp_result;	tmp_result = strsurround(tmp_result, '\"', '\"');	if (tmp) { free(tmp); tmp = NULL; }
 	tmp = tmp_expect;	tmp_expect = strsurround(tmp_expect, '\"', '\"');	if (tmp) { free(tmp); tmp = NULL; }
@@ -478,18 +489,18 @@ void	print_test_str(s_test_str* test, char const* args)
 		tmp_result ? tmp_result : "NULL",
 		tmp_expect ? tmp_expect : "NULL",
 		test->flags,
-		error, NULL);
+		error, warning);
 	if (tmp_result)	free(tmp_result);
 	if (tmp_expect)	free(tmp_expect);
 }
 
 
 
-void	print_test_alloc(s_test_alloc* test, char const* args)
+void	print_test_alloc(s_test_alloc* test, char const* args, char const* warning)
 {
 	char* tmp_result = print_memory(test->result, test->length);
 	char* tmp_expect = print_memory(test->expect, test->length);
-	int error = FALSE;
+	bool error;
 	size_t	i;
 
 	if (test->result == NULL)
@@ -504,7 +515,7 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 		tmp_result,
 		tmp_expect,
 		test->flags,
-		error, NULL);
+		error, warning);
 	if (tmp_result)	free(tmp_result);
 	if (tmp_expect)	free(tmp_expect);
 // TODO call print_test() here
@@ -547,7 +558,7 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 		length += strlen(test->expect[i]); \
 	} \
 
-void	print_test_strarr(s_test_strarr* test, char const* args)
+void	print_test_strarr(s_test_strarr* test, char const* args, char const* warning)
 {
 	char*	str_result = NULL;
 	char*	str_expect = NULL;
@@ -569,7 +580,7 @@ void	print_test_strarr(s_test_strarr* test, char const* args)
 		str_result,
 		str_expect,
 		test->flags,
-		error, NULL);
+		error, warning);
 failure:
 	if (str_result) free(str_result);
 	if (str_expect) free(str_expect);
@@ -597,9 +608,9 @@ failure:
 		length += strlen(test->expect[i]); \
 	} \
 
-void	print_test_list(s_test_list* test, char const* args)
+void	print_test_list(s_test_list* test, char const* args, char const* warning)
 {
-	int error = FALSE;
+	bool error = FALSE;
 	if (test->name)
 	{
 		if (test->flags)
@@ -666,9 +677,9 @@ void	print_test_list(s_test_list* test, char const* args)
 	"\n\t.offset    = %i," \
 	"\n"
 
-void	print_test_date(s_test_date* test, char const* args)
+void	print_test_date(s_test_date* test, char const* args, char const* warning)
 {
-	int error;
+	bool error;
 	char str_result[DATE_STR_BUFFER];
 	char str_expect[DATE_STR_BUFFER];
 
@@ -692,5 +703,5 @@ void	print_test_date(s_test_date* test, char const* args)
 		str_result,
 		str_expect,
 		test->flags,
-		error, NULL);
+		error, warning);
 }

@@ -197,22 +197,27 @@ void	print_test_strcpy(char const* test_name, t_testflags flags,
 	test.function = "strcpy 'dest' arg";
 	test.result = dest_libccc;
 	test.expect = dest_libc;
-	print_test_str(&test, NULL);
+	print_test_str(&test, NULL, NULL);
 }
 void	print_test_strcpy_overlap(char const* test_name, t_testflags flags,
+		char const* expecting_dest,
 		char* dest_libccc,
 		char* dest_libc,
 		char const* src_libccc,
 		char const* src_libc)
 {
 	TEST_INIT(str)
+	test.flags |= FLAG_WARNING;
 	TEST_PERFORM_(result, c_strcpy, dest_libccc, src_libccc)
 	TEST_PERFORM_(expect,   strcpy, dest_libc,   src_libc)
 	TEST_PRINT(str,			strcpy, "dest=\"%s\", src=\"%s\"", dest_libccc, src_libccc)
 	test.function = "strcpy 'dest' arg";
 	test.result = dest_libccc;
 	test.expect = dest_libc;
-	print_test_str(&test, NULL);
+	char const* warning = NULL;
+	if (strcmp(dest_libc, expecting_dest))
+		warning = "strcpy() libc implementation does not handle overlap";
+	print_test_str(&test, NULL, warning);
 }
 void	test_strcpy(void)
 {
@@ -226,12 +231,19 @@ void	test_strcpy(void)
 	print_test_strcpy("strcpy (null dest)",	ALLOW_SIGSEGV,  NULL, NULL, test2);
 	print_test_strcpy("strcpy (null src) ",	ALLOW_SIGSEGV,  str1, str2, NULL);
 	print_test_strcpy("strcpy (both null)",	ALLOW_SIGSEGV,  NULL, NULL, NULL);
+	// overlap tests
+	size_t d = 8;
+	char expect[64] = { '_' };
 	strcpy(str1, test1);
 	strcpy(str2, test1);
-	print_test_strcpy_overlap("strcpy (overlap <)",	FALSE,	str1, str2, str1+8, str2+8);
+	strcpy(expect, test1);
+	memmove(expect, expect+d, strlen(expect+d));
+	print_test_strcpy_overlap("strcpy (overlap <)",	FALSE,	expect, str1, str2, str1+d, str2+d);
 	strcpy(str1, test1);
 	strcpy(str2, test1);
-	print_test_strcpy_overlap("strcpy (overlap >)",	FALSE,	str1+8, str2+8, str1, str2);
+	strcpy(expect, test1);
+	memmove(expect+d, expect, strlen(expect));
+	print_test_strcpy_overlap("strcpy (overlap >)",	FALSE,	expect, str1+d, str2+d, str1, str2);
 }
 #endif
 
@@ -253,9 +265,10 @@ void	print_test_strncpy(char const* test_name, t_testflags flags,
 	test.function = "strncpy 'dest' arg";
 	test.result = dest_libccc;
 	test.expect = dest_libc;
-	print_test_str(&test, NULL);
+	print_test_str(&test, NULL, NULL);
 }
 void	print_test_strncpy_overlap(char const* test_name, t_testflags flags,
+		char const* expecting_dest,
 		char* dest_libccc,
 		char* dest_libc,
 		char const* src_libccc,
@@ -263,13 +276,17 @@ void	print_test_strncpy_overlap(char const* test_name, t_testflags flags,
 		size_t n)
 {
 	TEST_INIT(str)
+	test.flags |= FLAG_WARNING;
 	TEST_PERFORM_(result, c_strncpy, dest_libccc, src_libccc, n)
 	TEST_PERFORM_(expect,   strncpy, dest_libc,   src_libc,   n)
 	TEST_PRINT(str,			strncpy, "dest=\"%s\", src=\"%s\", n=%zu", dest_libccc, src_libccc, n)
 	test.function = "strncpy 'dest' arg";
 	test.result = dest_libccc;
 	test.expect = dest_libc;
-	print_test_str(&test, NULL);
+	char const* warning = NULL;
+	if (strcmp(dest_libc, expecting_dest))
+		warning = "strncpy() libc implementation does not handle overlap";
+	print_test_str(&test, NULL, warning);
 }
 void	test_strncpy(void)
 {
@@ -286,12 +303,19 @@ void	test_strncpy(void)
 	print_test_strncpy("strncpy (null dest)    ", ALLOW_SIGSEGV,	NULL, NULL, test1,             5);
 	print_test_strncpy("strncpy (null src)     ", ALLOW_SIGSEGV,	str1, str2, NULL,              5);
 	print_test_strncpy("strncpy (both null)    ", ALLOW_SIGSEGV,	NULL, NULL, NULL,              5);
+	// overlap tests
+	size_t d = 8;
+	char expect[64] = { '_' };
 	strcpy(str1, test1);
 	strcpy(str2, test1);
-	print_test_strncpy_overlap("strncpy (overlap <)    ", FALSE,	str1, str2, str1+8, str2+8, test1_len);
+	strcpy(expect, test1);
+	memmove(expect, expect+d, strlen(expect+d));
+	print_test_strncpy_overlap("strncpy (overlap <)    ", FALSE,	expect, str1, str2, str1+d, str2+d, test1_len);
 	strcpy(str1, test1);
 	strcpy(str2, test1);
-	print_test_strncpy_overlap("strncpy (overlap >)    ", FALSE,	str1+8, str2+8, str1, str2, test1_len);
+	strcpy(expect, test1);
+	memmove(expect+d, expect, strlen(expect));
+	print_test_strncpy_overlap("strncpy (overlap >)    ", FALSE,	expect, str1+d, str2+d, str1, str2, test1_len);
 }
 #endif
 
@@ -331,7 +355,7 @@ void	print_test_strlcpy(char const* test_name, t_testflags flags,
 		.expect_sig = test.expect_sig,
 		.timer = test.timer,
 	};
-	print_test_str(&test2, NULL);
+	print_test_str(&test2, NULL, NULL);
 }
 void	print_test_strlcpy_overlap(char const* test_name, t_testflags flags,
 		char const* expecting_dest,
@@ -341,10 +365,13 @@ void	print_test_strlcpy_overlap(char const* test_name, t_testflags flags,
 		char const* src_libc,
 		size_t size)
 {
+	char const* warning = NULL;
 	TEST_INIT(size)
 #if (defined(__FreeBSD__) && __FreeBSD__ >= 3)
 	TEST_PERFORM_(result, c_strlcpy, dest_libccc, src_libccc, size)
 	TEST_PERFORM_(expect,   strlcpy, dest_libc,   src_libc,   size)
+	if (strcmp(dest_libc, expecting_dest))
+		warning = "strlcpy() libc implementation does not handle overlap";
 #else
 	TEST_PERFORM_(result, c_strlcpy, dest_libccc, src_libccc, size)
 	test.expect = strlen(src_libccc);
@@ -365,7 +392,7 @@ void	print_test_strlcpy_overlap(char const* test_name, t_testflags flags,
 		.expect_sig = test.expect_sig,
 		.timer = test.timer,
 	};
-	print_test_str(&test2, NULL);
+	print_test_str(&test2, NULL, warning);
 }
 void	test_strlcpy(void)
 {
@@ -384,15 +411,19 @@ void	test_strlcpy(void)
 	print_test_strlcpy("strlcpy (null dest)   ", ALLOW_SIGSEGV,	0,  NULL,           NULL, NULL, " shindeiru", 5);
 	print_test_strlcpy("strlcpy (null src)    ", ALLOW_SIGSEGV,	0,  "shindeiru ",   str1, str2, NULL,         5);
 	print_test_strlcpy("strlcpy (both null)   ", ALLOW_SIGSEGV,	0,  NULL,           NULL, NULL, NULL,         5);
+	// overlap tests
+	size_t d = 8;
+	char expect[64] = { '_' };
 	strcpy(str1, test1);
 	strcpy(str2, test1);
-	print_test_strlcpy_overlap("strlcpy (overlap <)   ", FALSE,	test1+8,    str1, str2, str1+8, str2+8, test1_len);
+	strcpy(expect, test1);
+	memmove(expect, expect+d, strlen(expect+d));
+	print_test_strlcpy_overlap("strlcpy (overlap <)   ", FALSE,	test1+d,    str1, str2, str1+d, str2+d, test1_len);
 	strcpy(str1, test1);
 	strcpy(str2, test1);
-	char* expect = strnew(test1_len + 9);
 	memcpy(expect,   (void*)test1, test1_len);
-	memcpy(expect+8, (void*)test1, test1_len);
-	print_test_strlcpy_overlap("strlcpy (overlap >)   ", FALSE,	expect+8,   str1+8, str2+8, str1, str2, test1_len);
+	memcpy(expect+d, (void*)test1, test1_len);
+	print_test_strlcpy_overlap("strlcpy (overlap >)   ", FALSE,	expect+d,   str1+d, str2+d, str1, str2, test1_len);
 }
 #endif
 
@@ -413,22 +444,27 @@ void	print_test_strcat(char const* test_name, t_testflags flags,
 	test.function = "strcat 'dest' arg";
 	test.result = dest_libccc;
 	test.expect = dest_libc;
-	print_test_str(&test, NULL);
+	print_test_str(&test, NULL, NULL);
 }
 void	print_test_strcat_overlap(char const* test_name, t_testflags flags,
+		char const* expecting_dest,
 		char* dest_libccc,
 		char* dest_libc,
 		char const* src_libccc,
 		char const* src_libc)
 {
 	TEST_INIT(str)
+	test.flags |= FLAG_WARNING;
 	TEST_PERFORM_(result, c_strcat, dest_libccc, src_libccc)
 	TEST_PERFORM_(expect,   strcat, dest_libc,   src_libc)
 	TEST_PRINT(str,			strcat, "dest=\"%s\", src=\"%s\"", dest_libccc, src_libccc)
+	char const* warning = NULL;
+	if (strcmp(dest_libc, expecting_dest))
+		warning = "strcat() libc implementation does not handle overlap";
 	test.function = "strcat 'dest' arg";
 	test.result = dest_libccc;
 	test.expect = dest_libc;
-	print_test_str(&test, NULL);
+	print_test_str(&test, NULL, warning);
 }
 void	test_strcat(void)
 {
@@ -444,12 +480,19 @@ void	test_strcat(void)
 	print_test_strcat("strcat (null dest)", ALLOW_SIGSEGV,	NULL, NULL, "Bob\0");
 	print_test_strcat("strcat (null src) ", ALLOW_SIGSEGV,	str1, str2, NULL);
 	print_test_strcat("strcat (both null)", ALLOW_SIGSEGV,	NULL, NULL, NULL);
+	// overlap tests
+	size_t d = 8;
+	char expect[128] = { '_' };
 	strcpy(str1, test1);
 	strcpy(str2, test1);
-	print_test_strcat_overlap("strcat (overlap <)",	FALSE,	str1, str2, str1+8, str2+8);
+	strcpy(expect, test1);
+	memmove(expect + strlen(expect), expect+d, strlen(expect+d));
+	print_test_strcat_overlap("strcat (overlap <)",	FALSE,	expect, str1, str2, str1+d, str2+d);
 	strcpy(str1, test1);
 	strcpy(str2, test1);
-	print_test_strcat_overlap("strcat (overlap >)",	FALSE,	str1+8, str2+8, str1, str2);
+	strcpy(expect, test1);
+	memmove(expect+d + strlen(expect+d), expect, strlen(expect));
+	print_test_strcat_overlap("strcat (overlap >)",	FALSE,	expect, str1+d, str2+d, str1, str2);
 }
 #endif
 
@@ -471,9 +514,10 @@ void	print_test_strncat(char const* test_name, t_testflags flags,
 	test.function = "strncat 'dest' arg";
 	test.result = dest_libccc;
 	test.expect = dest_libc;
-	print_test_str(&test, NULL);
+	print_test_str(&test, NULL, NULL);
 }
 void	print_test_strncat_overlap(char const* test_name, t_testflags flags,
+		char const* expecting_dest,
 		char* dest_libccc,
 		char* dest_libc,
 		char const* src_libccc,
@@ -481,13 +525,17 @@ void	print_test_strncat_overlap(char const* test_name, t_testflags flags,
 		size_t n)
 {
 	TEST_INIT(str)
+	test.flags |= FLAG_WARNING;
 	TEST_PERFORM_(result, c_strncat, dest_libccc, src_libccc, n)
 	TEST_PERFORM_(expect,   strncat, dest_libc,   src_libc,   n)
 	TEST_PRINT(str,			strncat, "dest=\"%s\", src=\"%s\", n=%zu", dest_libccc, src_libccc, n)
 	test.function = "strncat 'dest' arg";
 	test.result = dest_libccc;
 	test.expect = dest_libc;
-	print_test_str(&test, NULL);
+	char const* warning = NULL;
+	if (strcmp(dest_libc, expecting_dest))
+		warning = "strncat() libc implementation does not handle overlap";
+	print_test_str(&test, NULL, warning);
 }
 void	test_strncat(void)
 {
@@ -506,12 +554,19 @@ void	test_strncat(void)
 	print_test_strncat("strncat (null dest)", ALLOW_SIGSEGV,	NULL, NULL, "Bob\0",    5);
 	print_test_strncat("strncat (null src) ", ALLOW_SIGSEGV,	str1, str2, NULL,       5);
 	print_test_strncat("strncat (both null)", ALLOW_SIGSEGV,	NULL, NULL, NULL,       5);
+	// overlap tests
+	size_t d = 8;
+	char expect[128] = { '_' };
 	strcpy(str1, test1);
 	strcpy(str2, test1);
-	print_test_strncat_overlap("strncat (overlap <)    ", FALSE,	str1, str2, str1+8, str2+8, test1_len);
+	strcpy(expect, test1);
+	memmove(expect + strlen(expect), expect+d, strlen(expect+d));
+	print_test_strncat_overlap("strncat (overlap <)    ", FALSE,	expect, str1, str2, str1+d, str2+d, test1_len);
 	strcpy(str1, test1);
 	strcpy(str2, test1);
-	print_test_strncat_overlap("strncat (overlap >)    ", FALSE,	str1+8, str2+8, str1, str2, test1_len);
+	strcpy(expect, test1);
+	memmove(expect+d + strlen(expect+d), expect, strlen(expect));
+	print_test_strncat_overlap("strncat (overlap >)    ", FALSE,	expect, str1+d, str2+d, str1, str2, test1_len);
 }
 #endif
 
@@ -551,7 +606,7 @@ void	print_test_strlcat(char const* test_name, t_testflags flags,
 		.expect_sig = test.expect_sig,
 		.timer = test.timer,
 	};
-	print_test_str(&test2, NULL);
+	print_test_str(&test2, NULL, NULL);
 }
 void	print_test_strlcat_overlap(char const* test_name, t_testflags flags,
 		size_t expecting,
@@ -562,10 +617,13 @@ void	print_test_strlcat_overlap(char const* test_name, t_testflags flags,
 		char const* src_libc,
 		size_t size)
 {
+	char const* warning = NULL;
 	TEST_INIT(size)
 #if (defined(__FreeBSD__) && __FreeBSD__ >= 3)
 	TEST_PERFORM_(result, c_strlcat, dest_libccc, src_libccc, size)
 	TEST_PERFORM_(expect,   strlcat, dest_libc,   src_libc,   size)
+	if (strcmp(dest_libc, expecting_dest))
+		warning = "strlcat() libc implementation does not handle overlap";
 #else
 	TEST_PERFORM_(result, c_strlcat, dest_libccc, src_libccc, size)
 	test.expect = expecting;
@@ -586,14 +644,12 @@ void	print_test_strlcat_overlap(char const* test_name, t_testflags flags,
 		.expect_sig = test.expect_sig,
 		.timer = test.timer,
 	};
-	print_test_str(&test2, NULL);
+	print_test_str(&test2, NULL, warning);
 }
 void	test_strlcat(void)
 {
 	char str1[64] = {'_'};
 	char str2[64] = {'_'};
-	char* expect;
-	size_t expect_len;
 	strcpy(str1, "Sponge\0");
 	strcpy(str2, "Sponge\0");
 //	| TEST FUNCTION   | TEST NAME            | TESTFLAGS       | EXPECTING                         | TEST ARGS
@@ -607,20 +663,24 @@ void	test_strlcat(void)
 	print_test_strlcat("strlcat (null dest)", ALLOW_SIGSEGV,	0,  NULL,                           NULL, NULL, " a",         5);
 	print_test_strlcat("strlcat (null src) ", ALLOW_SIGSEGV,	0,  "SpongeOmae wa mou shinUn a a", str1, str2, NULL,         5);
 	print_test_strlcat("strlcat (both null)", ALLOW_SIGSEGV,	0,  NULL,                           NULL, NULL, NULL,         5);
+	// overlap tests
+	size_t d = 8;
+	char* expect;
+	size_t expect_len;
 	strcpy(str1, test1);
 	strcpy(str2, test1);
 	expect = strnew(test1_len + test1_len);
 	strncpy(expect, test1,   test1_len);
-	strncat(expect, test1+8, test1_len);
+	strncat(expect, test1+d, test1_len);
 	expect_len = strlen(expect);
-	print_test_strlcat_overlap("strlcat (overlap <)   ", FALSE,	expect_len, expect, str1, str2, str1+8, str2+8, test1_len+test1_len);
+	print_test_strlcat_overlap("strlcat (overlap <)   ", FALSE,	expect_len, expect, str1, str2, str1+d, str2+d, test1_len+test1_len);
 	strcpy(str1, test1);
 	strcpy(str2, test1);
 	expect = strnew(test1_len + test1_len);
 	strncpy(expect, test1, test1_len);
 	strncat(expect, test1, test1_len);
-	expect_len = strlen(expect+8);
-	print_test_strlcat_overlap("strlcat (overlap >)   ", FALSE,	expect_len, expect+8, str1+8, str2+8, str1, str2, test1_len+test1_len);
+	expect_len = strlen(expect+d);
+	print_test_strlcat_overlap("strlcat (overlap >)   ", FALSE,	expect_len, expect+d, str1+d, str2+d, str1, str2, test1_len+test1_len);
 }
 #endif
 
