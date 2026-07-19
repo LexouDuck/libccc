@@ -2,79 +2,83 @@
 # TODO list
 
 ```c
-#include <libccc.h>
-#include <libccc/bool.h>
-#include <libccc/char.h>
-#include <libccc/int.h>
-#include <libccc/fixed.h>
-#include <libccc/float.h>
-#include <libccc/memory.h>
-#include <libccc/pointer.h>
-#include <libccc/pointerarray.h> // TODO tests
-#include <libccc/string.h>
-#include <libccc/stringarray.h>
-#include <libccc/enum.h> // TODO tests
-#include <libccc/text/char/ascii.h>
-#include <libccc/text/char/unicode.h>
-#include <libccc/text/string/ascii.h>
-#include <libccc/text/string/utf32.h>
-#include <libccc/text/string/utf8.h>
-#include <libccc/text/stringarray/ascii.h>
-#include <libccc/text/stringarray/utf32.h>
-#include <libccc/text/stringarray/utf8.h>
-#include <libccc/text/format.h>
-#include <libccc/text/escape.h>
-#include <libccc/text/unicode.h>
-#include <libccc/text/regex.h>
-#include <libccc/math/math.h>
-#include <libccc/math/int.h>
-#include <libccc/math/fixed.h>
-#include <libccc/math/float.h>
-#include <libccc/math/complex.h>
-#include <libccc/math/quaternion.h>
-#include <libccc/math/octonion.h>
-#include <libccc/math/vlq.h>	// TODO all: variable-length-quantites (VLQ) arbitrary-precision math
-#include <libccc/math/sort.h>
-#include <libccc/math/stat.h>
-#include <libccc/math/algebra.h>
-#include <libccc/math/algebra/interval.h>
-#include <libccc/math/algebra/vector.h>
-#include <libccc/math/algebra/matrix.h>
-#include <libccc/math/algebra/tensor.h>
-#include <libccc/random.h>	// TODO several RNG methods (use function pointer, so others can implement custom RNG logic ?)
-#include <libccc/random/prng.h>
-#include <libccc/random/csprng.h>
-#include <libccc/generic/array.h>
-#include <libccc/generic/list.h>
-#include <libccc/generic/set.h>
-#include <libccc/generic/dict.h>
-#include <libccc/generic/tree.h>
-#include <libccc/sys/io.h>
-#include <libccc/sys/time.h>	// TODO system clock 'timespec' functions: clock_gettime(), etc
-#include <libccc/sys/logger.h>
-#include <libccc/sys/async.h>	// TODO win32: IOCP backend for poll handles (all other handle types work on win32); use min-heap for timers (like libuv)
-#include <libccc/sys/thread.h>
-#include <libccc/sys/signal.h>	// TODO all: system signal handling: SIGSEGV, SIGFPE, SIGTRAP, SIGABORT, etc
-#include <libccc/sys/socket.h>
-#include <libccc/sys/network.h>
-#include <libccc/encode/common.h>
-#include <libccc/encode/json.h>
-#include <libccc/encode/xml.h>
-#include <libccc/encode/yaml.h>
-#include <libccc/encode/toml.h>
-#include <libccc/hash/crc.h>	// TODO CRC-[8|16|32|64]
-#include <libccc/hash/checksum.h>	// TODO fletcher-[4|8|16|32], BSD, SYSV, IPv4, xor8
-#include <libccc/hash/universal.h>	// TODO Rabin, Zobrist
-#include <libccc/hash/hash.h>	// TODO Rabin, Zobrist
-#include <libccc/hash/keyed.h>	// TODO BLAKE[1|2|3], HMAC, MD6, SipHash
-#include <libccc/hash/crypto.h>	// TODO MD[2|4|5], BLAKE[256|512], SHA-[1|256|512]
-#include <libccc/compress/rle.h>
-#include <libccc/compress/huffman.h>
-#include <libccc/compress/lz77.h>
-#include <libccc/compress/lzw.h>
-#include <libccc/compress/lzss.h>
-#include <libccc/compress/lzma.h>
-#include <libccc/image/color.h>
+#include <libccc/bool.h>                    
+#include <libccc/enum.h>                    // TODO tests
+#include <libccc/char.h>                    
+#include <libccc/int.h>                     
+#include <libccc/fixed.h>                   
+#include <libccc/float.h>                   
+#include <libccc/memory.h>                  
+#include <libccc/pointer.h>                 
+#include <libccc/pointerarray.h>            
+#include <libccc/string.h>                  
+#include <libccc/stringarray.h>             
+#include <libccc/text/unicode.h>            
+#include <libccc/text/char/ascii.h>         
+#include <libccc/text/char/unicode.h>       
+#include <libccc/text/string/ascii.h>       
+#include <libccc/text/string/utf32.h>       
+#include <libccc/text/string/utf8.h>        
+#include <libccc/text/stringarray/ascii.h>  
+#include <libccc/text/stringarray/utf32.h>  
+#include <libccc/text/stringarray/utf8.h>   
+#include <libccc/text/format.h>             
+#include <libccc/text/escape.h>             
+#include <libccc/text/regex.h>              
+#include <libccc/math.h>                    
+#include <libccc/math/constants.h>          // TODO tests
+#include <libccc/math/int.h>                
+#include <libccc/math/fixed.h>              
+#include <libccc/math/float.h>              
+#include <libccc/math/complex.h>            
+#include <libccc/math/quaternion.h>         
+#include <libccc/math/octonion.h>           
+#include <libccc/math/vlq.h>                // TODO all: variable-length-quantites (VLQ) arbitrary-precision math
+#include <libccc/math/sort.h>               // TODO tests
+#include <libccc/math/stat.h>               
+#include <libccc/math/algebra.h>            
+#include <libccc/math/algebra/interval.h>   // TODO tests
+#include <libccc/math/algebra/vector.h>     // TODO tests
+#include <libccc/math/algebra/matrix.h>     // TODO tests
+#include <libccc/math/algebra/tensor.h>     // TODO tests
+#include <libccc/random.h>                  // TODO several RNG methods (use function pointer, so others can implement custom RNG logic ?)
+#include <libccc/random/prng.h>             // TODO tests
+#include <libccc/random/csprng.h>           // TODO tests
+#include <libccc/generic/array.h>           
+#include <libccc/generic/list.h>            
+#include <libccc/generic/set.h>             
+#include <libccc/generic/dict.h>            
+#include <libccc/generic/tree.h>            
+#include <libccc/generic/convert.h>         
+#include <libccc/sys/program.h>             
+#include <libccc/sys/signal.h>              
+#include <libccc/sys/error.h>               // TODO tests
+#include <libccc/sys/logger.h>              // TODO tests
+#include <libccc/sys/ansi.h>                // TODO tests
+#include <libccc/sys/time.h>                // TODO system clock 'timespec' functions: clock_gettime(), etc
+#include <libccc/sys/io.h>                  
+#include <libccc/sys/async.h>               // TODO win32: IOCP backend for poll handles (all other handle types work on win32); use min-heap for timers (like libuv)
+#include <libccc/sys/thread.h>              
+#include <libccc/sys/socket.h>              
+#include <libccc/sys/network.h>             
+#include <libccc/encode/common.h>           // TODO tests
+#include <libccc/encode/json.h>             
+#include <libccc/encode/toml.h>             
+#include <libccc/encode/yaml.h>             
+#include <libccc/encode/xml.h>              
+#include <libccc/compress/rle.h>            
+#include <libccc/compress/huffman.h>        
+#include <libccc/compress/lz77.h>           
+#include <libccc/compress/lzw.h>            
+#include <libccc/compress/lzss.h>           
+#include <libccc/compress/lzma.h>           
+#include <libccc/hash/crc.h>                // TODO CRC-[8|16|32|64]
+#include <libccc/hash/checksum.h>           // TODO fletcher-[4|8|16|32], BSD, SYSV, IPv4, xor8
+#include <libccc/hash/universal.h>          // TODO Rabin, Zobrist
+#include <libccc/hash/hash.h>               // TODO Rabin, Zobrist
+#include <libccc/hash/keyed.h>              // TODO BLAKE[1|2|3], HMAC, MD6, SipHash
+#include <libccc/hash/crypto.h>             // TODO MD[2|4|5], BLAKE[256|512], SHA-[1|256|512]
+#include <libccc/image/color.h>             // TODO tests
 ```
 - add hedley to libccc_define.h ?
 - add option #define LIBCONFIG_PRINT_ENCODING	(ANSI,ASCII,UTF8) which changes printf behavior ?
