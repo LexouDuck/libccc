@@ -1,6 +1,7 @@
 
 #include "libccc.h"
 #include "libccc/fixed.h"
+#include "libccc/int.h"
 #include "libccc/string.h"
 #include "libccc/text/format.h"
 #include "libccc/sys/io.h"
@@ -622,6 +623,271 @@ DEFINETEST_FLOAT_TO_FIXED(128, 64)
 
 
 /*============================================================================*\
+||               Convert Fixed-point to Strings (other radixes)               ||
+\*============================================================================*/
+
+/*
+**	`SUFFIX` is the pascal-case function suffix (ie: `_Hex`),
+**	and `NAME` is the lowercase alias name part (ie: `hex`).
+*/
+#define DEFINETEST_FIXED_TO_STR_RADIX(BITS, SUFFIX, NAME) \
+void	print_test_q##BITS##tostr##NAME(char const* test_name, t_testflags flags, \
+		char const* expecting, \
+		t_q##BITS number) \
+{ \
+	TEST_INIT(str) \
+	TEST_PERFORM(	q##BITS##tostr##NAME, number) \
+	TEST_PRINT(str,	q##BITS##tostr##NAME, "number=" SF_Q##BITS, number) \
+	TEST_FREE() \
+} \
+void	test_q##BITS##tostr##NAME(void) \
+{ \
+	t_s64 const	raw_values[] = { \
+		0, +1, -1, +2, -2, +3, -3, \
+		(t_s64)(Q##BITS##_DENOM / 2),      -(t_s64)(Q##BITS##_DENOM / 2), \
+		(t_s64)Q##BITS##_DENOM,            -(t_s64)Q##BITS##_DENOM, \
+		(t_s64)(Q##BITS##_DENOM * 3 / 2),  -(t_s64)(Q##BITS##_DENOM * 3 / 2), \
+		(t_s64)(Q##BITS##_DENOM * 10),     -(t_s64)(Q##BITS##_DENOM * 10), \
+		(t_s64)(Q##BITS##_DENOM * 31),     -(t_s64)(Q##BITS##_DENOM * 31), \
+	}; \
+	for (t_uint i = 0; i < (sizeof(raw_values) / sizeof(raw_values[0])); ++i) \
+	{ \
+		t_q##BITS const	number = QRAW(BITS, raw_values[i]); \
+		char*	s_integer = S64_ToString##SUFFIX((t_s64)(number._ / Q##BITS##_DENOM), TRUE); \
+		char*	s_fraction = S64_ToString##SUFFIX((t_s64)(number._ % Q##BITS##_DENOM), TRUE); \
+		char*	s_denominator = S64_ToString##SUFFIX((t_s64)Q##BITS##_DENOM, TRUE); \
+		char*	expected = String_Format("%s.(%s/%s)", s_integer, s_fraction, s_denominator); \
+		print_test_q##BITS##tostr##NAME("q"#BITS"tostr"#NAME" ",	FALSE, expected, number); \
+		free(expected); \
+		free(s_integer); \
+		free(s_fraction); \
+		free(s_denominator); \
+	} \
+	print_test_q##BITS##tostr##NAME("q"#BITS"tostr"#NAME" (nan) ",	FALSE, "NAN",       Q##BITS##_ERROR); \
+	print_test_q##BITS##tostr##NAME("q"#BITS"tostr"#NAME" (+inf)",	FALSE, "+INFINITY", Q##BITS##_MAX); \
+	print_test_q##BITS##tostr##NAME("q"#BITS"tostr"#NAME" (-inf)",	FALSE, "-INFINITY", Q##BITS##_MIN); \
+} \
+
+DEFINETEST_FIXED_TO_STR_RADIX(8,   _Hex, hex)
+DEFINETEST_FIXED_TO_STR_RADIX(16,  _Hex, hex)
+DEFINETEST_FIXED_TO_STR_RADIX(32,  _Hex, hex)
+DEFINETEST_FIXED_TO_STR_RADIX(64,  _Hex, hex)
+#if LIBCONFIG_USE_INT128
+DEFINETEST_FIXED_TO_STR_RADIX(128, _Hex, hex)
+#endif
+
+DEFINETEST_FIXED_TO_STR_RADIX(8,   _Oct, oct)
+DEFINETEST_FIXED_TO_STR_RADIX(16,  _Oct, oct)
+DEFINETEST_FIXED_TO_STR_RADIX(32,  _Oct, oct)
+DEFINETEST_FIXED_TO_STR_RADIX(64,  _Oct, oct)
+#if LIBCONFIG_USE_INT128
+DEFINETEST_FIXED_TO_STR_RADIX(128, _Oct, oct)
+#endif
+
+DEFINETEST_FIXED_TO_STR_RADIX(8,   _Bin, bin)
+DEFINETEST_FIXED_TO_STR_RADIX(16,  _Bin, bin)
+DEFINETEST_FIXED_TO_STR_RADIX(32,  _Bin, bin)
+DEFINETEST_FIXED_TO_STR_RADIX(64,  _Bin, bin)
+#if LIBCONFIG_USE_INT128
+DEFINETEST_FIXED_TO_STR_RADIX(128, _Bin, bin)
+#endif
+
+#define DEFINETEST_FIXED_TO_STRBASE(BITS) \
+void	print_test_q##BITS##tostrbase(char const* test_name, t_testflags flags, \
+		char const* expecting, \
+		t_q##BITS number, \
+		char const* base) \
+{ \
+	TEST_INIT(str) \
+	TEST_PERFORM(	q##BITS##tostrbase, number, base) \
+	TEST_PRINT(str,	q##BITS##tostrbase, "base=\"%s\", number=" SF_Q##BITS, base, number) \
+	TEST_FREE() \
+} \
+void	test_q##BITS##tostrbase(void) \
+{ \
+	t_s64 const	raw_values[] = { \
+		0, +1, -1, +2, -2, +3, -3, \
+		(t_s64)(Q##BITS##_DENOM / 2),      -(t_s64)(Q##BITS##_DENOM / 2), \
+		(t_s64)Q##BITS##_DENOM,            -(t_s64)Q##BITS##_DENOM, \
+		(t_s64)(Q##BITS##_DENOM * 3 / 2),  -(t_s64)(Q##BITS##_DENOM * 3 / 2), \
+		(t_s64)(Q##BITS##_DENOM * 10),     -(t_s64)(Q##BITS##_DENOM * 10), \
+	}; \
+	for (t_uint i = 0; i < (sizeof(raw_values) / sizeof(raw_values[0])); ++i) \
+	{ \
+		/* the decimal base should give identical results to the decimal Q*_ToString() format */ \
+		t_q##BITS const	number = QRAW(BITS, raw_values[i]); \
+		char*	expected = String_Format(SF_S64".("SF_S64"/"SF_S64")", \
+			(t_s64)(number._ / Q##BITS##_DENOM), \
+			(t_s64)(number._ % Q##BITS##_DENOM), \
+			(t_s64)Q##BITS##_DENOM); \
+		print_test_q##BITS##tostrbase("q"#BITS"tostrbase ",	FALSE, expected, number, "0123456789"); \
+		free(expected); \
+	} \
+/*	| TEST FUNCTION               | TEST NAME                        |TESTFLAG| EXPECTING     | TEST ARGS                        */ \
+	print_test_q##BITS##tostrbase("q"#BITS"tostrbase (nan)         ",	FALSE, "NAN",           Q##BITS##_ERROR, "0123456789"     ); \
+	print_test_q##BITS##tostrbase("q"#BITS"tostrbase (+inf)        ",	FALSE, "+INFINITY",     Q##BITS##_MAX,   "0123456789"     ); \
+	print_test_q##BITS##tostrbase("q"#BITS"tostrbase (-inf)        ",	FALSE, "-INFINITY",     Q##BITS##_MIN,   "0123456789"     ); \
+	print_test_q##BITS##tostrbase("q"#BITS"tostrbase (invalid base)",	FALSE, NULL,            QRAW(BITS, 1),   ""               ); \
+	print_test_q##BITS##tostrbase("q"#BITS"tostrbase (invalid base)",	FALSE, NULL,            QRAW(BITS, 1),   "x"              ); \
+	print_test_q##BITS##tostrbase("q"#BITS"tostrbase (invalid base)",	FALSE, NULL,            QRAW(BITS, 1),   "xx"             ); \
+	print_test_q##BITS##tostrbase("q"#BITS"tostrbase (invalid base)",	FALSE, NULL,            QRAW(BITS, 1),   "+-"             ); \
+} \
+
+DEFINETEST_FIXED_TO_STRBASE(8)
+DEFINETEST_FIXED_TO_STRBASE(16)
+DEFINETEST_FIXED_TO_STRBASE(32)
+DEFINETEST_FIXED_TO_STRBASE(64)
+#if LIBCONFIG_USE_INT128
+DEFINETEST_FIXED_TO_STRBASE(128)
+#endif
+
+
+
+/*============================================================================*\
+||               Convert Strings to Fixed-point (other radixes)               ||
+\*============================================================================*/
+
+/*
+**	`NAME` is the lowercase alias name part (ie: `hex`), and `TOSTR` is the
+**	matching to-string alias, used to verify string/parse round-trips.
+*/
+#define DEFINETEST_STR_TO_FIXED_RADIX(BITS, NAME, TOSTR) \
+void	print_test_str##NAME##toq##BITS(char const* test_name, t_testflags flags, \
+		t_q##BITS expecting, \
+		char const* str) \
+{ \
+	TEST_INIT(q##BITS) \
+	TEST_PERFORM(		str##NAME##toq##BITS, str) \
+	TEST_PRINT(q##BITS,	str##NAME##toq##BITS, "str=\"%s\"", str) \
+} \
+void	test_str##NAME##toq##BITS(void) \
+{ \
+	t_s64 const	raw_values[] = { \
+		0, +1, -1, +3, -3, \
+		(t_s64)(Q##BITS##_DENOM / 2),      -(t_s64)(Q##BITS##_DENOM / 2), \
+		(t_s64)Q##BITS##_DENOM,            -(t_s64)Q##BITS##_DENOM, \
+		(t_s64)(Q##BITS##_DENOM * 3 / 2),  -(t_s64)(Q##BITS##_DENOM * 3 / 2), \
+		(t_s64)(Q##BITS##_DENOM * 10),     -(t_s64)(Q##BITS##_DENOM * 10), \
+		(t_s64)(Q##BITS##_DENOM * 31),     -(t_s64)(Q##BITS##_DENOM * 31), \
+	}; \
+	for (t_uint i = 0; i < (sizeof(raw_values) / sizeof(raw_values[0])); ++i) \
+	{ \
+		/* verify that to-string output parses back to the exact same value */ \
+		t_q##BITS const	number = QRAW(BITS, raw_values[i]); \
+		char*	str = c_q##BITS##TOSTR(number); \
+		print_test_str##NAME##toq##BITS("str"#NAME"toq"#BITS" (roundtrip)",	FALSE, number, str); \
+		free(str); \
+	} \
+	print_test_str##NAME##toq##BITS("str"#NAME"toq"#BITS" (error)    ",	FALSE, Q##BITS##_ERROR, ""     ); \
+	print_test_str##NAME##toq##BITS("str"#NAME"toq"#BITS" (error)    ",	FALSE, Q##BITS##_ERROR, "zzz"  ); \
+	print_test_str##NAME##toq##BITS("str"#NAME"toq"#BITS" (error)    ",	FALSE, Q##BITS##_ERROR, "--3"  ); \
+} \
+
+DEFINETEST_STR_TO_FIXED_RADIX(8,   hex, tostrhex)
+DEFINETEST_STR_TO_FIXED_RADIX(16,  hex, tostrhex)
+DEFINETEST_STR_TO_FIXED_RADIX(32,  hex, tostrhex)
+DEFINETEST_STR_TO_FIXED_RADIX(64,  hex, tostrhex)
+#if LIBCONFIG_USE_INT128
+DEFINETEST_STR_TO_FIXED_RADIX(128, hex, tostrhex)
+#endif
+
+DEFINETEST_STR_TO_FIXED_RADIX(8,   oct, tostroct)
+DEFINETEST_STR_TO_FIXED_RADIX(16,  oct, tostroct)
+DEFINETEST_STR_TO_FIXED_RADIX(32,  oct, tostroct)
+DEFINETEST_STR_TO_FIXED_RADIX(64,  oct, tostroct)
+#if LIBCONFIG_USE_INT128
+DEFINETEST_STR_TO_FIXED_RADIX(128, oct, tostroct)
+#endif
+
+DEFINETEST_STR_TO_FIXED_RADIX(8,   bin, tostrbin)
+DEFINETEST_STR_TO_FIXED_RADIX(16,  bin, tostrbin)
+DEFINETEST_STR_TO_FIXED_RADIX(32,  bin, tostrbin)
+DEFINETEST_STR_TO_FIXED_RADIX(64,  bin, tostrbin)
+#if LIBCONFIG_USE_INT128
+DEFINETEST_STR_TO_FIXED_RADIX(128, bin, tostrbin)
+#endif
+
+//! Explicit hexadecimal parsing checks (letter digits, prefixes, fractions)
+#define DEFINETEST_STRHEX_TO_FIXED_EXPLICIT(BITS) \
+void	test_strhextoq##BITS##_explicit(void) \
+{ \
+	t_s64 const	d = (t_s64)Q##BITS##_DENOM; \
+/*	| TEST FUNCTION           | TEST NAME                   |TESTFLAG| EXPECTING                                 | TEST ARGS      */ \
+	print_test_strhextoq##BITS("strhextoq"#BITS"            ",	FALSE, testref_q##BITS##_saturate(d * 0xA),        "A"            ); \
+	print_test_strhextoq##BITS("strhextoq"#BITS"            ",	FALSE, testref_q##BITS##_saturate(d * 0xA),        "0xA"          ); \
+	print_test_strhextoq##BITS("strhextoq"#BITS"            ",	FALSE, testref_q##BITS##_saturate(d * -0xA),       "-0xA"         ); \
+	print_test_strhextoq##BITS("strhextoq"#BITS"            ",	FALSE, testref_q##BITS##_saturate(d * 0x1F),       "1F"           ); \
+	print_test_strhextoq##BITS("strhextoq"#BITS" (fraction) ",	FALSE, testref_q##BITS##_saturate(d + 0x2 * d / 0x10), "1.(2/10)" ); \
+	print_test_strhextoq##BITS("strhextoq"#BITS" (fraction) ",	FALSE, testref_q##BITS##_saturate(0xF * d / 0x10),     "(F/10)"   ); \
+	print_test_strhextoq##BITS("strhextoq"#BITS" (fraction) ",	FALSE, testref_q##BITS##_saturate(0xF * d / 0x10),     "(0xF/0x10)" ); \
+} \
+
+DEFINETEST_STRHEX_TO_FIXED_EXPLICIT(8)
+DEFINETEST_STRHEX_TO_FIXED_EXPLICIT(16)
+DEFINETEST_STRHEX_TO_FIXED_EXPLICIT(32)
+DEFINETEST_STRHEX_TO_FIXED_EXPLICIT(64)
+#if LIBCONFIG_USE_INT128
+DEFINETEST_STRHEX_TO_FIXED_EXPLICIT(128)
+#endif
+
+#define DEFINETEST_STRBASE_TO_FIXED(BITS) \
+void	print_test_strbasetoq##BITS(char const* test_name, t_testflags flags, \
+		t_q##BITS expecting, \
+		char const* str, \
+		char const* base) \
+{ \
+	TEST_INIT(q##BITS) \
+	TEST_PERFORM(		strbasetoq##BITS, str, base) \
+	TEST_PRINT(q##BITS,	strbasetoq##BITS, "str=\"%s\", base=\"%s\"", str, base) \
+} \
+void	test_strbasetoq##BITS(void) \
+{ \
+	t_s64 const	d = (t_s64)Q##BITS##_DENOM; \
+	static char const*	bases[] = { "0123456789", "01", "0123456789abcdef", "az", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" }; \
+	t_s64 const	raw_values[] = { \
+		0, +1, -1, +3, -3, \
+		(t_s64)(Q##BITS##_DENOM / 2),      -(t_s64)(Q##BITS##_DENOM / 2), \
+		(t_s64)Q##BITS##_DENOM,            -(t_s64)Q##BITS##_DENOM, \
+		(t_s64)(Q##BITS##_DENOM * 3 / 2),  -(t_s64)(Q##BITS##_DENOM * 3 / 2), \
+		(t_s64)(Q##BITS##_DENOM * 10),     -(t_s64)(Q##BITS##_DENOM * 10), \
+	}; \
+	for (t_uint b = 0; b < (sizeof(bases) / sizeof(bases[0])); ++b) \
+	for (t_uint i = 0; i < (sizeof(raw_values) / sizeof(raw_values[0])); ++i) \
+	{ \
+		/* verify that to-string output parses back to the exact same value */ \
+		t_q##BITS const	number = QRAW(BITS, raw_values[i]); \
+		char*	str = c_q##BITS##tostrbase(number, bases[b]); \
+		print_test_strbasetoq##BITS("strbasetoq"#BITS" (roundtrip)",	FALSE, number, str, bases[b]); \
+		free(str); \
+	} \
+/*	| TEST FUNCTION            | TEST NAME                          |TESTFLAG| EXPECTING                             | TEST ARGS                    */ \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS"                 ",	FALSE, testref_q##BITS##_saturate(d * 5),      "5",       "0123456789"     ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS"                 ",	FALSE, testref_q##BITS##_saturate(d * 5),      "101",     "01"             ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS"                 ",	FALSE, testref_q##BITS##_saturate(d * -5),     "-101",    "01"             ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS"                 ",	FALSE, testref_q##BITS##_saturate(d * 5),      "bab",     "ab"             ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS" (fraction)      ",	FALSE, testref_q##BITS##_saturate(d + d / 2),  "1.(1/2)", "0123456789"     ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS" (fraction)      ",	FALSE, testref_q##BITS##_saturate(d + d / 2),  "1.(1/10)","01"             ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS" (error)         ",	FALSE, Q##BITS##_ERROR,                        "",        "0123456789"     ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS" (error)         ",	FALSE, Q##BITS##_ERROR,                        "xyz",     "0123456789"     ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS" (error)         ",	FALSE, Q##BITS##_ERROR,                        "2",       "01"             ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS" (error)         ",	FALSE, Q##BITS##_ERROR,                        "(1/0)",   "0123456789"     ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS" (invalid base)  ",	FALSE, Q##BITS##_ERROR,                        "5",       ""               ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS" (invalid base)  ",	FALSE, Q##BITS##_ERROR,                        "5",       "x"              ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS" (invalid base)  ",	FALSE, Q##BITS##_ERROR,                        "5",       "xx"             ); \
+	print_test_strbasetoq##BITS("strbasetoq"#BITS" (invalid base)  ",	FALSE, Q##BITS##_ERROR,                        "5",       "+-"             ); \
+} \
+
+DEFINETEST_STRBASE_TO_FIXED(8)
+DEFINETEST_STRBASE_TO_FIXED(16)
+DEFINETEST_STRBASE_TO_FIXED(32)
+DEFINETEST_STRBASE_TO_FIXED(64)
+#if LIBCONFIG_USE_INT128
+DEFINETEST_STRBASE_TO_FIXED(128)
+#endif
+
+
+
+/*============================================================================*\
 ||                            Test Suite Function                             ||
 \*============================================================================*/
 
@@ -654,6 +920,57 @@ int		testsuite_fixed(void)
 	test_strtoq64();
 #if LIBCONFIG_USE_INT128
 	test_strtoq128();
+#endif
+
+	test_q8tostrhex();
+	test_q16tostrhex();
+	test_q32tostrhex();
+	test_q64tostrhex();
+	test_q8tostroct();
+	test_q16tostroct();
+	test_q32tostroct();
+	test_q64tostroct();
+	test_q8tostrbin();
+	test_q16tostrbin();
+	test_q32tostrbin();
+	test_q64tostrbin();
+	test_q8tostrbase();
+	test_q16tostrbase();
+	test_q32tostrbase();
+	test_q64tostrbase();
+#if LIBCONFIG_USE_INT128
+	test_q128tostrhex();
+	test_q128tostroct();
+	test_q128tostrbin();
+	test_q128tostrbase();
+#endif
+
+	test_strhextoq8();
+	test_strhextoq16();
+	test_strhextoq32();
+	test_strhextoq64();
+	test_strhextoq8_explicit();
+	test_strhextoq16_explicit();
+	test_strhextoq32_explicit();
+	test_strhextoq64_explicit();
+	test_strocttoq8();
+	test_strocttoq16();
+	test_strocttoq32();
+	test_strocttoq64();
+	test_strbintoq8();
+	test_strbintoq16();
+	test_strbintoq32();
+	test_strbintoq64();
+	test_strbasetoq8();
+	test_strbasetoq16();
+	test_strbasetoq32();
+	test_strbasetoq64();
+#if LIBCONFIG_USE_INT128
+	test_strhextoq128();
+	test_strhextoq128_explicit();
+	test_strocttoq128();
+	test_strbintoq128();
+	test_strbasetoq128();
 #endif
 
 	test_q8from();
