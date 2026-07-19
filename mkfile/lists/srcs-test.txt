@@ -40,6 +40,8 @@
 ./test/libccc/sys/async.c
 ./test/libccc/sys/io.c
 ./test/libccc/sys/network.c
+./test/libccc/sys/program.c
+./test/libccc/sys/signal.c
 ./test/libccc/sys/socket.c
 ./test/libccc/sys/thread.c
 ./test/libccc/sys/time.c

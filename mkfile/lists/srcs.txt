@@ -510,8 +510,14 @@
 ./src/sys/network/udp.c
 ./src/sys/program/dir.c
 ./src/sys/program/env.c
+./src/sys/program/exepath.c
 ./src/sys/program/exit.c
+./src/sys/program/jump.c
+./src/sys/program/pid.c
 ./src/sys/program/run.c
+./src/sys/signal/handler.c
+./src/sys/signal/name.c
+./src/sys/signal/raise.c
 ./src/sys/socket/connect.c
 ./src/sys/socket/getaddr.c
 ./src/sys/socket/option.c

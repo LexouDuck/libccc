@@ -55,6 +55,7 @@
 ./hdr/libccc/sys/logger.h
 ./hdr/libccc/sys/network.h
 ./hdr/libccc/sys/program.h
+./hdr/libccc/sys/signal.h
 ./hdr/libccc/sys/socket.h
 ./hdr/libccc/sys/thread.h
 ./hdr/libccc/sys/time.h
