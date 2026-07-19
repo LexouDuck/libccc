@@ -22,9 +22,11 @@
 _INLINE()
 e_cccerror	Program_Run(t_char const* command)
 {
-	// check if command processor exists
-	if CCCERROR(system(""), ERROR_SYSTEM,
-		"call to system() failed")
+	if CCCERROR((command == NULL), ERROR_NULLPOINTER, "terminal command given is NULL")
+		return (ERROR_NULLPOINTER);
+	// check if a command processor exists (calling system(NULL) returns non-zero if one is available)
+	if CCCERROR((system(NULL) == 0), ERROR_SYSTEM,
+		"no command processor is available on this system")
 		return (ERROR_SYSTEM);
 	// run terminal command
 	if CCCERROR(system(command), ERROR_SYSTEM,
