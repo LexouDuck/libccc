@@ -19,6 +19,7 @@
 	errno_t getenv_s(size_t* len, char* value, rsize_t valuesz, char const* name);
 	#if __HASFUNC_SETENV
 		int	setenv(char const* name, char const* value, int overwrite);
+		int	unsetenv(char const* name);
 	#else
 		int	putenv(char const* command);
 	#endif
@@ -39,7 +40,9 @@ t_char*	Program_GetEnv(t_char const* name)
 	if CCCERROR((result == NULL), ERROR_SYSTEM, 
 		"call to getenv() failed, with name=\"%s\"", name)
 		return (NULL);
-	return (result);
+	// NB: a duplicate is returned here, so that the result is safe to use
+	// regardless of any future calls to setenv()/putenv()/getenv()
+	return (String_Duplicate(result));
 }
 
 
@@ -70,4 +73,36 @@ e_cccerror	Program_SetEnv(t_char const* name, t_char const* value, t_bool overwr
 	return (ERROR_SYSTEM);
 #endif
 	return (overwrite ? ERROR_NONE : ERROR_NONE);
+}
+
+
+
+e_cccerror	Program_UnsetEnv(t_char const* name)
+{
+	if CCCERROR((name == NULL), ERROR_NULLPOINTER, "environment variable name given is NULL")
+		return (ERROR_NULLPOINTER);
+#if __HASFUNC_SETENV
+	if CCCERROR(unsetenv(name), ERROR_SYSTEM,
+		"call to unsetenv() failed, with name=\"%s\"", name)
+		return (ERROR_SYSTEM);
+	return (ERROR_NONE);
+#elif (defined(__MSVC__) || defined(_WIN32))
+	// on Windows, setting an environment variable to an empty string deletes it
+	t_char* command = String_Format("%s=", name);
+	if CCCERROR((command == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (ERROR_ALLOCFAILURE);
+	if CCCERROR(putenv(command), ERROR_SYSTEM,
+		"call to putenv() failed, with command: `%s`", command)
+	{
+		String_Delete(&command);
+		return (ERROR_SYSTEM);
+	}
+	String_Delete(&command);
+	return (ERROR_NONE);
+#else
+	if CCCERROR(TRUE, ERROR_SYSTEM,
+		"deleting an environment variable is not supported on this platform")
+		return (ERROR_SYSTEM);
+	return (ERROR_SYSTEM);
+#endif
 }

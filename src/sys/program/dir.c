@@ -11,6 +11,7 @@
 #else
 	typedef unsigned long	size_t;
 	char*	getcwd(char* dest, size_t size);
+	int		chdir(char const* path);
 #endif
 
 #include "libccc/sys/program.h"
@@ -38,19 +39,35 @@ t_char*	Program_GetCWD(void)
 	// since that behavior is not available here, fall back to allocating the buffer ourselves
 	do
 	{
-		String_Delete(&result);
+		String_Delete(&buffer);
 		if (size == 0)
 			size = MIN_BUFFER_SIZE;
 		else size *= 2;
 		buffer = String_New(size);
-		if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		if CCCERROR((buffer == NULL), ERROR_ALLOCFAILURE, NULL)
 			return (NULL);
 		result = getcwd(buffer, size - 1);
 	}
 	while (result == NULL && size < MAX_BUFFER_SIZE);
-	if CCCERROR((size >= MAX_BUFFER_SIZE), ERROR_INVALIDARGS, 
-		"could not write date to string, size is too large (" SF_SIZE "), should be under " SF_SIZE,
-		size, MAX_BUFFER_SIZE)
+	if CCCERROR((result == NULL), ERROR_SYSTEM, 
+		"call to getcwd() failed (the current working directory path is longer than " SF_SIZE " chars)",
+		MAX_BUFFER_SIZE)
+	{
+		String_Delete(&buffer);
 		return (NULL);
-	return (NULL);
+	}
+	return (buffer);
+}
+
+
+
+_INLINE()
+e_cccerror	Program_SetCWD(t_char const* path)
+{
+	if CCCERROR((path == NULL), ERROR_NULLPOINTER, "directory path given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((chdir(path) != 0), ERROR_SYSTEM,
+		"call to chdir() failed, with path=\"%s\"", path)
+		return (ERROR_SYSTEM);
+	return (ERROR_NONE);
 }
