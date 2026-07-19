@@ -18,6 +18,8 @@ void**	PointerArray_Sub(void* const* ptrarr, t_uint index, t_uint n)
 	if CCCERROR((index > length), ERROR_INDEX2LARGE,
 		"subsection start index " SF_UINT " is greater than pointer array length: " SF_UINT, index, length)
 		return (NULL);
+	if (n == 0) // as documented: if `n` is zero, then all items until the end are copied
+		n = length - index;
 	if CCCERROR((index + n > length), ERROR_LENGTH2LARGE,
 		"subsection end index " SF_UINT " is greater than pointer array length: " SF_UINT, index + n, length)
 		return (NULL);

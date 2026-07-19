@@ -73,13 +73,10 @@ void	PointerArray_RemoveAll(void** ptrarr, void const* ptr)
 	for (i = 0; i < length; ++i)
 	{
 		if (ptrarr[i] == ptr)
-		{
-			++amount;
 			continue;
-		}
-		ptrarr[i] = ptrarr[i + amount];
+		ptrarr[amount++] = ptrarr[i];
 	}
-	ptrarr[i] = NULL;
+	ptrarr[amount] = NULL;
 }
 
 
@@ -110,6 +107,10 @@ void	PointerArray_RemoveAll_F(void** ptrarr, void const* ptr, void (*del)(void*)
 	}
 	if (length == amount)
 	{
+		for (i = 0; i < length; ++i)
+		{
+			del(ptrarr[i]);
+		}
 		ptrarr[0] = NULL;
 		return;
 	}
@@ -119,10 +120,9 @@ void	PointerArray_RemoveAll_F(void** ptrarr, void const* ptr, void (*del)(void*)
 		if (ptrarr[i] == ptr)
 		{
 			del(ptrarr[i]);
-			++amount;
 			continue;
 		}
-		ptrarr[i] = ptrarr[i + amount];
+		ptrarr[amount++] = ptrarr[i];
 	}
-	ptrarr[i] = NULL;
+	ptrarr[amount] = NULL;
 }

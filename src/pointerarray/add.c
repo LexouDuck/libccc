@@ -23,5 +23,6 @@ void**	PointerArray_Add(void** ptrarr, void const* ptr)
 	if CCCERROR((ptrarr == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	ptrarr[length - 1] = (void*)ptr;
+	ptrarr[length] = NULL; // NB: reallocated memory is not zeroed: the terminator must be written explicitly
 	return (ptrarr);
 }

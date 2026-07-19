@@ -20,19 +20,17 @@ void	PointerArray_RemoveAt(void** ptrarr, t_uint index)
 		return;
 	length -= 1;
 	if (length == 0)
-	{
-		Memory_Free(ptrarr);
-		ptrarr = NULL;
+	{	// NB: the array itself is not freed here (the caller still owns it):
+		// it simply becomes an empty array (edited in-place, as documented)
+		ptrarr[0] = NULL;
 		return;
 	}
-//	result = (void const**)Memory_Allocate(sizeof(void const*) * length);
-//	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
-//		return;
 	result = ptrarr;
 	for (t_uint i = index; i < length; ++i)
 	{
 		result[i] = ptrarr[i + 1];
 	}
+	result[length] = NULL;
 //	Memory_Free(ptrarr);
 //	ptrarr = result;
 }
@@ -53,14 +51,12 @@ void	PointerArray_RemoveAt_F(void** ptrarr, t_uint index, void (*del)(void*))
 		return;
 	length -= 1;
 	if (length == 0)
-	{
-		Memory_Free(ptrarr);
-		ptrarr = NULL;
+	{	// NB: the array itself is not freed here (the caller still owns it):
+		// it simply becomes an empty array (edited in-place, as documented)
+		del(ptrarr[0]);
+		ptrarr[0] = NULL;
 		return;
 	}
-//	result = (void const**)Memory_Allocate(length * sizeof(void const*));
-//	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
-//		return;
 	result = ptrarr;
 	for (t_uint i = index; i < length; ++i)
 	{
@@ -71,6 +67,7 @@ void	PointerArray_RemoveAt_F(void** ptrarr, t_uint index, void (*del)(void*))
 		}
 		else result[i] = ptrarr[i + 1];
 	}
+	result[length] = NULL;
 //	Memory_Free(ptrarr);
 //	ptrarr = result;
 }

@@ -16,6 +16,8 @@ t_bool	PointerArray_Equals(void const* const* ptrarr1, void const* const* ptrarr
 	if CCCERROR((ptrarr2 == NULL), ERROR_NULLPOINTER, NULL)	return (FALSE);
 	length1 = PointerArray_Length(ptrarr1);
 	length2 = PointerArray_Length(ptrarr2);
+	if (length1 != length2)
+		return (FALSE);
 	for (t_uint i = 0; (i < length1) && (i < length2); ++i)
 	{
 		if (ptrarr1[i] != ptrarr2[i])

@@ -10,10 +10,8 @@ void	PointerArray_Free(void** ptrarr)
 {
 	if (ptrarr == NULL)
 		return;
-	for (t_uint i = 0; ptrarr[i]; ++i)
-	{
-		Memory_Free(ptrarr[i]);
-	}
+	// NB: only the array buffer itself is freed here, not the items:
+	// to delete the items as well, use PointerArray_Free_F() instead
 	Memory_Free(ptrarr);
 }
 
@@ -40,10 +38,8 @@ void	PointerArray_Delete(void** *a_ptrarr)
 		return;
 	if (*a_ptrarr == NULL)
 		return;
-	for (t_uint i = 0; (*a_ptrarr)[i]; ++i)
-	{
-		Memory_Free((*a_ptrarr)[i]);
-	}
+	// NB: only the array buffer itself is freed here, not the items:
+	// to delete the items as well, use PointerArray_Delete_F() instead
 	Memory_Delete((void**)a_ptrarr);
 }
 

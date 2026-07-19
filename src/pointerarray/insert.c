@@ -15,6 +15,9 @@ void**	PointerArray_Insert(void** dest, void const* ptr, t_uint index)
 	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")
 		return (NULL);
 	length = PointerArray_Length((void const* const*)dest);
+	if CCCERROR((index > length), ERROR_INDEX2LARGE,
+		"index given (" SF_UINT ") is beyond end of ptrarr (length: " SF_UINT ")", index, length)
+		return (NULL);
 	result = PointerArray_New(length + 1, NULL);
 	for (t_uint i = 0; i <= length; ++i)
 	{
