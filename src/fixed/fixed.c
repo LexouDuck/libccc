@@ -4,6 +4,7 @@
 #include "libccc/string.h"
 #include "libccc/math.h"
 #include "libccc/math/float.h"
+#include "libccc/math/fixed.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -13,7 +14,11 @@
 _INLINE() \
 t_q##BITS	Q##BITS##_IntegerPart(t_q##BITS number) \
 { \
-	number._ /= Q##BITS##_DENOM; \
+	if (Q##BITS##_IsNaN(number)) \
+		return (Q##BITS##_ERROR); \
+	if (Q##BITS##_IsInf(number)) \
+		return (number); \
+	number._ = (t_s##BITS)((number._ / Q##BITS##_DENOM) * Q##BITS##_DENOM); \
 	return (number); \
 } \
 
@@ -29,6 +34,10 @@ DEFINEFUNC_FIXED_INTEGERPART(128)
 _INLINE() \
 t_q##BITS	Q##BITS##_FractionPart(t_q##BITS number) \
 { \
+	if (Q##BITS##_IsNaN(number)) \
+		return (Q##BITS##_ERROR); \
+	if (Q##BITS##_IsInf(number)) \
+		return ((t_q##BITS){ 0 }); \
 	number._ %= Q##BITS##_DENOM; \
 	return (number); \
 } \
