@@ -35,7 +35,13 @@ HEADER_CPP
 
 
 
-//! TODO document this
+//! The amount of samples used by the numerical/stochastic algebra functions
+/*!
+**	This is the amount of random sample points taken by the functions which
+**	perform numerical approximation (like the Monte-Carlo method integration
+**	functions, for instance): a larger value gives more precise results, but
+**	takes longer to compute.
+*/
 #define SAMPLE_NB		(1024)
 
 

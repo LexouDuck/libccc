@@ -433,7 +433,19 @@ void*				Memory_FromString(t_char* str, t_size n); // TODO
 
 //!@doc Prints an area of memory to a string buffer, as space-delimited hexadecimal bytes
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Creates a newly allocated string, in which the first `n` bytes of memory
+**	starting at `ptr` are written out as uppercase hexadecimal ASCII text,
+**	with each byte written as two hex digits, delimited by space characters.
+**	For example, the bytes `{ 0xC0, 0xFF, 0xEE }` will yield `"C0 FF EE"`.
+**
+**	@param	dest	The address at which to store the resulting string (can be `NULL`, in which case the result is discarded)
+**	@param	ptr		The pointer to the memory region to print
+**	@param	n		The amount of bytes of memory to print, starting at `ptr`
+**	@returns
+**	The length of the resulting string (which is `n * 3`, counting its final
+**	null terminator), or `0` if an error occurred.
 */
 //!@{
 t_size				Memory_Print(t_char* *dest, void const* ptr, t_size n);
@@ -442,7 +454,17 @@ t_size				Memory_Print(t_char* *dest, void const* ptr, t_size n);
 
 //!@doc @see Memory_Print()
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Convenience wrapper around Memory_Print(), which directly returns the
+**	newly allocated string of space-delimited hexadecimal bytes.
+**
+**	@param	ptr		The pointer to the memory region to print
+**	@param	n		The amount of bytes of memory to print, starting at `ptr`
+**	@returns
+**	A newly allocated string representation of the given memory region,
+**	as space-delimited uppercase hexadecimal bytes (eg: `"C0 FF EE"`),
+**	or `NULL` if an error occurred.
 */
 //!@{
 t_char*				Memory_ToString(void const* ptr, t_size n);

@@ -70,7 +70,11 @@ typedef struct prng_state { t_u32 seed; }	t_prng;
 ||                               Random Functions                             ||
 \*============================================================================*/
 
-//!@doc TODO document this
+//!@doc Sets the seed of the given PRNG `state`
+/*!
+**	@param	state	The PRNG state whose seed should be set
+**	@param	seed	The new seed value to set (the same seed always yields the same sequence of pseudo-random numbers)
+*/
 //!@{
 void				PRNG_SetSeed(t_prng* state, t_u32 seed);
 #define c_sprng		PRNG_SetSeed

@@ -577,7 +577,17 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 
 //!@doc Returns the nearest fixed-point value to the given unsigned integer `number`
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Converts the given unsigned integer `number` to its nearest
+**	representable fixed-point value.
+**	If `number` is too large to be represented by the target fixed-point
+**	type, an #ERROR_RESULTRANGE error occurs, and the fixed-point type's
+**	maximum value is returned.
+**
+**	@param	number	The unsigned integer value to convert
+**	@returns
+**	The nearest fixed-point representation of the given `number`.
 */
 //!@{
 #define					Fixed_FromUInt	CONCAT(FIXED_TYPE,CONCAT(_From,UINT_TYPE))
@@ -660,7 +670,18 @@ t_q128					Q128_FromU128(t_u128 number);
 
 //!@doc Returns the nearest fixed-point value to the given signed integer `number`
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Converts the given signed integer `number` to its nearest
+**	representable fixed-point value.
+**	If `number` is too large (in absolute value) to be represented by the
+**	target fixed-point type, an #ERROR_RESULTRANGE error occurs, and the
+**	fixed-point type's maximum (or minimum, if `number` is negative)
+**	value is returned.
+**
+**	@param	number	The signed integer value to convert
+**	@returns
+**	The nearest fixed-point representation of the given `number`.
 */
 //!@{
 #define					Fixed_FromSInt	CONCAT(FIXED_TYPE,CONCAT(_From,SINT_TYPE))
@@ -743,7 +764,19 @@ t_q128					Q128_FromS128(t_s128 number);
 
 //!@doc Returns the nearest fixed-point value to the given fixed-point `number`
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Converts the given fixed-point `number` from one fixed-point type to
+**	another (adjusting the value to the target type's fractional denominator).
+**	If `number` is too large (in absolute value) to be represented by the
+**	target fixed-point type, an #ERROR_RESULTRANGE error occurs, and the
+**	fixed-point type's maximum (or minimum, if `number` is negative)
+**	value is returned.
+**
+**	@param	number	The fixed-point value to convert
+**	@returns
+**	The nearest representation of the given `number`, for the target
+**	fixed-point type.
 */
 //!@{
 #define					Fixed_FromFixed	CONCAT(FIXED_TYPE,CONCAT(_From,FIXED_TYPE))
@@ -826,7 +859,19 @@ t_q128					Q128_FromQ128(t_q128 number);
 
 //!@doc Returns the nearest fixed-point value to the given floating-point `number`
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Converts the given floating-point `number` to its nearest representable
+**	fixed-point value (truncating any fractional precision which the target
+**	fixed-point type cannot store).
+**	If `number` is too large (in absolute value) to be represented by the
+**	target fixed-point type, an #ERROR_RESULTRANGE error occurs, and the
+**	fixed-point type's maximum (or minimum, if `number` is negative)
+**	value is returned.
+**
+**	@param	number	The floating-point value to convert
+**	@returns
+**	The nearest fixed-point representation of the given `number`.
 */
 //!@{
 #define	 				Fixed_FromFloat	CONCAT(FIXED_TYPE,CONCAT(_From,FLOAT_TYPE))

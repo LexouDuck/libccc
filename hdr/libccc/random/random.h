@@ -43,13 +43,31 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 ||                               Random Functions                             ||
 \*============================================================================*/
 
-//!@doc TODO document this macro alias
+//!@doc Sets the seed of the given random number generator `state`
+/*!
+**	This is a configurable macro alias: it resolves to the corresponding
+**	function of the RNG implementation which was chosen via the
+**	`LIBCONFIG_RANDOM_NAME` configuration macro (by default, the simple
+**	`PRNG_*` functions - can also be set to the cryptographically-secure
+**	`CSPRNG_*` functions).
+**
+**	@see PRNG_SetSeed(), CSPRNG_SetSeed()
+*/
 //!@{
 #define				Random_SetSeed	CONCAT(LIBCONFIG_RANDOM_NAME,_SetSeed)
 #define c_srand		Random_SetSeed
 //!@}
 
-//!@doc TODO document this macro alias
+//!@doc Randomizes the seed of the given random number generator `state`
+/*!
+**	This is a configurable macro alias: it resolves to the corresponding
+**	function of the RNG implementation which was chosen via the
+**	`LIBCONFIG_RANDOM_NAME` configuration macro (by default, the simple
+**	`PRNG_*` functions - can also be set to the cryptographically-secure
+**	`CSPRNG_*` functions).
+**
+**	@see PRNG_NewSeed(), CSPRNG_NewSeed()
+*/
 //!@{
 #define				Random_NewSeed	CONCAT(LIBCONFIG_RANDOM_NAME,_NewSeed)
 #define c_nrand		Random_NewSeed
@@ -57,13 +75,31 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 
 
 
-//!@doc TODO document this macro alias
+//!@doc Allocates a new random number generator state
+/*!
+**	This is a configurable macro alias: it resolves to the corresponding
+**	function of the RNG implementation which was chosen via the
+**	`LIBCONFIG_RANDOM_NAME` configuration macro (by default, the simple
+**	`PRNG_*` functions - can also be set to the cryptographically-secure
+**	`CSPRNG_*` functions).
+**
+**	@see PRNG_New(), CSPRNG_New()
+*/
 //!@{
 #define				Random_New		CONCAT(LIBCONFIG_RANDOM_NAME,_New)
 #define c_randnew	Random_New
 //!@}
 
-//!@doc TODO document this macro alias
+//!@doc Deletes (frees and nullifies) an existing random number generator state
+/*!
+**	This is a configurable macro alias: it resolves to the corresponding
+**	function of the RNG implementation which was chosen via the
+**	`LIBCONFIG_RANDOM_NAME` configuration macro (by default, the simple
+**	`PRNG_*` functions - can also be set to the cryptographically-secure
+**	`CSPRNG_*` functions).
+**
+**	@see PRNG_Delete(), CSPRNG_Delete()
+*/
 //!@{
 #define				Random_Delete	CONCAT(LIBCONFIG_RANDOM_NAME,_Delete)
 #define c_randdel	Random_Delete
@@ -71,13 +107,31 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 
 
 
-//!@doc TODO document this macro alias
+//!@doc Writes `n` bytes of random data to `dest`, using the given RNG `state`
+/*!
+**	This is a configurable macro alias: it resolves to the corresponding
+**	function of the RNG implementation which was chosen via the
+**	`LIBCONFIG_RANDOM_NAME` configuration macro (by default, the simple
+**	`PRNG_*` functions - can also be set to the cryptographically-secure
+**	`CSPRNG_*` functions).
+**
+**	@see PRNG_Next(), CSPRNG_Next()
+*/
 //!@{
 #define				Random_Next		CONCAT(LIBCONFIG_RANDOM_NAME,_Next)
 #define c_rand		Random_Next
 //!@}
 
-//!@doc TODO document this macro alias
+//!@doc Writes `n` bytes of random data to `dest`, statelessly (creating and deleting a state)
+/*!
+**	This is a configurable macro alias: it resolves to the corresponding
+**	function of the RNG implementation which was chosen via the
+**	`LIBCONFIG_RANDOM_NAME` configuration macro (by default, the simple
+**	`PRNG_*` functions - can also be set to the cryptographically-secure
+**	`CSPRNG_*` functions).
+**
+**	@see PRNG_Get(), CSPRNG_Get()
+*/
 //!@{
 #define				Random_Get		CONCAT(LIBCONFIG_RANDOM_NAME,_Get)
 #define c_randget	Random_Get
@@ -85,7 +139,16 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 
 
 
-//!@doc TODO document this macro alias
+//!@doc Gets a random number, using the given RNG `state`
+/*!
+**	This is a configurable macro alias: it resolves to the corresponding
+**	function of the RNG implementation which was chosen via the
+**	`LIBCONFIG_RANDOM_NAME` configuration macro (by default, the simple
+**	`PRNG_*` functions - can also be set to the cryptographically-secure
+**	`CSPRNG_*` functions).
+**
+**	@see PRNG_Get_UInt(), CSPRNG_Get_UInt()
+*/
 //!@{
 #define				Random_Get_UInt			CONCAT(LIBCONFIG_RANDOM_NAME,_Get_UInt)
 #define c_randu		Random_Get_UInt
@@ -97,7 +160,16 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 #define c_randf		Random_Get_Float
 //!@}
 
-//!@doc TODO document this macro alias
+//!@doc Gets a random number within the range `[min, max[`, using the given RNG `state`
+/*!
+**	This is a configurable macro alias: it resolves to the corresponding
+**	function of the RNG implementation which was chosen via the
+**	`LIBCONFIG_RANDOM_NAME` configuration macro (by default, the simple
+**	`PRNG_*` functions - can also be set to the cryptographically-secure
+**	`CSPRNG_*` functions).
+**
+**	@see PRNG_GetInRange_UInt(), CSPRNG_GetInRange_UInt()
+*/
 //!@{
 #define				Random_GetInRange_UInt	CONCAT(LIBCONFIG_RANDOM_NAME,_GetInRange_UInt)
 #define c_randxu	Random_GetInRange_UInt
@@ -109,7 +181,16 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 #define c_randxf	Random_GetInRange_Float
 //!@}
 
-//!@doc TODO document this macro alias
+//!@doc Gets a newly allocated sample (array) of random numbers, statelessly
+/*!
+**	This is a configurable macro alias: it resolves to the corresponding
+**	function of the RNG implementation which was chosen via the
+**	`LIBCONFIG_RANDOM_NAME` configuration macro (by default, the simple
+**	`PRNG_*` functions - can also be set to the cryptographically-secure
+**	`CSPRNG_*` functions).
+**
+**	@see PRNG_Sample_UInt(), CSPRNG_Sample_UInt()
+*/
 //!@{
 #define				Random_Sample_UInt		CONCAT(LIBCONFIG_RANDOM_NAME,_Sample_UInt)
 #define c_randnu	Random_Sample_UInt
@@ -121,7 +202,16 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 #define c_randnf	Random_Sample_Float
 //!@}
 
-//!@doc TODO document this macro alias
+//!@doc Gets a newly allocated sample (array) of random numbers within the range `[min, max[`, statelessly
+/*!
+**	This is a configurable macro alias: it resolves to the corresponding
+**	function of the RNG implementation which was chosen via the
+**	`LIBCONFIG_RANDOM_NAME` configuration macro (by default, the simple
+**	`PRNG_*` functions - can also be set to the cryptographically-secure
+**	`CSPRNG_*` functions).
+**
+**	@see PRNG_SampleInRange_UInt(), CSPRNG_SampleInRange_UInt()
+*/
 //!@{
 #define				Random_SampleInRange_UInt	CONCAT(LIBCONFIG_RANDOM_NAME,_SampleInRange_UInt)
 #define c_randnxu	Random_SampleInRange_UInt

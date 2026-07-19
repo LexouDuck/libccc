@@ -94,9 +94,9 @@ typedef s_array_float	s_sorted_float;	//!< This type represents a list of floati
 //! A struct for the probability mass function describing a discrete random var.
 typedef struct prob_mass
 {
-	t_float*	value;		//!< TODO document this
-	t_float*	prob;		//!< TODO document this
-	t_uint		length;		//!< TODO document this
+	t_float*	value;		//!< The array of distinct values which the random variable can take: `value[i]` corresponds to `X(i)`
+	t_float*	prob;		//!< The array of probabilities (each within `[0,1]`) associated with each value: `prob[i]` corresponds to `f(X(i))`
+	t_uint		length;		//!< The amount of items in the `value` and `prob` arrays (ie: the amount of distinct values which the random variable can take)
 }	s_prob_mass;
 
 
@@ -214,7 +214,20 @@ s_array_float               Stat_Float_Sort(s_array_float const sample);
 ||                      Probability distribution functions                    ||
 \*============================================================================*/
 
-//!@doc TODO document this
+//!@doc Checks whether the given `prob_sample` describes a valid probability distribution
+/*!
+**	@nonstd
+**
+**	Checks that every value in the given `prob_sample` is a valid
+**	probability (ie: is contained within the interval `[0,1]`), and that
+**	the sum of all of its values is equal to `1` (within a margin of
+**	error of #PROB_APPROX, to account for floating-point imprecision).
+**
+**	@param	prob_sample	The array of probability values to check
+**	@returns
+**	`TRUE` if the given `prob_sample` is a valid probability distribution,
+**	otherwise returns `FALSE`.
+*/
 //!@{
 t_bool                      Stat_UInt_ProbabilityIsValid(s_array_uint const prob_sample);
 #define c_ustat_probisvalid Stat_UInt_ProbabilityIsValid
@@ -244,14 +257,34 @@ s_prob_mass                 Stat_Float_ProbabilityMassFunction(s_array_float con
 #define Stat_Float_PMF      Stat_Float_ProbabilityMassFunction
 //!@}
 
-//!@doc TODO document this
+//!@doc Allocates a new probability mass function distribution which can hold `length` values
+/*!
+**	@nonstd
+**
+**	Allocates both the `value` and `prob` arrays of a new #s_prob_mass
+**	struct, so that it can hold `length` distinct values (the contents of
+**	both arrays are left uninitialized).
+**
+**	@param	length	The amount of distinct values which the new probability mass function should hold
+**	@returns
+**	A newly allocated probability mass function struct - if an error occurs,
+**	the returned struct has its `length` field set to `0`.
+*/
 //!@{
 s_prob_mass                 Stat_ProbabilityMassFunction_New(t_uint length);
 #define c_pmfnew            Stat_ProbabilityMassFunction_New
 #define Stat_PMF_New        Stat_ProbabilityMassFunction_New
 //!@}
 
-//!@doc TODO document this
+//!@doc Deletes the given probability mass function `pmf` (frees and zeroes its contents)
+/*!
+**	@nonstd
+**
+**	Frees both the `value` and `prob` arrays of the given #s_prob_mass
+**	struct, setting them to `NULL`, and sets its `length` field to `0`.
+**
+**	@param	pmf	The address of the probability mass function struct to delete
+*/
 //!@{
 void                        Stat_ProbabilityMassFunction_Delete(s_prob_mass* pmf);
 #define c_pmfdel            Stat_ProbabilityMassFunction_Delete
@@ -264,7 +297,19 @@ void                        Stat_ProbabilityMassFunction_Delete(s_prob_mass* pmf
 ||                         Statistics & Probabilities                         ||
 \*============================================================================*/
 
-//!@doc TODO document this
+//!@doc Returns the smallest value contained in the given `sample`
+/*!
+**	@nonstd
+**
+**	@param	sample	The sample of numbers to inspect
+**	@returns
+**	The sample minimum, ie: the smallest value present in the given `sample`
+**	(ignoring any invalid values, like `NAN`). If no minimum value can be
+**	found, an error occurs, and the type's error value is returned.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Sample_maximum_and_minimum
+*/
 //!@{
 t_uint                               Stat_UInt_GetMin(s_array_uint const sample);
 #define c_ustat_min                  Stat_UInt_GetMin
@@ -276,7 +321,19 @@ t_float                              Stat_Float_GetMin(s_array_float const sampl
 #define c_fstat_min                  Stat_Float_GetMin
 //!@}
 
-//!@doc TODO document this
+//!@doc Returns the largest value contained in the given `sample`
+/*!
+**	@nonstd
+**
+**	@param	sample	The sample of numbers to inspect
+**	@returns
+**	The sample maximum, ie: the largest value present in the given `sample`
+**	(ignoring any invalid values, like `NAN`). If no maximum value can be
+**	found, an error occurs, and the type's error value is returned.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Sample_maximum_and_minimum
+*/
 //!@{
 t_uint                               Stat_UInt_GetMax(s_array_uint const sample);
 #define c_ustat_max                  Stat_UInt_GetMax
@@ -290,7 +347,25 @@ t_float                              Stat_Float_GetMax(s_array_float const sampl
 
 
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Quantile
+//!@doc Returns the `n`-quantile cut points of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the `n`-quantiles of the given `sample`, ie: the cut points
+**	which divide the sample into `n` intervals of (nearly) equal size.
+**	NOTE: this function expects the given `sample` to be sorted
+**	(you may want to call Stat_Sort() beforehand).
+**
+**	@param	sample	The sample of numbers to inspect (expected to be sorted, in ascending order)
+**	@param	n		The amount of intervals to divide the sample into (eg: `4` for quartiles, `100` for percentiles)
+**	@returns
+**	A newly allocated array of `n + 1` cut point values (the last item of
+**	the array being the sample's largest value), or `NULL` if an error
+**	occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Quantile
+*/
 //!@{
 t_float*                             Stat_UInt_Quantiles(s_array_uint const sample, t_uint n);
 #define c_ustat_quantiles            Stat_UInt_Quantiles
@@ -302,7 +377,23 @@ t_float*                             Stat_Float_Quantiles(s_array_float const sa
 #define c_fstat_quantiles            Stat_Float_Quantiles
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Median
+//!@doc Returns the median value of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the median of the given `sample`, ie: the value which separates
+**	the higher half of the sample from its lower half (if the sample has an
+**	even amount of items, the average of the two middle values is returned).
+**	NOTE: this function expects the given `sample` to be sorted
+**	(you may want to call Stat_Sort() beforehand).
+**
+**	@param	sample	The sample of numbers to inspect (expected to be sorted, in ascending order)
+**	@returns
+**	The median value of the given `sample`.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Median
+*/
 //!@{
 t_float                              Stat_UInt_Median(s_array_uint const sample);
 #define c_ustat_median               Stat_UInt_Median
@@ -314,7 +405,22 @@ t_float                              Stat_Float_Median(s_array_float const sampl
 #define c_fstat_median               Stat_Float_Median
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Mode_(statistics)
+//!@doc Returns the mode (most frequent value) of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the mode of the given `sample`, ie: the value which appears
+**	the most often within the sample.
+**	NOTE: this function expects the given `sample` to be sorted
+**	(you may want to call Stat_Sort() beforehand).
+**
+**	@param	sample	The sample of numbers to inspect (expected to be sorted, in ascending order)
+**	@returns
+**	The most frequently occurring value of the given `sample`.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Mode_(statistics)
+*/
 //!@{
 t_float                              Stat_UInt_Mode(s_array_uint const sample);
 #define c_ustat_mode                 Stat_UInt_Mode
@@ -326,7 +432,20 @@ t_float                              Stat_Float_Mode(s_array_float const sample)
 #define c_fstat_mode                 Stat_Float_Mode
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Range_(statistics)
+//!@doc Returns the range (difference between largest and smallest values) of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the range of the given `sample`, ie: the difference between
+**	the sample's largest value and its smallest value: `max - min`.
+**
+**	@param	sample	The sample of numbers to inspect
+**	@returns
+**	The range of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Range_(statistics)
+*/
 //!@{
 t_float                              Stat_UInt_Range(s_array_uint const sample);
 #define c_ustat_range                Stat_UInt_Range
@@ -338,7 +457,21 @@ t_float                              Stat_Float_Range(s_array_float const sample
 #define c_fstat_range                Stat_Float_Range
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Midrange
+//!@doc Returns the midrange (average of largest and smallest values) of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the midrange (or mid-extreme) of the given `sample`, ie: the
+**	arithmetic mean of the sample's largest and smallest values:
+**	`(max + min) / 2`.
+**
+**	@param	sample	The sample of numbers to inspect
+**	@returns
+**	The midrange of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Midrange
+*/
 //!@{
 t_float                              Stat_UInt_Midrange(s_array_uint const sample);
 #define c_ustat_midrange             Stat_UInt_Midrange
@@ -350,7 +483,22 @@ t_float                              Stat_Float_Midrange(s_array_float const sam
 #define c_fstat_midrange             Stat_Float_Midrange
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Midhinge
+//!@doc Returns the midhinge (average of first and third quartiles) of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the midhinge of the given `sample`, ie: the arithmetic mean of
+**	the sample's first and third quartiles: `(Q1 + Q3) / 2`.
+**	NOTE: this function expects the given `sample` to be sorted
+**	(you may want to call Stat_Sort() beforehand).
+**
+**	@param	sample	The sample of numbers to inspect (expected to be sorted, in ascending order)
+**	@returns
+**	The midhinge of the given `sample`.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Midhinge
+*/
 //!@{
 t_float                              Stat_UInt_Midhinge(s_array_uint const sample);
 #define c_ustat_midhinge             Stat_UInt_Midhinge
@@ -362,7 +510,23 @@ t_float                              Stat_Float_Midhinge(s_array_float const sam
 #define c_fstat_midhinge             Stat_Float_Midhinge
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Trimean
+//!@doc Returns the trimean (weighted average of median and quartiles) of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes Tukey's trimean of the given `sample`, ie: the weighted
+**	arithmetic mean of the sample's median and its two quartiles:
+**	`(Q1 + 2 * Q2 + Q3) / 4`.
+**	NOTE: this function expects the given `sample` to be sorted
+**	(you may want to call Stat_Sort() beforehand).
+**
+**	@param	sample	The sample of numbers to inspect (expected to be sorted, in ascending order)
+**	@returns
+**	The trimean of the given `sample`.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Trimean
+*/
 //!@{
 t_float                              Stat_UInt_Trimean(s_array_uint const sample);
 #define c_ustat_trimean              Stat_UInt_Trimean
@@ -376,7 +540,21 @@ t_float                              Stat_Float_Trimean(s_array_float const samp
 
 
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Arithmetic_mean
+//!@doc Returns the arithmetic mean (average) of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the arithmetic mean of the given `sample`, ie: the sum of
+**	all of its values, divided by the amount of values: `sum(x) / n`
+**	(ignoring any invalid values, like `NAN`).
+**
+**	@param	sample		The sample of numbers to inspect
+**	@returns
+**	The arithmetic mean of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Arithmetic_mean
+*/
 //!@{
 t_float                              Stat_UInt_Mean_Arithmetic(s_array_uint const sample);
 #define c_ustat_mean_arithmetic      Stat_UInt_Mean_Arithmetic
@@ -388,7 +566,21 @@ t_float                              Stat_Float_Mean_Arithmetic(s_array_float co
 #define c_fstat_mean_arithmetic      Stat_Float_Mean_Arithmetic
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Geometric_mean
+//!@doc Returns the geometric mean of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the geometric mean of the given `sample`, ie: the `n`-th root
+**	of the product of all of its `n` values: `product(x) ^ (1 / n)`
+**	(ignoring any invalid values, like `NAN`).
+**
+**	@param	sample		The sample of numbers to inspect
+**	@returns
+**	The geometric mean of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Geometric_mean
+*/
 //!@{
 t_float                              Stat_UInt_Mean_Geometric(s_array_uint const sample);
 #define c_ustat_mean_geometric       Stat_UInt_Mean_Geometric
@@ -400,7 +592,21 @@ t_float                              Stat_Float_Mean_Geometric(s_array_float con
 #define c_fstat_mean_geometric       Stat_Float_Mean_Geometric
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Harmonic_mean
+//!@doc Returns the harmonic mean of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the harmonic mean of the given `sample`, ie: the reciprocal
+**	of the arithmetic mean of the reciprocals of its values:
+**	`n / sum(1 / x)` (ignoring any invalid values, like `NAN`).
+**
+**	@param	sample		The sample of numbers to inspect
+**	@returns
+**	The harmonic mean of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Harmonic_mean
+*/
 //!@{
 t_float                              Stat_UInt_Mean_Harmonic(s_array_uint const sample);
 #define c_ustat_mean_harmonic        Stat_UInt_Mean_Harmonic
@@ -412,7 +618,21 @@ t_float                              Stat_Float_Mean_Harmonic(s_array_float cons
 #define c_fstat_mean_harmonic        Stat_Float_Mean_Harmonic
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Contraharmonic_mean
+//!@doc Returns the contraharmonic mean of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the contraharmonic mean of the given `sample`, ie: the sum of
+**	the squares of its values, divided by the sum of its values:
+**	`sum(x ^ 2) / sum(x)` (ignoring any invalid values, like `NAN`).
+**
+**	@param	sample		The sample of numbers to inspect
+**	@returns
+**	The contraharmonic mean of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Contraharmonic_mean
+*/
 //!@{
 t_float                              Stat_UInt_Mean_Contraharmonic(s_array_uint const sample);
 #define c_ustat_mean_contraharmonic  Stat_UInt_Mean_Contraharmonic
@@ -424,7 +644,25 @@ t_float                              Stat_Float_Mean_Contraharmonic(s_array_floa
 #define c_fstat_mean_contraharmonic  Stat_Float_Mean_Contraharmonic
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Interquartile_mean
+//!@doc Returns the interquartile mean of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the interquartile mean of the given `sample`, ie: the
+**	arithmetic mean of only the values which lie within the sample's
+**	interquartile range `[Q1, Q3]` (discarding the lowest and highest
+**	quarters of the sample, making this a truncated mean which is more
+**	robust to outliers).
+**	NOTE: this function expects the given `sample` to be sorted
+**	(you may want to call Stat_Sort() beforehand).
+**
+**	@param	sample		The sample of numbers to inspect (expected to be sorted, in ascending order)
+**	@returns
+**	The interquartile mean of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Interquartile_mean
+*/
 //!@{
 t_float                              Stat_UInt_Mean_Interquartile(s_array_uint const sample);
 #define c_ustat_mean_iq              Stat_UInt_Mean_Interquartile
@@ -436,7 +674,21 @@ t_float                              Stat_Float_Mean_Interquartile(s_array_float
 #define c_fstat_mean_iq              Stat_Float_Mean_Interquartile
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Quadratic_mean
+//!@doc Returns the quadratic mean (root mean square) of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the quadratic mean (also known as "root mean square", or RMS)
+**	of the given `sample`, ie: the square root of the arithmetic mean of
+**	the squares of its values: `sqrt(sum(x ^ 2) / n)`.
+**
+**	@param	sample		The sample of numbers to inspect
+**	@returns
+**	The quadratic mean of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Quadratic_mean
+*/
 //!@{
 t_float                              Stat_UInt_Mean_Quadratic(s_array_uint const sample);
 #define c_ustat_mean_pow2            Stat_UInt_Mean_Quadratic
@@ -448,7 +700,21 @@ t_float                              Stat_Float_Mean_Quadratic(s_array_float con
 #define c_fstat_mean_pow2            Stat_Float_Mean_Quadratic
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Cubic_mean
+//!@doc Returns the cubic mean of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the cubic mean of the given `sample`, ie: the cube root of
+**	the arithmetic mean of the cubes of its values:
+**	`cbrt(sum(x ^ 3) / n)`.
+**
+**	@param	sample		The sample of numbers to inspect
+**	@returns
+**	The cubic mean of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Cubic_mean
+*/
 //!@{
 t_float                              Stat_UInt_Mean_Cubic(s_array_uint const sample);
 #define c_ustat_mean_pow3            Stat_UInt_Mean_Cubic
@@ -460,7 +726,25 @@ t_float                              Stat_Float_Mean_Cubic(s_array_float const s
 #define c_fstat_mean_pow3            Stat_Float_Mean_Cubic
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Power_mean
+//!@doc Returns the power mean (generalized mean) of the given `sample`, for the given `power`
+/*!
+**	@nonstd
+**
+**	Computes the power mean (also known as "generalized mean", or Hölder
+**	mean) of the given `sample`, ie: the `power`-th root of the arithmetic
+**	mean of its values each raised to the given `power`:
+**	`(sum(x ^ power) / n) ^ (1 / power)`.
+**	This generalizes several other means: `power = 1` gives the arithmetic
+**	mean, `power = 2` the quadratic mean, `power = -1` the harmonic mean, etc.
+**
+**	@param	sample		The sample of numbers to inspect
+**	@param	power		The exponent to use for the generalized mean computation
+**	@returns
+**	The power mean of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Power_mean
+*/
 //!@{
 t_float                              Stat_UInt_Mean_Power(s_array_uint const sample, t_float power);
 #define c_ustat_mean_power           Stat_UInt_Mean_Power
@@ -472,7 +756,26 @@ t_float                              Stat_Float_Mean_Power(s_array_float const s
 #define c_fstat_mean_power           Stat_Float_Mean_Power
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Lehmer_mean
+//!@doc Returns the Lehmer mean of the given `sample`, for the given `power`
+/*!
+**	@nonstd
+**
+**	Computes the Lehmer mean of the given `sample`, ie: the sum of its
+**	values each raised to the given `power`, divided by the sum of its
+**	values each raised to `power - 1`:
+**	`sum(x ^ power) / sum(x ^ (power - 1))`.
+**	This generalizes several other means: `power = 0` gives the harmonic
+**	mean, `power = 1` the arithmetic mean, `power = 2` the contraharmonic
+**	mean, etc.
+**
+**	@param	sample		The sample of numbers to inspect
+**	@param	power		The exponent to use for the Lehmer mean computation
+**	@returns
+**	The Lehmer mean of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Lehmer_mean
+*/
 //!@{
 t_float                              Stat_UInt_Mean_Lehmer(s_array_uint const sample, t_sint power);
 #define c_ustat_mean_lehmer          Stat_UInt_Mean_Lehmer
@@ -486,7 +789,22 @@ t_float                              Stat_Float_Mean_Lehmer(s_array_float const 
 
 
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Variance
+//!@doc Returns the variance of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the (population) variance of the given `sample`, ie: the
+**	expected value of the squared deviation of its values from the
+**	sample's arithmetic mean: `(sum(x ^ 2) / n) - mean ^ 2`.
+**	This is a measure of how spread out the sample's values are.
+**
+**	@param	sample		The sample of numbers to inspect
+**	@returns
+**	The variance of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Variance
+*/
 //!@{
 t_float                              Stat_UInt_Variance(s_array_uint const sample);
 #define c_ustat_variance             Stat_UInt_Variance
@@ -498,7 +816,22 @@ t_float                              Stat_Float_Variance(s_array_float const sam
 #define c_fstat_variance             Stat_Float_Variance
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Standard_deviation
+//!@doc Returns the standard deviation of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the (population) standard deviation of the given `sample`,
+**	ie: the square root of the sample's variance.
+**	This is a measure of how spread out the sample's values are,
+**	expressed in the same unit as the values themselves.
+**
+**	@param	sample		The sample of numbers to inspect
+**	@returns
+**	The standard deviation of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Standard_deviation
+*/
 //!@{
 t_float                              Stat_UInt_StandardDeviation(s_array_uint const sample);
 #define c_ustat_stddev               Stat_UInt_StandardDeviation
@@ -512,7 +845,24 @@ t_float                              Stat_Float_StandardDeviation(s_array_float 
 
 
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Coefficient_of_variation
+//!@doc Returns the coefficient of variation of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the coefficient of variation (also known as "relative
+**	standard deviation") of the given `sample`, ie: the ratio of the
+**	sample's standard deviation to its arithmetic mean:
+**	`stddev / mean`.
+**	This is a standardized (dimensionless) measure of the dispersion of
+**	the sample's values.
+**
+**	@param	sample		The sample of numbers to inspect
+**	@returns
+**	The coefficient of variation of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Coefficient_of_variation
+*/
 //!@{
 t_float                              Stat_UInt_CoefficientOfVariation(s_array_uint const sample);
 #define c_ustat_cv                   Stat_UInt_CoefficientOfVariation
@@ -528,7 +878,25 @@ t_float                              Stat_Float_CoefficientOfVariation(s_array_f
 #define Stat_Float_CV                Stat_Float_CoefficientOfVariation
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Interquartile_range
+//!@doc Returns the interquartile range of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the interquartile range (IQR, also known as "midspread") of
+**	the given `sample`, ie: the difference between the sample's third and
+**	first quartiles: `Q3 - Q1`.
+**	This is a measure of dispersion which is more robust to outliers than
+**	the full range.
+**	NOTE: this function expects the given `sample` to be sorted
+**	(you may want to call Stat_Sort() beforehand).
+**
+**	@param	sample		The sample of numbers to inspect (expected to be sorted, in ascending order)
+**	@returns
+**	The interquartile range of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Interquartile_range
+*/
 //!@{
 t_float                              Stat_UInt_InterquartileRange(s_array_uint const sample);
 #define c_ustat_iqr                  Stat_UInt_InterquartileRange
@@ -544,7 +912,24 @@ t_float                              Stat_Float_InterquartileRange(s_array_float
 #define Stat_Float_IQR               Stat_Float_InterquartileRange
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Median_absolute_deviation
+//!@doc Returns the median absolute deviation of the given `sample`
+/*!
+**	@nonstd
+**
+**	Computes the median absolute deviation (MAD) of the given `sample`,
+**	ie: the median of the absolute deviations of its values from the
+**	sample's median: `median(abs(x - median(sample)))`.
+**	This is a measure of dispersion which is very robust to outliers.
+**	NOTE: this function expects the given `sample` to be sorted
+**	(you may want to call Stat_Sort() beforehand).
+**
+**	@param	sample		The sample of numbers to inspect (expected to be sorted, in ascending order)
+**	@returns
+**	The median absolute deviation of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Median_absolute_deviation
+*/
 //!@{
 t_float                              Stat_UInt_MedianAbsoluteDeviation(s_array_uint const sample);
 #define c_ustat_mad                  Stat_UInt_MedianAbsoluteDeviation
@@ -560,7 +945,25 @@ t_float                              Stat_Float_MedianAbsoluteDeviation(s_array_
 #define Stat_Float_MAD               Stat_Float_MedianAbsoluteDeviation
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Average_absolute_deviation
+//!@doc Returns the average absolute deviation of the given `sample`, around the given `center` point
+/*!
+**	@nonstd
+**
+**	Computes the average absolute deviation (AAD) of the given `sample`,
+**	ie: the arithmetic mean of the absolute deviations of its values from
+**	the given `center` point: `sum(abs(x - center)) / n`
+**	(ignoring any invalid values, like `NAN`).
+**	The `center` point is typically chosen to be the sample's mean or
+**	median.
+**
+**	@param	sample		The sample of numbers to inspect
+**	@param	center		The central point from which to measure each value's deviation (typically the sample's mean, or median)
+**	@returns
+**	The average absolute deviation of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Average_absolute_deviation
+*/
 //!@{
 t_float                              Stat_UInt_AverageAbsoluteDeviation(s_array_uint const sample, t_uint center);
 #define c_ustat_aad                  Stat_UInt_AverageAbsoluteDeviation
@@ -576,7 +979,25 @@ t_float                              Stat_Float_AverageAbsoluteDeviation(s_array
 #define Stat_Float_AAD               Stat_Float_AverageAbsoluteDeviation
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Arithmetic%E2%80%93geometric_mean
+//!@doc Returns the arithmetic-geometric mean of the two given numbers `x` and `y`
+/*!
+**	@nonstd
+**
+**	Computes the arithmetic-geometric mean (AGM) of the two given numbers,
+**	ie: the common limit of the two sequences obtained by repeatedly
+**	replacing the pair `(a, g)` with their arithmetic mean `(a + g) / 2`
+**	and their geometric mean `sqrt(a * g)`, starting from `a = x, g = y`.
+**	The result always lies between the geometric mean and the arithmetic
+**	mean of `x` and `y`.
+**
+**	@param	x		The first of the two numbers to compute the arithmetic-geometric mean of
+**	@param	y		The second of the two numbers to compute the arithmetic-geometric mean of
+**	@returns
+**	The arithmetic-geometric mean of `x` and `y`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Arithmetic%E2%80%93geometric_mean
+*/
 //!@{
 t_float                              Stat_UInt_ArithmeticGeometricMean(t_uint x, t_uint y);
 #define c_ustat_agm                  Stat_UInt_ArithmeticGeometricMean
@@ -598,7 +1019,26 @@ t_float                              Stat_Float_ArithmeticGeometricMean(t_float 
 ||                         Statistics & Probabilities                         ||
 \*============================================================================*/
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Mean_signed_deviation
+//!@doc Returns the mean signed deviation between the given `sample` and its `expect`-ed values
+/*!
+**	@nonstd
+**
+**	Computes the mean signed deviation (MSD, also known as "mean signed
+**	error") between the observed values of the given `sample` and their
+**	corresponding expected/predicted values in `expect`, ie: the
+**	arithmetic mean of the signed errors: `sum(expect[i] - sample[i]) / n`
+**	(ignoring any invalid values, like `NAN`).
+**	Unlike the absolute/squared error metrics, positive and negative
+**	errors can cancel each other out, which indicates prediction bias.
+**
+**	@param	sample		The sample of observed/measured numbers to inspect
+**	@param	expect		The array of expected/predicted values (must hold at least as many items as `sample`), such that `expect[i]` is the prediction for `sample.items[i]`
+**	@returns
+**	The mean signed deviation of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Mean_signed_deviation
+*/
 //!@{
 t_float                              Stat_UInt_MeanSignedDeviation(s_array_uint const sample, t_uint const* expect);
 #define c_ustat_msd                  Stat_UInt_MeanSignedDeviation
@@ -614,7 +1054,24 @@ t_float                              Stat_Float_MeanSignedDeviation(s_array_floa
 #define Stat_Float_MSD               Stat_Float_MeanSignedDeviation
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Mean_squared_error
+//!@doc Returns the mean squared error between the given `sample` and its `expect`-ed values
+/*!
+**	@nonstd
+**
+**	Computes the mean squared error (MSE) between the observed values of
+**	the given `sample` and their corresponding expected/predicted values
+**	in `expect`, ie: the arithmetic mean of the squares of the errors:
+**	`sum((expect[i] - sample[i]) ^ 2) / n`
+**	(ignoring any invalid values, like `NAN`).
+**
+**	@param	sample		The sample of observed/measured numbers to inspect
+**	@param	expect		The array of expected/predicted values (must hold at least as many items as `sample`), such that `expect[i]` is the prediction for `sample.items[i]`
+**	@returns
+**	The mean squared error of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Mean_squared_error
+*/
 //!@{
 t_float                              Stat_UInt_MeanSquaredError(s_array_uint const sample, t_uint const* expect);
 #define c_ustat_mse                  Stat_UInt_MeanSquaredError
@@ -630,7 +1087,24 @@ t_float                              Stat_Float_MeanSquaredError(s_array_float c
 #define Stat_Float_MSE               Stat_Float_MeanSquaredError
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Mean_absolute_error
+//!@doc Returns the mean absolute error between the given `sample` and its `expect`-ed values
+/*!
+**	@nonstd
+**
+**	Computes the mean absolute error (MAE) between the observed values of
+**	the given `sample` and their corresponding expected/predicted values
+**	in `expect`, ie: the arithmetic mean of the absolute errors:
+**	`sum(abs(expect[i] - sample[i])) / n`
+**	(ignoring any invalid values, like `NAN`).
+**
+**	@param	sample		The sample of observed/measured numbers to inspect
+**	@param	expect		The array of expected/predicted values (must hold at least as many items as `sample`), such that `expect[i]` is the prediction for `sample.items[i]`
+**	@returns
+**	The mean absolute error of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Mean_absolute_error
+*/
 //!@{
 t_float                              Stat_UInt_MeanAbsoluteError(s_array_uint const sample, t_uint const* expect);
 #define c_ustat_mae                  Stat_UInt_MeanAbsoluteError
@@ -646,7 +1120,24 @@ t_float                              Stat_Float_MeanAbsoluteError(s_array_float 
 #define Stat_Float_MAE               Stat_Float_MeanAbsoluteError
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Mean_absolute_difference
+//!@doc Returns the mean absolute difference between the given `sample` and its `expect`-ed values
+/*!
+**	@nonstd
+**
+**	Computes the mean absolute difference between the observed values of
+**	the given `sample` and their corresponding expected/predicted values
+**	in `expect`.
+**	This is a measure of statistical dispersion, expressed in the same
+**	unit as the values themselves.
+**
+**	@param	sample		The sample of observed/measured numbers to inspect
+**	@param	expect		The array of expected/predicted values (must hold at least as many items as `sample`), such that `expect[i]` is the prediction for `sample.items[i]`
+**	@returns
+**	The mean absolute difference of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Mean_absolute_difference
+*/
 //!@{
 t_float                              Stat_UInt_MeanAbsoluteDifference(s_array_uint const sample, t_uint const* expect);
 #define c_ustat_md                   Stat_UInt_MeanAbsoluteDifference
@@ -662,7 +1153,24 @@ t_float                              Stat_Float_MeanAbsoluteDifference(s_array_f
 #define Stat_Float_MD                Stat_Float_MeanAbsoluteDifference
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Mean_absolute_difference#Relative_mean_absolute_difference
+//!@doc Returns the relative mean absolute difference between the given `sample` and its `expect`-ed values
+/*!
+**	@nonstd
+**
+**	Computes the relative mean absolute difference between the observed
+**	values of the given `sample` and their corresponding
+**	expected/predicted values in `expect`, ie: the mean absolute
+**	difference, divided by the arithmetic mean (this normalization makes
+**	the result a dimensionless, scale-invariant quantity).
+**
+**	@param	sample		The sample of observed/measured numbers to inspect
+**	@param	expect		The array of expected/predicted values (must hold at least as many items as `sample`), such that `expect[i]` is the prediction for `sample.items[i]`
+**	@returns
+**	The relative mean absolute difference of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Mean_absolute_difference#Relative_mean_absolute_difference
+*/
 //!@{
 t_float                              Stat_UInt_RelativeMeanAbsoluteDifference(s_array_uint const sample, t_uint const* expect);
 #define c_ustat_rmd                  Stat_UInt_RelativeMeanAbsoluteDifference
@@ -678,7 +1186,25 @@ t_float                              Stat_Float_RelativeMeanAbsoluteDifference(s
 #define Stat_Float_RMD               Stat_Float_RelativeMeanAbsoluteDifference
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Root_mean_square_deviation
+//!@doc Returns the root mean square deviation between the given `sample` and its `expect`-ed values
+/*!
+**	@nonstd
+**
+**	Computes the root mean square deviation (RMSD, also known as "root
+**	mean square error") between the observed values of the given `sample`
+**	and their corresponding expected/predicted values in `expect`, ie: the
+**	square root of the mean squared error:
+**	`sqrt(sum((expect[i] - sample[i]) ^ 2) / n)`.
+**	This is expressed in the same unit as the values themselves.
+**
+**	@param	sample		The sample of observed/measured numbers to inspect
+**	@param	expect		The array of expected/predicted values (must hold at least as many items as `sample`), such that `expect[i]` is the prediction for `sample.items[i]`
+**	@returns
+**	The root mean square deviation of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Root_mean_square_deviation
+*/
 //!@{
 t_float                              Stat_UInt_RootMeanSquareDeviation(s_array_uint const sample, t_uint const* expect);
 #define c_ustat_rmsd                 Stat_UInt_RootMeanSquareDeviation
@@ -694,7 +1220,25 @@ t_float                              Stat_Float_RootMeanSquareDeviation(s_array_
 #define Stat_Float_RMSD              Stat_Float_RootMeanSquareDeviation
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Mean_percentage_error
+//!@doc Returns the mean percentage error between the given `sample` and its `expect`-ed values
+/*!
+**	@nonstd
+**
+**	Computes the mean percentage error (MPE) between the observed values
+**	of the given `sample` and their corresponding expected/predicted
+**	values in `expect`, ie: the arithmetic mean of the relative (signed)
+**	percentage errors of the predictions.
+**	Because the errors are signed, positive and negative errors can
+**	cancel each other out, which indicates prediction bias.
+**
+**	@param	sample		The sample of observed/measured numbers to inspect
+**	@param	expect		The array of expected/predicted values (must hold at least as many items as `sample`), such that `expect[i]` is the prediction for `sample.items[i]`
+**	@returns
+**	The mean percentage error of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Mean_percentage_error
+*/
 //!@{
 t_float                              Stat_UInt_MeanPercentageError(s_array_uint const sample, t_uint const* expect);
 #define c_ustat_mpe                  Stat_UInt_MeanPercentageError
@@ -710,7 +1254,23 @@ t_float                              Stat_Float_MeanPercentageError(s_array_floa
 #define Stat_Float_MPE               Stat_Float_MeanPercentageError
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Mean_absolute_percentage_error
+//!@doc Returns the mean absolute percentage error between the given `sample` and its `expect`-ed values
+/*!
+**	@nonstd
+**
+**	Computes the mean absolute percentage error (MAPE) between the
+**	observed values of the given `sample` and their corresponding
+**	expected/predicted values in `expect`, ie: the arithmetic mean of the
+**	absolute values of the relative percentage errors of the predictions.
+**
+**	@param	sample		The sample of observed/measured numbers to inspect
+**	@param	expect		The array of expected/predicted values (must hold at least as many items as `sample`), such that `expect[i]` is the prediction for `sample.items[i]`
+**	@returns
+**	The mean absolute percentage error of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Mean_absolute_percentage_error
+*/
 //!@{
 t_float                              Stat_UInt_MeanAbsolutePercentageError(s_array_uint const sample, t_uint const* expect);
 #define c_ustat_mape                 Stat_UInt_MeanAbsolutePercentageError
@@ -726,7 +1286,23 @@ t_float                              Stat_Float_MeanAbsolutePercentageError(s_ar
 #define Stat_Float_MAPE              Stat_Float_MeanAbsolutePercentageError
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Mean_squared_prediction_error
+//!@doc Returns the mean squared prediction error between the given `sample` and its `expect`-ed values
+/*!
+**	@nonstd
+**
+**	Computes the mean squared prediction error (MSPE) between the observed
+**	values of the given `sample` and their corresponding predicted values
+**	in `expect`, ie: the expected value of the squared differences between
+**	the observed values and the values predicted by a model/estimator.
+**
+**	@param	sample		The sample of observed/measured numbers to inspect
+**	@param	expect		The array of expected/predicted values (must hold at least as many items as `sample`), such that `expect[i]` is the prediction for `sample.items[i]`
+**	@returns
+**	The mean squared prediction error of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Mean_squared_prediction_error
+*/
 //!@{
 t_float                              Stat_UInt_MeanSquaredPredictionError(s_array_uint const sample, t_uint const* expect);
 #define c_ustat_mspe                 Stat_UInt_MeanSquaredPredictionError
@@ -742,7 +1318,25 @@ t_float                              Stat_Float_MeanSquaredPredictionError(s_arr
 #define Stat_Float_MSPE              Stat_Float_MeanSquaredPredictionError
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Residual_sum_of_squares
+//!@doc Returns the residual sum of squares between the given `sample` and its `expect`-ed values
+/*!
+**	@nonstd
+**
+**	Computes the residual sum of squares (RSS, also known as "sum of
+**	squared residuals") between the observed values of the given `sample`
+**	and their corresponding expected/predicted values in `expect`, ie: the
+**	sum of the squares of the residuals: `sum((expect[i] - sample[i]) ^ 2)`.
+**	This is a measure of the discrepancy between the data and a
+**	model/estimator (a smaller RSS indicates a tighter fit).
+**
+**	@param	sample		The sample of observed/measured numbers to inspect
+**	@param	expect		The array of expected/predicted values (must hold at least as many items as `sample`), such that `expect[i]` is the prediction for `sample.items[i]`
+**	@returns
+**	The residual sum of squares of the given `sample`, or `NAN` if an error occurred.
+**
+**	@see
+**	https://en.wikipedia.org/wiki/Residual_sum_of_squares
+*/
 //!@{
 t_float                              Stat_UInt_ResidualSumOfSquares(s_array_uint const sample, t_uint const* expect);
 #define c_ustat_rss                  Stat_UInt_ResidualSumOfSquares

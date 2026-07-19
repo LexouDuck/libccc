@@ -669,7 +669,17 @@ t_sint					StringArrayUTF32_IndexOf_F(t_utf32 const* const* strarr, t_bool (*mat
 
 //!	Counts the amount of occurences of the char `c` in the given string array `strarr`.
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Iterates over every string of the given null-terminated string array
+**	`strarr`, counting the total amount of occurrences of the UTF-32 character
+**	`c` across all of its strings.
+**
+**	@param	strarr	The string array to look through (terminated by a `NULL` pointer)
+**	@param	c		The character to count occurrences of
+**	@returns
+**	The total amount of occurrences of the character `c`,
+**	in every string of the given string array `strarr`.
 */
 //!@{
 t_uint						StringArrayUTF32_Count_Char(t_utf32 const* const* strarr, t_utf32 const c);
@@ -678,7 +688,17 @@ t_uint						StringArrayUTF32_Count_Char(t_utf32 const* const* strarr, t_utf32 co
 
 //!	Counts the amount of occurences of any of the chars in the given `charset` in the given string array `strarr`.
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Iterates over every string of the given null-terminated string array
+**	`strarr`, counting the total amount of occurrences of any character
+**	which is present in the given `cset` charset, across all of its strings.
+**
+**	@param	strarr	The string array to look through (terminated by a `NULL` pointer)
+**	@param	cset	The set of characters to count occurrences of (a string containing each character to match)
+**	@returns
+**	The total amount of occurrences of any of the characters contained in
+**	`cset`, in every string of the given string array `strarr`.
 */
 //!@{
 t_uint						StringArrayUTF32_Count_Charset(t_utf32 const* const* strarr, t_utf32 const* cset);
@@ -687,7 +707,17 @@ t_uint						StringArrayUTF32_Count_Charset(t_utf32 const* const* strarr, t_utf32
 
 //!	Counts the amount of occurences of the string `query` in the given string array `strarr`.
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Iterates over every string of the given null-terminated string array
+**	`strarr`, counting the total amount of (non-overlapping) occurrences
+**	of the string `query` across all of its strings.
+**
+**	@param	strarr	The string array to look through (terminated by a `NULL` pointer)
+**	@param	query	The string to count occurrences of
+**	@returns
+**	The total amount of occurrences of the string `query`,
+**	in every string of the given string array `strarr`.
 */
 //!@{
 t_uint						StringArrayUTF32_Count_String(t_utf32 const* const* strarr, t_utf32 const* query);

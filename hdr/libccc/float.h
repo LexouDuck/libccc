@@ -639,7 +639,16 @@ typedef union cast_float
 
 //!@doc Returns the nearest floating-point value from the given unsigned integer `number`
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Converts the given unsigned integer `number` to its nearest
+**	representable floating-point value (with the usual floating-point
+**	precision loss, whenever `number` exceeds the amount of significant
+**	digits which the mantissa can store exactly).
+**
+**	@param	number	The unsigned integer value to convert
+**	@returns
+**	The nearest floating-point representation of the given `number`.
 */
 //!@{
 #define					Float_FromUInt	CONCAT(FLOAT_TYPE,CONCAT(_From,UINT_TYPE))
@@ -730,7 +739,16 @@ t_f128					F128_FromU128(t_u128 number);
 
 //!@doc Returns the nearest floating-point value from the given signed integer `number`
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Converts the given signed integer `number` to its nearest
+**	representable floating-point value (with the usual floating-point
+**	precision loss, whenever `number` exceeds the amount of significant
+**	digits which the mantissa can store exactly).
+**
+**	@param	number	The signed integer value to convert
+**	@returns
+**	The nearest floating-point representation of the given `number`.
 */
 //!@{
 #define					Float_FromSInt	CONCAT(FLOAT_TYPE,CONCAT(_From,SINT_TYPE))
@@ -821,7 +839,16 @@ t_f128					F128_FromS128(t_s128 number);
 
 //!@doc Returns the nearest floating-point value from the given fixed-point `number`
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Converts the given fixed-point `number` to its nearest representable
+**	floating-point value (this conversion is usually lossless, unless the
+**	value of `number` exceeds the amount of significant digits which the
+**	floating-point type's mantissa can store exactly).
+**
+**	@param	number	The fixed-point value to convert
+**	@returns
+**	The nearest floating-point representation of the given `number`.
 */
 //!@{
 #define					Float_FromFixed	CONCAT(FLOAT_TYPE,CONCAT(_From,FIXED_TYPE))
@@ -912,7 +939,18 @@ t_f128					F128_FromQ128(t_q128 number);
 
 //!@doc Returns the nearest floating-point value from the given floating-point `number`
 /*!
-**	TODO document this
+**	@nonstd
+**
+**	Converts the given floating-point `number` from one floating-point type
+**	to another. Converting to a larger floating-point type is lossless,
+**	whereas converting to a smaller type incurs the usual floating-point
+**	precision loss (and yields infinity, if `number` exceeds the smaller
+**	type's maximum representable value).
+**
+**	@param	number	The floating-point value to convert
+**	@returns
+**	The nearest representation of the given `number`, for the target
+**	floating-point type.
 */
 //!@{
 #define	 				Float_FromFloat	CONCAT(FLOAT_TYPE,CONCAT(_From,FLOAT_TYPE))
