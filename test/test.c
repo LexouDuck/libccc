@@ -538,35 +538,112 @@ void	print_test_alloc(s_test_alloc* test, char const* args, char const* warning)
 
 
 
-#define PRINT_TEST_STRARR(WHICH) \
-	length = 0; \
-	for (i = 0; test->expect[i]; ++i) \
-	{ \
-		length += strlen(test->expect[i]); \
-	} \
-	if (!(str_expect = (char*)malloc(length + (i ? (i - 1) * 2 : 0)))) \
-		goto failure; \
-	length = 0; \
-	for (i = 0; test->expect[i]; ++i) \
-	{ \
-		if (i != 0) \
-		{ \
-			str_expect[length++] = ','; \
-			str_expect[length++] = ' '; \
-		} \
-		strcpy(str_expect + length, test->expect[i]); \
-		length += strlen(test->expect[i]); \
-	} \
+//! builds a human-readable string representation of a NULL-terminated pointer array, like: `{0x1234, 0x5678}`
+static char*	ptrarr_to_str(void** ptrarr)
+{
+	char*	result;
+	size_t	length;
+	size_t	offset;
+	size_t	i;
+
+	if (ptrarr == NULL)
+		return (strdup("(null)"));
+	length = 0;
+	while (ptrarr[length])
+		++length;
+	result = (char*)malloc(length * 24 + 3);
+	if (result == NULL)
+		return (NULL);
+	offset = 0;
+	result[offset++] = '{';
+	for (i = 0; i < length; ++i)
+	{
+		offset += snprintf(result + offset, 24, "%s%p", (i == 0 ? "" : ", "), ptrarr[i]);
+	}
+	result[offset++] = '}';
+	result[offset] = '\0';
+	return (result);
+}
+
+void	print_test_ptrarr(s_test_ptrarr* test, char const* args, char const* warning)
+{
+	char*	str_result = NULL;
+	char*	str_expect = NULL;
+	int		error = FALSE;
+	int		i;
+
+	if (test->result == NULL || test->expect == NULL)
+	{
+		error = (test->result != test->expect);
+	}
+	else
+	{
+		for (i = 0; test->result[i] || test->expect[i]; ++i)
+		{
+			if (test->result[i] != test->expect[i])
+			{
+				error = TRUE;
+				break;
+			}
+		}
+	}
+	str_result = ptrarr_to_str(test->result);
+	str_expect = ptrarr_to_str(test->expect);
+	print_test(test->name, test->function, args,
+		str_result,
+		str_expect,
+		test->flags,
+		error, warning);
+	if (str_result) free(str_result);
+	if (str_expect) free(str_expect);
+}
+
+
+
+//! builds a human-readable string representation of a NULL-terminated string array, like: `{"Hello", "World!"}`
+static char*	strarr_to_str(char** strarr)
+{
+	char*	result;
+	size_t	length;
+	size_t	offset;
+	size_t	i;
+
+	if (strarr == NULL)
+		return (strdup("(null)"));
+	length = 0;
+	for (i = 0; strarr[i]; ++i)
+	{
+		length += strlen(strarr[i]);
+	}
+	result = (char*)malloc(length + (i ? (i - 1) * 2 : 0) + 3);
+	if (result == NULL)
+		return (NULL);
+	result[offset++] = '{';
+	offset = 0;
+	length = 0;
+	for (i = 0; strarr[i]; ++i)
+	{
+		if (i != 0)
+		{
+			result[length++] = ',';
+			result[length++] = ' ';
+		}
+		strcpy(result + length, strarr[i]);
+		length += strlen(strarr[i]);
+	}
+	result[offset++] = '}';
+	result[offset] = '\0';
+	return (result);
+}
 
 void	print_test_strarr(s_test_strarr* test, char const* args, char const* warning)
 {
 	char*	str_result = NULL;
 	char*	str_expect = NULL;
 	int		error = FALSE;
-	int		length;
-	size_t	i;
+	int		i;
 
-	for (int i = 0; test->result[i] && test->expect[i]; ++i)
+	for (i = 0; test->result[i] && test->expect[i]; ++i)
 	{
 		if (!str_equals(test->result[i], test->expect[i]))
 		{
@@ -574,14 +651,13 @@ void	print_test_strarr(s_test_strarr* test, char const* args, char const* warnin
 			break;
 		}
 	}
-	PRINT_TEST_STRARR(result)
-	PRINT_TEST_STRARR(expect)
+	str_result = strarr_to_str(test->result);
+	str_expect = strarr_to_str(test->expect);
 	print_test(test->name, test->function, args,
 		str_result,
 		str_expect,
 		test->flags,
 		error, warning);
-failure:
 	if (str_result) free(str_result);
 	if (str_expect) free(str_expect);
 }
