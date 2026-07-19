@@ -74,14 +74,14 @@ t_char*	S##BITS##_ToString_Oct(t_s##BITS number, t_bool prefix) \
 		digits[i++] = n % 8; \
 		n /= 8; \
 	} \
-	result = (t_char*)Memory_Allocate((prefix ? 2 : 0) + i + 1); \
+	if (i == 0) \
+		digits[i++] = 0; \
+	result = (t_char*)Memory_Allocate(((number < 0) ? 1 : 0) + (prefix ? 2 : 0) + i + 1); \
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) \
 		return (NULL); \
 	n = 0; \
 	if (number < 0) \
 		result[n++] = '-'; \
-	if (number == 0) \
-		result[n++] = '0'; \
 	if (prefix) \
 	{ \
 		result[n++] = '0'; \
